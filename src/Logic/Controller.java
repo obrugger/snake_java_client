@@ -30,9 +30,11 @@ public class Controller {
 
     public void run(){
 
-        socketMethod();
+       // socketMethod();
 
         frame.getLogin().addActionListener(new LoginActionListener());
+        frame.getMenu().addActionListener(new MenuActionListener());
+        frame.getHighscore().addActionListener(new HighscoreActionListener());
         frame.show(Frame.LOGIN);
     }
 
@@ -65,14 +67,42 @@ public class Controller {
 
             if (e.getSource() == frame.getLogin().getBtnLogin()){
 
-                User usr = new User();
-
-                frame.getMenu().getComboBox().addItem(usr.getUsername());
-
                 frame.show(Frame.MENU);
             }
         }
     }
 
+    private class MenuActionListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+            if (e.getSource() == frame.getMenu().getBtnDeleteGame()){
+
+            }
+            else if (e.getSource() == frame.getMenu().getBtnHighscores()){
+
+                frame.show(Frame.HIGHSCORE);
+
+            }
+            else if (e.getSource() == frame.getMenu().getBtnLogout()){
+
+                frame.show(Frame.LOGIN);
+
+            }
+            else if (e.getSource() == frame.getMenu().getBtnPlaySnake()){
+
+            }
+        }
+    }
+
+    private class HighscoreActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+
+            if (e.getSource() == frame.getHighscore().getBtnBack()){
+                frame.show(Frame.MENU);
+            }
+
+        }
+    }
 
 }
