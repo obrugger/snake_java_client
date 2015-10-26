@@ -1,6 +1,9 @@
 package Logic;
 import GUI.Frame;
+import Test.User;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -25,6 +28,13 @@ public class Controller {
 
     }
 
+    public void run(){
+
+        socketMethod();
+
+        frame.getLogin().addActionListener(new LoginActionListener());
+        frame.show(Frame.LOGIN);
+    }
 
     public void socketMethod(){
 
@@ -46,4 +56,23 @@ public class Controller {
             System.out.println(e);
         }
     }
+
+    private class LoginActionListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+
+
+            if (e.getSource() == frame.getLogin().getBtnLogin()){
+
+                User usr = new User();
+
+                frame.getMenu().getComboBox().addItem(usr.getUsername());
+
+                frame.show(Frame.MENU);
+            }
+        }
+    }
+
+
 }

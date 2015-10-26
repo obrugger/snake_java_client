@@ -46,6 +46,19 @@ public class Frame extends JFrame {
         contentPane.add(menu, MENU);
 
         setLocationRelativeTo(null);
+
+        c = (CardLayout) getContentPane().getLayout();
     }
 
+    public Login getLogin() {
+        return login;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void show(String card){
+        c.show(this.getContentPane(), card);
+    }
 }
