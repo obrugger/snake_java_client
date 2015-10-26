@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Created by Oscar on 26-10-2015.
  */
-public class Main {
+public class Controller {
 
     private static Socket socket;
     private static PrintWriter printWriter;
@@ -18,16 +18,19 @@ public class Main {
 
     private Frame frame;
 
-    public Main(){
+    public Controller(){
 
         frame = new Frame();
-
         frame.setVisible(true);
 
     }
-    public static void main(String[] args) {
+
+
+    public void socketMethod(){
 
         try {
+
+
             socket = new Socket("localhost", 45782);
 
             printWriter = new PrintWriter(socket.getOutputStream(),true);
@@ -38,8 +41,6 @@ public class Main {
             String string = sc.next();
 
             printWriter.println(string + " you have written.");
-
-
 
         } catch(Exception e) {
             System.out.println(e);
