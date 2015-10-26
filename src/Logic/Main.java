@@ -1,4 +1,6 @@
 package Logic;
+import GUI.Frame;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -14,9 +16,13 @@ public class Main {
     private static PrintWriter printWriter;
     private static Scanner sc;
 
+    private Frame frame;
 
     public Main(){
 
+        frame = new Frame();
+
+        frame.setVisible(true);
 
     }
     public static void main(String[] args) {
