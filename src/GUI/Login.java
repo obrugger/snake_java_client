@@ -23,6 +23,7 @@ public class Login extends JPanel {
      */
     public Login() {
 
+        Methods methods = new Methods();
         setLayout(null);
 
 
