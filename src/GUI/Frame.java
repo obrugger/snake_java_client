@@ -1,12 +1,9 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import java.awt.CardLayout;
 
 /**
  * Created by Oscar on 26-10-2015.
@@ -16,6 +13,9 @@ import java.awt.CardLayout;
 
 public class Frame extends JFrame {
 
+    public static final String DELETEGAME = "name_165115347594465";
+    public static final String PLAYSNAKE = "name_163948843846716";
+    public static final String JOINGAME = "name_163356019759769";
     public static final String HIGHSCORE = "name_12824002824655";
     public static final String MENU = "name_68481068440976";
     public static final String LOGIN = "name_67871361319331";
@@ -25,7 +25,9 @@ public class Frame extends JFrame {
     private Menu menu;
     private Highscore highscore;
     private ImageIcon imageIcon;
-
+    private JoinGame joinGame;
+    private PlaySnake playSnake;
+    private DeleteGame deleteGame;
 
     /**
      * Create the frame.
@@ -33,9 +35,10 @@ public class Frame extends JFrame {
     public Frame() {
 
         contentPane = new JPanel();
+        Methods methods = new Methods();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(250, 250, 550, 350);
+        setSize(methods.getFrameWidth(), methods.getFrameHeight());
         setContentPane(contentPane);
         setTitle("Snake");
         setLocationRelativeTo(null);
@@ -58,6 +61,15 @@ public class Frame extends JFrame {
         highscore = new Highscore();
         contentPane.add(highscore, HIGHSCORE);
 
+        joinGame = new JoinGame();
+        contentPane.add(joinGame, JOINGAME);
+
+        playSnake = new PlaySnake();
+        contentPane.add(playSnake, PLAYSNAKE);
+
+        deleteGame = new DeleteGame();
+        contentPane.add(deleteGame, DELETEGAME);
+
         c = (CardLayout) getContentPane().getLayout();
     }
 
@@ -71,6 +83,18 @@ public class Frame extends JFrame {
 
     public Highscore getHighscore() {
         return highscore;
+    }
+
+    public JoinGame getJoinGame() {
+        return joinGame;
+    }
+
+    public PlaySnake getPlaySnake() {
+        return playSnake;
+    }
+
+    public DeleteGame getDeleteGame() {
+        return deleteGame;
     }
 
     public void show(String card){

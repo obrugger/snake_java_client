@@ -18,6 +18,7 @@ public class Menu extends JPanel {
      */
     public Menu() {
 
+
         setLayout(null);
 
         lblMenu = new JLabel("MENU");

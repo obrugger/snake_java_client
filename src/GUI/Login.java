@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
@@ -24,6 +25,18 @@ public class Login extends JPanel {
     public Login() {
 
         Methods methods = new Methods();
+
+        int screenWidth = methods.getScreenWidth();
+        int screenHeight = methods.getScreenHeight();
+
+        double width = 0.109375*screenWidth;
+        double height = 0.033333*screenHeight;
+
+        int txt_width = (int) width;
+        int txt_height = (int) height;
+
+        System.out.println(txt_width);
+        System.out.println(txt_height);
         setLayout(null);
 
 
@@ -36,16 +49,18 @@ public class Login extends JPanel {
         add(lblUsername);
 
         txtUsername = new JTextField();
-        txtUsername.setBounds(340, 333, 236, 39);
+        txtUsername.setBounds(340, 333, txt_width, txt_height);
+        txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 33));
         add(txtUsername);
-        txtUsername.setColumns(10);
+        txtUsername.setColumns(100);
 
         lblPassword = new JLabel("Password");
         lblPassword.setBounds(398, 453, 115, 33);
         add(lblPassword);
 
         txtPassword = new JTextField();
-        txtPassword.setBounds(340, 496, 236, 39);
+        txtPassword.setBounds(340, 496, txt_width, txt_height);
+        txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 33));
         add(txtPassword);
         txtPassword.setColumns(10);
 

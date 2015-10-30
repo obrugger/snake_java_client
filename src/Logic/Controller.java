@@ -2,6 +2,7 @@ package Logic;
 import GUI.Frame;
 import Test.User;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -35,6 +36,9 @@ public class Controller {
         frame.getLogin().addActionListener(new LoginActionListener());
         frame.getMenu().addActionListener(new MenuActionListener());
         frame.getHighscore().addActionListener(new HighscoreActionListener());
+        frame.getJoinGame().addActionListener(new JoinGameActionListener());
+        frame.getPlaySnake().addActionListener(new PlaySnakeActionListener());
+        frame.getDeleteGame().addActionListener(new DeleteGameActionListener());
         frame.show(Frame.LOGIN);
     }
 
@@ -91,7 +95,10 @@ public class Controller {
             }
             else if (e.getSource() == frame.getMenu().getBtnPlaySnake()){
 
+                frame.show(Frame.PLAYSNAKE);
+
             }
+
         }
     }
 
@@ -100,6 +107,48 @@ public class Controller {
 
             if (e.getSource() == frame.getHighscore().getBtnBack()){
                 frame.show(Frame.MENU);
+            }
+
+        }
+    }
+
+    private class  JoinGameActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+
+            if(e.getSource() == frame.getJoinGame().getBtnBack()){
+                frame.show(Frame.PLAYSNAKE);
+            }
+            else if(e.getSource() == frame.getJoinGame()){
+
+            }
+        }
+    }
+
+    private class PlaySnakeActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+
+            if(e.getSource() == frame.getPlaySnake().getBtnBack()){
+                frame.show(Frame.MENU);
+
+            }
+            else if(e.getSource() == frame.getPlaySnake().getBtnCreateGame()){
+
+            }
+            else if (e.getSource() == frame.getPlaySnake().getBtnJoinGame()){
+                frame.show(Frame.JOINGAME);
+            }
+
+        }
+    }
+
+    private class DeleteGameActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e){
+
+            if(e.getSource() == frame.getDeleteGame().getBtnBack()){
+
+            }
+            else if(e.getSource() == frame.getDeleteGame().getBtnDelete()) {
+
             }
 
         }
