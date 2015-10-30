@@ -146,12 +146,14 @@ public class Controller {
 
             if(e.getSource() == frame.getDeleteGame().getBtnBack()){
 
+                frame.show(Frame.MENU);
+
             }
             else if(e.getSource() == frame.getDeleteGame().getBtnDelete()) {
 
-            }
+                frame.show(Frame.MENU);
 
+            }
         }
     }
-
 }
