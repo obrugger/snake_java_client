@@ -37,6 +37,7 @@ public class Frame extends JFrame {
         contentPane = new JPanel();
         Methods methods = new Methods();
 
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(methods.getFrameWidth(), methods.getFrameHeight());
         setContentPane(contentPane);

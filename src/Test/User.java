@@ -8,14 +8,14 @@ import java.util.Date;
 public class User {
 
     private int id =1 ;
-    private String first_name = "oscar";
-    private String last_name = "brugger";
-    private String email = "obrugger@gmail.com";
-    private String username = "obrugger";
-    private String password = "1234";
-    private Date created = null;
-    private String status = null;
-    private String type = null;
+    private String first_name;
+    private String last_name;
+    private String email;
+    private String username;
+    private String password;
+    private Date created;
+    private String status;
+    private String type;
 
     public User(){
 

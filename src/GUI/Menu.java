@@ -13,11 +13,17 @@ public class Menu extends JPanel {
     private JButton btnDeleteGame;
     private JButton btnLogout;
 
+    private ImageIcon image;
+    private JLabel labelIamge;
     /**
      * Create the panel.
      */
     public Menu() {
 
+        image = new ImageIcon(this.getClass().getResource("snake.png"));
+        labelIamge = new JLabel(image);
+        labelIamge.setBounds(0,70,300,300);
+        add(labelIamge);
 
         setLayout(null);
 
