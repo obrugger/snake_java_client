@@ -15,15 +15,14 @@ public class SDK {
 
     private static URL url;
 
-    public SDK(){
+    public SDK() {
 
         try {
             url = new URL("http://localhost:29399/api/users");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
+    }
 
         public void setUser(){
             URLConnection urlCon;
@@ -44,8 +43,9 @@ public class SDK {
 
                 while((s = dis.readLine()) != null){
 
+                    System.out.println(dis);
 
-    
+
 
                 }
 
@@ -58,10 +58,3 @@ public class SDK {
         }
     }
 
-
-
-
-
-
-
-}

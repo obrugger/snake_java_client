@@ -15,6 +15,8 @@ public class Methods {
     private int frameWidth = screenWidth/2;
     private int frameHeight = screenHeight/2;
 
+
+
     public int getScreenHeight() {
         return screenHeight;
     }

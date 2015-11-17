@@ -22,46 +22,22 @@ public class Controller {
 
     private Frame frame;
 
+
     public Controller(){
 
         frame = new Frame();
         frame.setVisible(true);
 
+        frame.getMainPanel().getLogin().addActionListener(new LoginActionListener());
+        frame.getMainPanel().getMenu().addActionListener(new MenuActionListener());
+        frame.getMainPanel().getDeleteGame().addActionListener(new DeleteGameActionListener());
+        frame.getMainPanel().getHighscore().addActionListener(new HighscoreActionListener());
+        frame.getMainPanel().getJoinGame().addActionListener(new JoinGameActionListener());
+        frame.getMainPanel().getPlaySnake().addActionListener(new PlaySnakeActionListener());
+
+
     }
 
-    public void run(){
-
-       // socketMethod();
-
-        frame.getLogin().addActionListener(new LoginActionListener());
-        frame.getMenu().addActionListener(new MenuActionListener());
-        frame.getHighscore().addActionListener(new HighscoreActionListener());
-        frame.getJoinGame().addActionListener(new JoinGameActionListener());
-        frame.getPlaySnake().addActionListener(new PlaySnakeActionListener());
-        frame.getDeleteGame().addActionListener(new DeleteGameActionListener());
-        frame.show(Frame.LOGIN);
-    }
-
-    public void socketMethod(){
-
-        try {
-
-
-            socket = new Socket("localhost", 45782);
-
-            printWriter = new PrintWriter(socket.getOutputStream(),true);
-            printWriter.println("Woop WOop");
-
-            sc = new Scanner(System.in);
-            printWriter.println("Input: ");
-            String string = sc.next();
-
-            printWriter.println(string + " you have written.");
-
-        } catch(Exception e) {
-            System.out.println(e);
-        }
-    }
 
     private class LoginActionListener implements ActionListener{
 
@@ -69,9 +45,9 @@ public class Controller {
 
 
 
-            if (e.getSource() == frame.getLogin().getBtnLogin()){
+            if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
 
-                frame.show(Frame.MENU);
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
             }
         }
     }
@@ -80,23 +56,22 @@ public class Controller {
 
         public void actionPerformed(ActionEvent e){
 
-            if (e.getSource() == frame.getMenu().getBtnDeleteGame()){
+            if (e.getSource() == frame.getMainPanel().getMenu().getBtnDeleteGame()){
 
             }
-            else if (e.getSource() == frame.getMenu().getBtnHighscores()){
+            else if (e.getSource() == frame.getMainPanel().getMenu().getBtnHighscores()){
 
-                frame.show(Frame.HIGHSCORE);
-
-            }
-            else if (e.getSource() == frame.getMenu().getBtnLogout()){
-
-                frame.show(Frame.LOGIN);
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getHIGHSCORE());
 
             }
-            else if (e.getSource() == frame.getMenu().getBtnPlaySnake()){
+            else if (e.getSource() == frame.getMainPanel().getMenu().getBtnLogout()){
 
-                frame.show(Frame.PLAYSNAKE);
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
 
+            }
+            else if (e.getSource() == frame.getMainPanel().getMenu().getBtnPlaySnake()){
+
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
             }
 
         }
@@ -105,8 +80,9 @@ public class Controller {
     private class HighscoreActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
 
-            if (e.getSource() == frame.getHighscore().getBtnBack()){
-                frame.show(Frame.MENU);
+            if (e.getSource() == frame.getMainPanel().getHighscore().getBtnBack()){
+
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
             }
 
         }
@@ -115,10 +91,10 @@ public class Controller {
     private class  JoinGameActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
 
-            if(e.getSource() == frame.getJoinGame().getBtnBack()){
-                frame.show(Frame.PLAYSNAKE);
+            if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnBack()){
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
             }
-            else if(e.getSource() == frame.getJoinGame()){
+            else if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnJoinGame()){
 
             }
         }
@@ -127,15 +103,18 @@ public class Controller {
     private class PlaySnakeActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
 
-            if(e.getSource() == frame.getPlaySnake().getBtnBack()){
-                frame.show(Frame.MENU);
+            if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnBack()){
+
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
 
             }
-            else if(e.getSource() == frame.getPlaySnake().getBtnCreateGame()){
+            else if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnJoinGame()){
+
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME());
 
             }
-            else if (e.getSource() == frame.getPlaySnake().getBtnJoinGame()){
-                frame.show(Frame.JOINGAME);
+            else if (e.getSource() == frame.getMainPanel().getPlaySnake().getBtnCreateGame()){
+
             }
 
         }
@@ -144,14 +123,12 @@ public class Controller {
     private class DeleteGameActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e){
 
-            if(e.getSource() == frame.getDeleteGame().getBtnBack()){
+            if(e.getSource() == frame.getMainPanel().getDeleteGame().getBtnBack()){
 
-                frame.show(Frame.MENU);
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
 
             }
-            else if(e.getSource() == frame.getDeleteGame().getBtnDelete()) {
-
-                frame.show(Frame.MENU);
+            else if(e.getSource() == frame.getMainPanel().getDeleteGame().getBtnDelete()) {
 
             }
         }

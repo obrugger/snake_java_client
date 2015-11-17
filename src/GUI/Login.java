@@ -35,9 +35,9 @@ public class Login extends JPanel {
         int txt_width = (int) width;
         int txt_height = (int) height;
 
-        System.out.println(txt_width);
-        System.out.println(txt_height);
         setLayout(null);
+        setOpaque(false);
+        setBackground(Color.BLUE);
 
 
         lblLogin = new JLabel("LOGIN");
@@ -85,5 +85,16 @@ public class Login extends JPanel {
 
     public void addActionListener(ActionListener l){
         btnLogin.addActionListener(l);
+    }
+
+    protected void paintComponent(Graphics graphics){
+
+        super.paintComponent(graphics);
+
+        Graphics2D graphics2D = (Graphics2D) graphics.create();
+        Composite old = graphics2D.getComposite();
+        graphics2D.setComposite(AlphaComposite.SrcOver.derive(0.25f));
+        graphics2D.fillRect(0,0, getWidth(),getHeight());
+        graphics2D.setComposite(old);
     }
 }

@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
@@ -26,6 +27,8 @@ public class Menu extends JPanel {
         add(labelIamge);
 
         setLayout(null);
+        setOpaque(false);
+        setBackground(Color.BLUE);
 
         lblMenu = new JLabel("MENU");
         lblMenu.setBounds(405, 152, 72, 33);
@@ -73,5 +76,16 @@ public class Menu extends JPanel {
         btnHighscores.addActionListener(l);
         btnLogout.addActionListener(l);
         btnPlaySnake.addActionListener(l);
+    }
+
+    protected void paintComponent(Graphics graphics){
+
+        super.paintComponent(graphics);
+
+        Graphics2D graphics2D = (Graphics2D) graphics.create();
+        Composite old = graphics2D.getComposite();
+        graphics2D.setComposite(AlphaComposite.SrcOver.derive(0.25f));
+        graphics2D.fillRect(0, 0, getWidth(), getHeight());
+        graphics2D.setComposite(old);
     }
 }

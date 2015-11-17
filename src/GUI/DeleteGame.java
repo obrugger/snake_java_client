@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
@@ -19,6 +20,8 @@ public class DeleteGame extends JPanel {
     public DeleteGame() {
 
         setLayout(null);
+        setOpaque(false);
+        setBackground(Color.BLUE);
 
         lblDeleteGame = new JLabel("DELETE GAME");
         lblDeleteGame.setBounds(406, 128, 170, 33);
@@ -60,6 +63,17 @@ public class DeleteGame extends JPanel {
         btnDelete.addActionListener(l);
         btnBack.addActionListener(l);
 
+    }
+
+    protected void paintComponent(Graphics graphics){
+
+        super.paintComponent(graphics);
+
+        Graphics2D graphics2D = (Graphics2D) graphics.create();
+        Composite old = graphics2D.getComposite();
+        graphics2D.setComposite(AlphaComposite.SrcOver.derive(0.25f));
+        graphics2D.fillRect(0, 0, getWidth(), getHeight());
+        graphics2D.setComposite(old);
     }
 
 

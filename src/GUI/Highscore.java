@@ -2,6 +2,7 @@ package GUI;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 
@@ -24,6 +25,8 @@ public class Highscore extends JPanel {
      */
     public Highscore() {
         setLayout(null);
+        setOpaque(false);
+        setBackground(Color.BLUE);
 
         lblHighscore = new JLabel("HIGHSCORES");
         lblHighscore.setBounds(426, 117, 161, 33);
@@ -101,6 +104,17 @@ public class Highscore extends JPanel {
 
     public void addActionListener(ActionListener l){
         btnBack.addActionListener(l);
+    }
+
+    protected void paintComponent(Graphics graphics){
+
+        super.paintComponent(graphics);
+
+        Graphics2D graphics2D = (Graphics2D) graphics.create();
+        Composite old = graphics2D.getComposite();
+        graphics2D.setComposite(AlphaComposite.SrcOver.derive(0.25f));
+        graphics2D.fillRect(0,0, getWidth(),getHeight());
+        graphics2D.setComposite(old);
     }
 
 }
