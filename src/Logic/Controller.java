@@ -16,10 +16,6 @@ import java.util.Scanner;
  */
 public class Controller {
 
-    private static Socket socket;
-    private static PrintWriter printWriter;
-    private static Scanner sc;
-
     private Frame frame;
 
 
