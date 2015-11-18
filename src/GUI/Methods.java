@@ -12,8 +12,8 @@ public class Methods {
     private int screenWidth = (int) screenSize.getWidth();
     private int screenHeight = (int) screenSize.getHeight();
 
-    private int frameWidth = screenWidth/2;
-    private int frameHeight = screenHeight/2;
+    private double frameWidth = screenWidth/1.3;
+    private double frameHeight = screenHeight/1.3;
 
 
 
@@ -25,11 +25,11 @@ public class Methods {
         return screenWidth;
     }
 
-    public int getFrameHeight(){
+    public double getFrameHeight(){
         return frameHeight;
     }
 
-    public int getFrameWidth() {
+    public double getFrameWidth() {
         return frameWidth;
     }
 }

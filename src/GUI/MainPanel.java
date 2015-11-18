@@ -15,16 +15,19 @@ public class MainPanel extends JPanel {
     private static final String PLAYSNAKE = "PLAY_SNAKE";
     private static final String JOINGAME = "JOIN_GAME";
     private static final String HIGHSCORE = "HIGHSCORE";
+    private static final String WELCOME = "WELCOME";
 
-    // private Frame frame = new Frame();
     private Login login;
     private Menu menu;
     private DeleteGame deleteGame;
     private PlaySnake playSnake;
     private JoinGame joinGame;
     private Highscore highscore;
+    private Welcome welcome;
 
     private CardLayout c;
+
+
 
     public MainPanel(){
 
@@ -52,9 +55,12 @@ public class MainPanel extends JPanel {
         deleteGame = new DeleteGame();
         add(deleteGame, DELETEGAME);
 
+        welcome = new Welcome();
+        add(welcome, WELCOME);
+
 
         c.show(this, LOGIN);
-
+       // c.show(this, WELCOME);
 
     }
 
@@ -109,4 +115,9 @@ public class MainPanel extends JPanel {
     public static String getPLAYSNAKE() {
         return PLAYSNAKE;
     }
+
+    public static String getWELCOME() {
+        return WELCOME;
+    }
+
 }

@@ -12,6 +12,8 @@ import javax.swing.JButton;
  * Created by Oscar on 26-10-2015.
  */
 public class Login extends JPanel {
+
+
     private JLabel lblLogin;
     private JLabel lblUsername;
     private JTextField txtUsername;
@@ -25,6 +27,7 @@ public class Login extends JPanel {
     public Login() {
 
         Methods methods = new Methods();
+        Color fontColor = Color.decode("#FFFAFA");
 
         int screenWidth = methods.getScreenWidth();
         int screenHeight = methods.getScreenHeight();
@@ -41,7 +44,9 @@ public class Login extends JPanel {
 
 
         lblLogin = new JLabel("LOGIN");
-        lblLogin.setBounds(419, 155, 78, 33);
+        lblLogin.setBounds(419, 155, 150, 50);
+        lblLogin.setForeground(fontColor);
+        lblLogin.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 42));
         add(lblLogin);
 
         lblUsername = new JLabel("Username");

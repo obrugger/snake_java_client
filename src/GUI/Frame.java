@@ -30,7 +30,9 @@ public class Frame extends JFrame {
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(methods.getFrameWidth(), methods.getFrameHeight());
+        //setSize((int) methods.getFrameWidth(), (int) methods.getFrameHeight());
+        setSize(2000,1500);
+        System.out.print(methods.getFrameWidth() + "\t" + methods.getFrameHeight());
         setContentPane(background);
         setTitle("Snake");
         setLocationRelativeTo(null);
