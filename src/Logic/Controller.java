@@ -4,6 +4,8 @@ import SDK.ServerConnection;
 import Test.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import javax.swing.*;
 import javax.ws.rs.Consumes;
@@ -11,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.Book;
@@ -73,15 +76,41 @@ public class Controller {
 
                     sc.send(json, "login/");
 
-                    int currentUserId = user.getId();
+                    currentUser = user;
 
-                    System.out.println("Current id is " + currentUserId);
-                    sc.get("");
+                    System.out.println("Current id is " + currentUser.getId());
+
+                    messageParser(sc.get("users/" + currentUser.getId() + "/"));
+
+                    System.out.println(currentUser.getFirst_name());
+
 
 
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
                 }
             }
+        }
+    }
+
+    public void messageParser(String json){
+
+        JSONParser jsonParser = new JSONParser();
+
+        String message = "";
+
+        try{
+
+            Object obj  = jsonParser.parse(json);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            currentUser.setEmail((String) jsonObject.get("email"));
+            currentUser.setFirst_name((String) jsonObject.get("firstName"));
+            currentUser.setLast_name((String) jsonObject.get("lastName"));
+            currentUser.setStatus((String) jsonObject.get("status"));
+           // currentUser.setType((String) jsonObject.get("type"));
+
+        }catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
         }
     }
 

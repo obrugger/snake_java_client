@@ -13,7 +13,7 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private Date created;
+    private String created;
     private String status;
     private int type;
 
@@ -75,11 +75,11 @@ public class User {
         this.password = password;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 

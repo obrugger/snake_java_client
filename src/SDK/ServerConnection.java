@@ -7,6 +7,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import sun.org.mozilla.javascript.internal.json.JsonParser;
 
@@ -66,7 +67,7 @@ public class ServerConnection {
         }
     }
 
-    public void get(String path){
+    public String get(String path){
 
         try{
 
@@ -83,19 +84,16 @@ public class ServerConnection {
             String output = clientResponse.getEntity(String.class);
             System.out.println(output);
 
+            return output;
+
         }
         catch (Exception e){
             e.printStackTrace();
+            return "null";
         }
     }
 
-    public String messageParser(String json){
 
-        JSONParser jsonParser = new JSONParser();
-
-        
-
-    }
 
 
     /*
