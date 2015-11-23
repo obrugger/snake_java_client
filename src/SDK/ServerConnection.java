@@ -7,6 +7,9 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import org.json.simple.parser.JSONParser;
+import sun.org.mozilla.javascript.internal.json.JsonParser;
+
 
 import java.nio.file.FileSystems;
 
@@ -46,6 +49,10 @@ public class ServerConnection {
 
             System.out.println("\n" +json);
 
+            if (clientResponse.getStatus() != 200){
+                throw new RuntimeException("HTTP errorcode: " + clientResponse.getStatus());
+            }
+
 
             System.out.println("\nOutput from Server .... \n");
             String output = clientResponse.getEntity(String.class);
@@ -80,6 +87,13 @@ public class ServerConnection {
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public String messageParser(String json){
+
+        JSONParser jsonParser = new JSONParser();
+
+        
 
     }
 

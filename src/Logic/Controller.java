@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.file.FileSystems;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -57,16 +59,12 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
 
-                User user = new User();
-                Boolean isUserAuth = false;
-
                 String userName = frame.getMainPanel().getLogin().getUsername();
                 String password = frame.getMainPanel().getLogin().getPassword();
 
                 if(!userName.equals("") && !password.equals("")) {
 
-
-
+                    User user = new User();
                     user.setPassword(password);
                     user.setUsername(userName);
 
@@ -75,17 +73,10 @@ public class Controller {
 
                     sc.send(json, "login/");
 
-                    currentUser = user;
+                    int currentUserId = user.getId();
 
-                    System.out.println(currentUser.getCreated() + "\n");
-                    System.out.println(currentUser.getEmail() + "\n");
-                    System.out.println(currentUser.getFirst_name() + "\n");
-                    System.out.println(currentUser.getLast_name() + "\n");
-                    System.out.println(currentUser.getId() + "\n");
-                    System.out.println(currentUser.getPassword() + "\n");
-                    System.out.println(currentUser.getType() + "\n");
-                    System.out.println(currentUser.getStatus() + "\n");
-                    System.out.println(currentUser.getUsername() + "\n");
+                    System.out.println("Current id is " + currentUserId);
+                    sc.get("");
 
 
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
