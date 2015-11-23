@@ -17,12 +17,19 @@ public class PlaySnake extends JPanel {
      * Create the panel.
      */
     public PlaySnake() {
+
+        Methods methods = new Methods();
+        Color fontColor = Color.decode("#FFFAFA");
+
         setLayout(null);
         setOpaque(false);
         setBackground(Color.BLUE);
 
         lblPlaySnake = new JLabel("PLAY SNAKE");
-        lblPlaySnake.setBounds(441, 126, 148, 33);
+        lblPlaySnake.setBounds(792, 200, 415, 80);
+        lblPlaySnake.setForeground(fontColor);
+        lblPlaySnake.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+        methods.setAlignment(lblPlaySnake);
         add(lblPlaySnake);
 
         btnCreateGame = new JButton("Create Game");

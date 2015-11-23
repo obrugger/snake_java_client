@@ -1,10 +1,19 @@
 package Logic;
 import GUI.Frame;
+import SDK.ServerConnection;
 import Test.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.swing.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -17,6 +26,10 @@ import java.util.Scanner;
 public class Controller {
 
     private Frame frame;
+
+    ServerConnection sc = new ServerConnection();
+    User currentUser = new User();
+    Gson gson = new GsonBuilder().create();
 
 
     public Controller(){
@@ -32,18 +45,49 @@ public class Controller {
         frame.getMainPanel().getPlaySnake().addActionListener(new PlaySnakeActionListener());
 
 
+
+
+
     }
 
-
     private class LoginActionListener implements ActionListener{
-
         public void actionPerformed(ActionEvent e){
 
 
 
             if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
 
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                User user = new User();
+                Boolean isUserAuth = false;
+                if(!frame.getMainPanel().getLogin().getUsername().equals("") &&
+                        !frame.getMainPanel().getLogin().getPassword().equals("")) {
+
+                    String userName = frame.getMainPanel().getLogin().getUsername();
+                    String password = frame.getMainPanel().getLogin().getPassword();
+
+                    user.setPassword(password);
+                    user.setUsername(userName);
+
+
+                    String json = new Gson().toJson(user);
+
+                    sc.send(json, "login/");
+
+                    currentUser = user;
+
+                    System.out.println(currentUser.getCreated() + "\n");
+                    System.out.println(currentUser.getEmail() + "\n");
+                    System.out.println(currentUser.getFirst_name() + "\n");
+                    System.out.println(currentUser.getLast_name() + "\n");
+                    System.out.println(currentUser.getId() + "\n");
+                    System.out.println(currentUser.getPassword() + "\n");
+                    System.out.println(currentUser.getType() + "\n");
+                    System.out.println(currentUser.getStatus() + "\n");
+                    System.out.println(currentUser.getUsername() + "\n");
+
+
+                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                }
             }
         }
     }

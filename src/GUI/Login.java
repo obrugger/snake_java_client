@@ -1,12 +1,13 @@
 package GUI;
 
+import com.sun.corba.se.impl.orbutil.graph.Graph;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.*;
 
 /**
  * Created by Oscar on 26-10-2015.
@@ -18,7 +19,7 @@ public class Login extends JPanel {
     private JLabel lblUsername;
     private JTextField txtUsername;
     private JLabel lblPassword;
-    private JTextField txtPassword;
+    private JPasswordField passwordField;
     private JButton btnLogin;
 
     /**
@@ -28,6 +29,7 @@ public class Login extends JPanel {
 
         Methods methods = new Methods();
         Color fontColor = Color.decode("#FFFAFA");
+        Color textColor = Color.decode("#A9A9A9");
 
         int screenWidth = methods.getScreenWidth();
         int screenHeight = methods.getScreenHeight();
@@ -38,39 +40,49 @@ public class Login extends JPanel {
         int txt_width = (int) width;
         int txt_height = (int) height;
 
+        System.out.println(txt_width + "\n" + txt_height);
+
         setLayout(null);
         setOpaque(false);
         setBackground(Color.BLUE);
 
 
         lblLogin = new JLabel("LOGIN");
-        lblLogin.setBounds(419, 155, 150, 50);
+        lblLogin.setBounds(792, 200, 415, 80);
         lblLogin.setForeground(fontColor);
-        lblLogin.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 42));
+        lblLogin.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+        methods.setAlignment(lblLogin);
         add(lblLogin);
 
         lblUsername = new JLabel("Username");
-        lblUsername.setBounds(398, 290, 120, 33);
+        lblUsername.setBounds(920, 430, 155, 40);
+        lblUsername.setForeground(fontColor);
+        lblUsername.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(lblUsername);
 
         txtUsername = new JTextField();
-        txtUsername.setBounds(340, 333, txt_width, txt_height);
-        txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 33));
+        txtUsername.setBounds(825, 490, 350, 60);
+        txtUsername.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
         add(txtUsername);
+        txtUsername.setForeground(textColor);
         txtUsername.setColumns(100);
 
         lblPassword = new JLabel("Password");
-        lblPassword.setBounds(398, 453, 115, 33);
+        lblPassword.setBounds(920, 650, 155, 40);
+        lblPassword.setForeground(fontColor);
+        lblPassword.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(lblPassword);
 
-        txtPassword = new JTextField();
-        txtPassword.setBounds(340, 496, txt_width, txt_height);
-        txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 33));
-        add(txtPassword);
-        txtPassword.setColumns(10);
+        passwordField = new JPasswordField();
+        passwordField.setBounds(825, 710, 350, 60);
+        passwordField.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
+        passwordField.setForeground(textColor);
+        add(passwordField);
+        passwordField.setColumns(100);
 
         btnLogin = new JButton("Login");
-        btnLogin.setBounds(372, 621, 171, 41);
+        btnLogin.setBounds(800, 1000, 400, 100);
+        btnLogin.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(btnLogin);
 
 
@@ -80,12 +92,22 @@ public class Login extends JPanel {
         return txtUsername;
     }
 
-    public JTextField getTxtPassword() {
-        return txtPassword;
+    public JPasswordField getPasswordField() {
+        return passwordField;
     }
 
     public JButton getBtnLogin() {
         return btnLogin;
+    }
+
+    public String getUsername(){
+        return txtUsername.getText();
+    }
+
+    public String getPassword(){
+        char[] charPass = passwordField.getPassword();
+        String password = new String(charPass);
+        return password;
     }
 
     public void addActionListener(ActionListener l){
@@ -102,4 +124,27 @@ public class Login extends JPanel {
         graphics2D.fillRect(0,0, getWidth(),getHeight());
         graphics2D.setComposite(old);
     }
+
+    public void paintComponents (Graphics g){
+        super.paintComponents(g);
+
+        int w = getSize().width;
+        int h = getSize().height;
+
+        Graphics2D g2d = (Graphics2D) g;
+        FontRenderContext fontRenderContext = g2d.getFontRenderContext();
+        Font font = new Font("Segoe UI Emoji", Font.PLAIN, 35);
+        String st = "HELLO WORLD";
+
+        TextLayout tl = new TextLayout(st,font,fontRenderContext);
+        Shape outline = tl.getOutline(null);
+
+
+    }
+
+    public void setAlignment(JLabel label){
+
+        label.setHorizontalAlignment(SwingConstants.LEFT);
+    }
+
 }

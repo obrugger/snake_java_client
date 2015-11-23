@@ -1,5 +1,6 @@
 package GUI;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -31,5 +32,9 @@ public class Methods {
 
     public double getFrameWidth() {
         return frameWidth;
+    }
+
+    public void setAlignment(JLabel label){
+        label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 }

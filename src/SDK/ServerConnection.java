@@ -1,19 +1,90 @@
 package SDK;
 
-import sun.misc.BASE64Encoder;
+import Test.User;
+import com.google.gson.Gson;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.Socket;
-import java.util.concurrent.ExecutionException;
+import java.nio.file.FileSystems;
+
 
 /**
  * Created by Oscar on 16-11-2015.
  */
 public class ServerConnection {
 
+    private String url;
+    private int serverPort;
 
+
+    public ServerConnection(){
+        this.url = "http://localhost";
+        this.serverPort = 29399;
+
+    }
+
+    public int getServerPort() {
+        return serverPort;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void send (String json, String path){
+
+        try{
+            //ClientConfig config = new DefaultClientConfig();
+
+            Client client = new Client().create();
+
+            WebResource webResource = client.resource(getUrl() + ":" + getServerPort() + "/api/" + path);
+            ClientResponse clientResponse = webResource.type("application/json").post(ClientResponse.class, json);
+
+            System.out.println("\n" +json);
+
+
+            System.out.println("\nOutput from Server .... \n");
+            String output = clientResponse.getEntity(String.class);
+            System.out.println(output);
+
+
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void get(String path){
+
+        try{
+
+            Client client = Client.create();
+
+            WebResource webResource = client.resource(getUrl() + ":" + getServerPort() + "/api/" + path);
+            ClientResponse clientResponse = webResource.type("application/json").get(ClientResponse.class);
+
+            if (clientResponse.getStatus() != 200){
+                throw new RuntimeException("HTTP errorcode: " + clientResponse.getStatus());
+            }
+
+            System.out.println("\nOutput from Server .... \n");
+            String output = clientResponse.getEntity(String.class);
+            System.out.println(output);
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /*
     private DataOutputStream outToServer;
     private Socket socket;
 
@@ -33,14 +104,16 @@ public class ServerConnection {
 
     }
 
-    public void send(String str){
+    public void send(String gsonstr){
 
         establishConnection();
 
-        byte[] encrypted = encrypt(str);
+        //byte[] encrypted = encrypt(str);
+        byte[] input = gsonstr.getBytes();
+
 
         try{
-            outToServer.write(encrypted);
+            outToServer.write(input);
             outToServer.flush();
         }
         catch (Exception e){
@@ -60,10 +133,13 @@ public class ServerConnection {
 
             String modifiedSentence = inFromServer.readLine();
 
-            String answer =decrypt(modifiedSentence.getBytes());
+            //String answer =decrypt(modifiedSentence.getBytes());
 
-            return answer;
+            //return answer;
 
+            System.out.println(modifiedSentence);
+
+            return modifiedSentence;
 
         }
         catch (Exception e){
@@ -75,6 +151,7 @@ public class ServerConnection {
     public byte[] encrypt(String str){
 
         byte[] input = str.getBytes();
+        /*
         byte key = (byte) 123456;
 
         byte[] encrypted = input;
@@ -84,6 +161,7 @@ public class ServerConnection {
         }
 
         return encrypted;
+        return input;
 
     }
 
@@ -101,5 +179,8 @@ public class ServerConnection {
         String dencrypted = new String(b).trim();
 
         return dencrypted;
-    }
+    }*/
+
+
+
 }

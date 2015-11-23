@@ -21,6 +21,9 @@ public class Menu extends JPanel {
      */
     public Menu() {
 
+        Methods methods = new Methods();
+        Color fontColor = Color.decode("#FFFAFA");
+
         image = new ImageIcon(this.getClass().getResource("snake.png"));
         labelIamge = new JLabel(image);
         labelIamge.setBounds(0,70,300,300);
@@ -31,23 +34,30 @@ public class Menu extends JPanel {
         setBackground(Color.BLUE);
 
         lblMenu = new JLabel("MENU");
-        lblMenu.setBounds(405, 152, 72, 33);
+        lblMenu.setBounds(792, 200, 415, 80);
+        lblMenu.setForeground(fontColor);
+        lblMenu.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+        methods.setAlignment(lblMenu);
         add(lblMenu);
 
         btnPlaySnake = new JButton("Play Snake");
-        btnPlaySnake.setBounds(355, 237, 171, 41);
+        btnPlaySnake.setBounds(800, 425, 400, 100);
+        btnPlaySnake.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(btnPlaySnake);
 
         btnHighscores = new JButton("Highscores");
-        btnHighscores.setBounds(355, 346, 171, 41);
+        btnHighscores.setBounds(800, 575, 400, 100);
+        btnHighscores.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(btnHighscores);
 
         btnDeleteGame = new JButton("Delete game");
-        btnDeleteGame.setBounds(350, 452, 181, 41);
+        btnDeleteGame.setBounds(800, 725, 400, 100);
+        btnDeleteGame.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(btnDeleteGame);
 
         btnLogout = new JButton("Logout");
-        btnLogout.setBounds(89, 649, 171, 41);
+        btnLogout.setBounds(800, 1000, 400, 100);
+        btnLogout.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(btnLogout);
 
 
