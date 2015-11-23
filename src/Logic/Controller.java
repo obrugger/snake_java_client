@@ -59,11 +59,13 @@ public class Controller {
 
                 User user = new User();
                 Boolean isUserAuth = false;
-                if(!frame.getMainPanel().getLogin().getUsername().equals("") &&
-                        !frame.getMainPanel().getLogin().getPassword().equals("")) {
 
-                    String userName = frame.getMainPanel().getLogin().getUsername();
-                    String password = frame.getMainPanel().getLogin().getPassword();
+                String userName = frame.getMainPanel().getLogin().getUsername();
+                String password = frame.getMainPanel().getLogin().getPassword();
+
+                if(!userName.equals("") && !password.equals("")) {
+
+
 
                     user.setPassword(password);
                     user.setUsername(userName);
