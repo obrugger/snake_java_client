@@ -1,6 +1,7 @@
 package SDK;
 
-import Test.User;
+import GUI.Frame;
+import Model.User;
 import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -10,8 +11,10 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import sun.org.mozilla.javascript.internal.json.JsonParser;
+import sun.swing.StringUIClientPropertyKey;
 
 
+import javax.swing.*;
 import java.nio.file.FileSystems;
 import java.util.Date;
 
@@ -39,33 +42,31 @@ public class ServerConnection {
         return url;
     }
 
-    public void send (String json, String path){
+    public String send (String json, String path, Frame frame){
 
         try{
-            //ClientConfig config = new DefaultClientConfig();
-
             Client client = new Client().create();
 
             WebResource webResource = client.resource(getUrl() + ":" + getServerPort() + "/api/" + path);
             ClientResponse clientResponse = webResource.type("application/json").post(ClientResponse.class, json);
-
-            System.out.println("\n" +json);
-
-            if (clientResponse.getStatus() != 200){
-                throw new RuntimeException("HTTP errorcode: " + clientResponse.getStatus());
-            }
 
 
             System.out.println("\nOutput from Server .... \n");
             String output = clientResponse.getEntity(String.class);
             System.out.println(output);
 
+            if(clientResponse != null) {
+                return  output; //clientResponse.getEntity(String.class);
 
+            }
 
         }
         catch (Exception e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(frame, "HTTP Failed", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
+        return "";
     }
 
     public String get(String path){
@@ -77,13 +78,14 @@ public class ServerConnection {
             WebResource webResource = client.resource(getUrl() + ":" + getServerPort() + "/api/" + path);
             ClientResponse clientResponse = webResource.type("application/json").get(ClientResponse.class);
 
+            /*
             if (clientResponse.getStatus() != 200){
                 throw new RuntimeException("HTTP errorcode: " + clientResponse.getStatus());
             }
 
-            System.out.println("\nOutput from Server .... \n");
+            System.out.println("\nOutput from Server .... \n");*/
             String output = clientResponse.getEntity(String.class);
-            System.out.println(output);
+           // System.out.println(output);
 
             return output;
 
@@ -107,7 +109,7 @@ public class ServerConnection {
             user.setFirst_name((String) jsonObject.get("firstName"));
             user.setLast_name((String) jsonObject.get("lastName"));
             user.setStatus((String) jsonObject.get("status"));
-            //user.setCreated((Date) jsonObject.get("created"));
+            user.setCreated((String) jsonObject.get("created"));
 
         }catch (org.json.simple.parser.ParseException e) {
             e.printStackTrace();

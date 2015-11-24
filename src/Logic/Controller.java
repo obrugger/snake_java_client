@@ -1,7 +1,7 @@
 package Logic;
 import GUI.Frame;
 import SDK.ServerConnection;
-import Test.User;
+import Model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.json.simple.JSONObject;
@@ -55,17 +55,7 @@ public class Controller {
 
                 if (methods.userAuthentication(currentUser, frame)) {
 
-                    frame.getMainPanel().getMenu().getLblhelloUser().setText("Hello "
-                            + currentUser.getFirst_name() + "!");
-
-                    DateFormat df = new SimpleDateFormat("dd/MM/yy");
-                    Date dateobj = new Date();
-
-                    frame.getMainPanel().getMenu().getLbldate().setText(df.format(dateobj));
-
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
-                    frame.getMainPanel().getLogin().clearLogin();
-
 
                 }
             }
@@ -75,25 +65,6 @@ public class Controller {
         }
     }
 
-    public void parser(String json){
-
-        JSONParser jsonParser = new JSONParser();
-
-        try{
-
-            Object obj  = jsonParser.parse(json);
-            JSONObject jsonObject = (JSONObject) obj;
-
-            currentUser.setEmail((String) jsonObject.get("email"));
-            currentUser.setFirst_name((String) jsonObject.get("firstName"));
-            currentUser.setLast_name((String) jsonObject.get("lastName"));
-            currentUser.setStatus((String) jsonObject.get("status"));
-            //currentUser.setCreated((Date) jsonObject.get("created"));
-
-        }catch (org.json.simple.parser.ParseException e) {
-            e.printStackTrace();
-        }
-    }
 
     private class CreateUserActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){

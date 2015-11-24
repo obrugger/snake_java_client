@@ -1,5 +1,5 @@
 package SDK;
-import Test.User;
+import Model.User;
 
 import java.io.DataInputStream;
 import java.net.URL;

@@ -5,6 +5,9 @@ import com.sun.javafx.css.StyleableProperty;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Oscar on 26-10-2015.
@@ -69,11 +72,16 @@ public class Menu extends JPanel {
         methods.setFontLabel(lblhelloUser);
         add(lblhelloUser);
 
-        lbldate = new JLabel();
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        Date dateobj = new Date();
+
+        lbldate = new JLabel(df.format(dateobj));
         lbldate.setBounds(500, 135, 575, 35);
         methods.fontColor(lbldate);
         methods.setFontLabel(lbldate);
         add(lbldate);
+
+
     }
 
     public JButton getBtnPlaySnake() {

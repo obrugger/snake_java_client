@@ -15,7 +15,7 @@ public class User {
     private String password;
     private String status;
     private int type;
-    private Date created;
+    private String created;
 
     public User(){}
 
@@ -83,11 +83,11 @@ public class User {
         this.status = status;
     }
 
-    public void setCreated(Date created){
+    public void setCreated(String created){
         this.created = created;
     }
 
-    public Date getCreated(){
+    public String getCreated(){
         return created;
     }
 }
