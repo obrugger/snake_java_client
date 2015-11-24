@@ -64,8 +64,8 @@ public class Login extends JPanel {
         txtUsername = new JTextField();
         txtUsername.setBounds(825, 490, 350, 60);
         txtUsername.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
+        txtUsername.setHorizontalAlignment(SwingConstants.CENTER);
         add(txtUsername);
-        txtUsername.setForeground(textColor);
         txtUsername.setColumns(100);
 
         lblPassword = new JLabel("Password");
@@ -77,7 +77,7 @@ public class Login extends JPanel {
         passwordField = new JPasswordField();
         passwordField.setBounds(825, 710, 350, 60);
         passwordField.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
-        passwordField.setForeground(textColor);
+        passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         add(passwordField);
         passwordField.setColumns(100);
 

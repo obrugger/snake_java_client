@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -23,6 +24,7 @@ public class Controller {
     ServerConnection sc = new ServerConnection();
     User currentUser = new User();
     Gson gson = new GsonBuilder().create();
+    Methods methods;
 
 
     public Controller(){
@@ -39,7 +41,7 @@ public class Controller {
         frame.getMainPanel().getCreateUser().addActionListener(new CreateUserActionListener());
 
 
-
+        methods = new Methods();
 
 
     }
@@ -51,7 +53,7 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
 
-                if(userAuthentication()) {
+                if (methods.userAuthentication(currentUser, frame)) {
 
                     frame.getMainPanel().getMenu().getLblhelloUser().setText("Hello "
                             + currentUser.getFirst_name() + "!");
@@ -86,7 +88,7 @@ public class Controller {
             currentUser.setFirst_name((String) jsonObject.get("firstName"));
             currentUser.setLast_name((String) jsonObject.get("lastName"));
             currentUser.setStatus((String) jsonObject.get("status"));
-            currentUser.setCreated((Date) jsonObject.get("created"));
+            //currentUser.setCreated((Date) jsonObject.get("created"));
 
         }catch (org.json.simple.parser.ParseException e) {
             e.printStackTrace();
@@ -95,6 +97,16 @@ public class Controller {
 
     private class CreateUserActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+
+            if(e.getSource() == frame.getMainPanel().getCreateUser().getBtnCreate()){
+
+            }
+
+            else if(e.getSource() == frame.getMainPanel().getCreateUser().getBtnCancel()){
+
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
+
+            }
 
         }
     }
@@ -114,7 +126,6 @@ public class Controller {
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnLogout()){
 
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
-
             }
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnPlaySnake()){
 
@@ -180,32 +191,39 @@ public class Controller {
             }
         }
     }
-
+/*
     public boolean userAuthentication() {
 
-        String userName = frame.getMainPanel().getLogin().getUsername();
-        String password = frame.getMainPanel().getLogin().getPassword();
+        try {
 
-        if (!userName.equals("") && !password.equals("")) {
+            String userName = frame.getMainPanel().getLogin().getUsername();
+            String password = frame.getMainPanel().getLogin().getPassword();
 
-            User user = new User();
-            user.setPassword(password);
-            user.setUsername(userName);
+            if (!userName.equals("") && !password.equals("")) {
 
-            String json = new Gson().toJson(user);
+                User user = new User();
+                user.setPassword(password);
+                user.setUsername(userName);
 
-            sc.send(json, "login/");
+                String json = new Gson().toJson(user);
 
-            currentUser = user;
+                sc.send(json, "login/");
 
-            System.out.println("Current id is " + currentUser.getId());
-            parser(sc.get("users/" + currentUser.getId() + "/"));
+                currentUser = user;
 
-            System.out.print(currentUser.getFirst_name());
+                System.out.println("Current id is " + currentUser.getId());
+                //parser(sc.get("users/" + currentUser.getId() + "/"));
+                sc.parser(sc.get("users/" + currentUser.getId() + "/"), currentUser);
 
-            return true;
+                System.out.print(currentUser.getFirst_name());
 
+                return true;
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(frame, "Recheck spelling", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return false;
-    }
+    }*/
+
 }

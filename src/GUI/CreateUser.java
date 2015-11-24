@@ -29,73 +29,92 @@ public class CreateUser extends JPanel {
     public CreateUser() {
 
         setLayout(null);
-        setSize(2000,1500);
+        setSize(2000, 1500);
         setOpaque(false);
         setBackground(Color.BLUE);
 
         Methods methods = new Methods();
-        Color fontColor = Color.decode("#FFFAFA");
 
 
         lblCreateUser = new JLabel("CREATE USER");
         lblCreateUser.setBounds(775, 200, 450, 85);
-        lblCreateUser.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+        methods.fontColor(lblCreateUser);
+        methods.setFontHeadline(lblCreateUser);
         methods.setAlignment(lblCreateUser);
         add(lblCreateUser);
 
         lblEnterUsername = new JLabel("Enter username");
-        lblEnterUsername.setBounds(905, 350, 190, 35);
+        lblEnterUsername.setBounds(875, 350, 250, 35);
+        methods.fontColor(lblEnterUsername);
+        methods.setFontLabel(lblEnterUsername);
+        methods.setAlignment(lblEnterUsername);
         add(lblEnterUsername);
 
         txtUsername = new JTextField();
         txtUsername.setBounds(825, 410, 350, 60);
+        methods.setFontText(txtUsername);
         add(txtUsername);
         txtUsername.setColumns(10);
 
         lblEnterPassword = new JLabel("Enter password");
-        lblEnterPassword.setBounds(905, 505, 190, 35);
+        lblEnterPassword.setBounds(875, 505, 250, 35);
+        methods.fontColor(lblEnterPassword);
+        methods.setFontLabel(lblEnterPassword);
+        methods.setAlignment(lblEnterPassword);
         add(lblEnterPassword);
 
         pwdPassword = new JPasswordField();
         pwdPassword.setBounds(825, 575, 350, 60);
+        pwdPassword.setFont(methods.getFontLabel());
         add(pwdPassword);
 
         lblFirstName = new JLabel("First name");
-        lblFirstName.setBounds(905, 670, 190, 35);
-        lblFirstName.setHorizontalAlignment(SwingConstants.CENTER);
+        lblFirstName.setBounds(875, 670, 250, 35);
+        methods.fontColor(lblFirstName);
+        methods.setFontLabel(lblFirstName);
+        methods.setAlignment(lblFirstName);
         add(lblFirstName);
 
         txtFirstname = new JTextField();
         txtFirstname.setBounds(825, 730, 350, 60);
+        methods.setFontText(txtFirstname);
         add(txtFirstname);
         txtFirstname.setColumns(10);
 
         lblLastName = new JLabel("Last name");
-        lblLastName.setBounds(905, 825, 190, 35);
-        lblLastName.setHorizontalAlignment(SwingConstants.CENTER);
+        lblLastName.setBounds(875, 825, 250, 35);
+        methods.fontColor(lblLastName);
+        methods.setFontLabel(lblLastName);
+        methods.setAlignment(lblLastName);
         add(lblLastName);
 
         txtLastname = new JTextField();
         txtLastname.setBounds(825, 885, 350, 60);
+        methods.setFontText(txtLastname);
         add(txtLastname);
         txtLastname.setColumns(10);
 
         lblEmail = new JLabel("E-mail");
-        lblEmail.setBounds(905, 980, 190, 35);
-        lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
+        lblEmail.setBounds(875, 980, 250, 35);
+        methods.fontColor(lblEmail);
+        methods.setFontLabel(lblEmail);
+        methods.setAlignment(lblEmail);
         add(lblEmail);
 
         txtEmail = new JTextField();
         txtEmail.setBounds(825, 1040, 350, 60);
+        methods.setFontText(txtEmail);
         add(txtEmail);
         txtEmail.setColumns(10);
 
         btnCreate = new JButton("Create");
         btnCreate.setBounds(425, 1280, 400, 100);
+        btnCreate.setFont(methods.getFontLabel());
         add(btnCreate);
 
         btnCancel = new JButton("Cancel");
         btnCancel.setBounds(1175, 1280, 400, 100);
+        btnCancel.setFont(methods.getFontLabel());
         add(btnCancel);
 
     }

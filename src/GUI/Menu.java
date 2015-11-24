@@ -26,7 +26,6 @@ public class Menu extends JPanel {
     public Menu() {
 
         Methods methods = new Methods();
-        Color fontColor = Color.decode("#FFFAFA");
 
         image = new ImageIcon(this.getClass().getResource("snake.png"));
         labelIamge = new JLabel(image);
@@ -39,41 +38,41 @@ public class Menu extends JPanel {
 
         lblMenu = new JLabel("MENU");
         lblMenu.setBounds(792, 200, 415, 80);
-        lblMenu.setForeground(fontColor);
-        lblMenu.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+        methods.fontColor(lblMenu);
+        methods.setFontHeadline(lblMenu);
         methods.setAlignment(lblMenu);
         add(lblMenu);
 
         btnPlaySnake = new JButton("Play Snake");
         btnPlaySnake.setBounds(800, 425, 400, 100);
-        btnPlaySnake.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        btnPlaySnake.setFont(methods.getFontLabel());
         add(btnPlaySnake);
 
         btnHighscores = new JButton("Highscores");
         btnHighscores.setBounds(800, 575, 400, 100);
-        btnHighscores.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        btnHighscores.setFont(methods.getFontLabel());
         add(btnHighscores);
 
         btnDeleteGame = new JButton("Delete game");
         btnDeleteGame.setBounds(800, 725, 400, 100);
-        btnDeleteGame.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        btnDeleteGame.setFont(methods.getFontLabel());
         add(btnDeleteGame);
 
         btnLogout = new JButton("Logout");
         btnLogout.setBounds(800, 1000, 400, 100);
-        btnLogout.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        btnLogout.setFont(methods.getFontLabel());
         add(btnLogout);
 
         lblhelloUser = new JLabel();
         lblhelloUser.setBounds(500, 90, 575, 35);
-        lblhelloUser.setForeground(fontColor);
-        lblhelloUser.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
+        methods.fontColor(lblhelloUser);
+        methods.setFontLabel(lblhelloUser);
         add(lblhelloUser);
 
         lbldate = new JLabel();
         lbldate.setBounds(500, 135, 575, 35);
-        lbldate.setForeground(fontColor);
-        lbldate.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
+        methods.fontColor(lbldate);
+        methods.setFontLabel(lbldate);
         add(lbldate);
     }
 

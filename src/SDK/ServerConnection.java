@@ -107,7 +107,7 @@ public class ServerConnection {
             user.setFirst_name((String) jsonObject.get("firstName"));
             user.setLast_name((String) jsonObject.get("lastName"));
             user.setStatus((String) jsonObject.get("status"));
-            user.setCreated((Date) jsonObject.get("created"));
+            //user.setCreated((Date) jsonObject.get("created"));
 
         }catch (org.json.simple.parser.ParseException e) {
             e.printStackTrace();

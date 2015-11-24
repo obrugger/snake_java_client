@@ -37,4 +37,31 @@ public class Methods {
     public void setAlignment(JLabel label){
         label.setHorizontalAlignment(SwingConstants.CENTER);
     }
+
+
+
+    public Font getFontLabel(){
+        return new Font("Segoe UI Emoji", Font.PLAIN, 35);
+    }
+
+    public void setFontLabel(JLabel label){
+
+        label.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+    }
+
+    public void setFontHeadline(JLabel label){
+
+        label.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+
+    }
+
+    public void setFontText(JTextField txtField){
+        txtField.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+    }
+
+    public void fontColor(JLabel label){
+
+        label.setForeground(Color.decode("#FFFAFA"));
+
+    }
 }
