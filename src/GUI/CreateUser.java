@@ -53,6 +53,7 @@ public class CreateUser extends JPanel {
         txtUsername = new JTextField();
         txtUsername.setBounds(825, 410, 350, 60);
         methods.setFontText(txtUsername);
+        methods.setAlignmentText(txtUsername);
         add(txtUsername);
         txtUsername.setColumns(10);
 
@@ -66,6 +67,7 @@ public class CreateUser extends JPanel {
         pwdPassword = new JPasswordField();
         pwdPassword.setBounds(825, 575, 350, 60);
         pwdPassword.setFont(methods.getFontLabel());
+        pwdPassword.setHorizontalAlignment(SwingConstants.CENTER);
         add(pwdPassword);
 
         lblFirstName = new JLabel("First name");
@@ -78,6 +80,7 @@ public class CreateUser extends JPanel {
         txtFirstname = new JTextField();
         txtFirstname.setBounds(825, 730, 350, 60);
         methods.setFontText(txtFirstname);
+        methods.setAlignmentText(txtFirstname);
         add(txtFirstname);
         txtFirstname.setColumns(10);
 
@@ -91,6 +94,7 @@ public class CreateUser extends JPanel {
         txtLastname = new JTextField();
         txtLastname.setBounds(825, 885, 350, 60);
         methods.setFontText(txtLastname);
+        methods.setAlignmentText(txtLastname);
         add(txtLastname);
         txtLastname.setColumns(10);
 
@@ -104,6 +108,7 @@ public class CreateUser extends JPanel {
         txtEmail = new JTextField();
         txtEmail.setBounds(825, 1040, 350, 60);
         methods.setFontText(txtEmail);
+        methods.setAlignmentText(txtEmail);
         add(txtEmail);
         txtEmail.setColumns(10);
 

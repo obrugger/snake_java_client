@@ -39,28 +39,28 @@ public class Methods {
 
 
 
-                String msg = messageParser(sc.send(json, "login/", frame), user);
+                String msg = loginParser(sc.send(json, "login/", frame), user);
 
                 if(msg.equals("Login successful")){
 
 
                     currentUser = user;
 
-                    System.out.println("Current userid is " + currentUser.getId());
-
                     sc.parser(sc.get("users/" + currentUser.getId() + "/"), currentUser);
 
-                    System.out.print(currentUser.getFirst_name());
-
-                    frame.getMainPanel().getMenu().getLblhelloUser().setText("Hello " + currentUser.getFirst_name() + "!");
+                    frame.getMainPanel().getMenu().getLblhelloUser().
+                            setText("Hello " + currentUser.getFirst_name() + "!");
 
                     frame.getMainPanel().getLogin().clearLogin();
 
-
                     return true;
                 }
-                else if(msg.equals("Wrong username or password") || msg.equals("Error in JSOn")){
+                else if(msg.equals("Wrong username or password")){
                     JOptionPane.showMessageDialog(frame, "Wrong username or password",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else if (msg.equals("Error in JSON")){
+                    JOptionPane.showMessageDialog(frame, "Backend issue",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -101,7 +101,7 @@ public class Methods {
 
                 String json = new Gson().toJson(user);
 
-                String msg = messageParser(sc.send(json, "users/", frame), user);
+                String msg = messageParser((sc.send(json, "users/", frame)));
 
                 if (msg.equals("User was created")){
 
@@ -128,7 +128,7 @@ public class Methods {
         return false;
     }
 
-    public String messageParser(String str, User user){
+    public String loginParser(String str, User user){
 
         JSONParser parser = new JSONParser();
         String msg = new String();
@@ -142,6 +142,24 @@ public class Methods {
             msg = ((String) jsonObjectMsg.get("message"));
             user.setId((long) jsonObjectMsg.get("userid"));
 
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return msg;
+    }
+
+    public String messageParser(String str){
+        JSONParser parser = new JSONParser();
+        String msg = new String();
+
+        try {
+            Object obj = parser.parse(str);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            msg = ((String) jsonObject.get("message"));
 
         }
         catch (Exception e){

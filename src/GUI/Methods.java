@@ -38,7 +38,9 @@ public class Methods {
         label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
-
+    public void setAlignmentText(JTextField txtField){
+        txtField.setHorizontalAlignment(SwingConstants.CENTER);
+    }
 
     public Font getFontLabel(){
         return new Font("Segoe UI Emoji", Font.PLAIN, 35);

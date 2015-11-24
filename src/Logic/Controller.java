@@ -71,6 +71,14 @@ public class Controller {
 
             if(e.getSource() == frame.getMainPanel().getCreateUser().getBtnCreate()){
 
+                if(methods.createUser(frame,currentUser)){
+
+                    JOptionPane.showMessageDialog(frame, "User created!", "Success", JOptionPane.PLAIN_MESSAGE);
+
+                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
+
+                }
+
             }
 
             else if(e.getSource() == frame.getMainPanel().getCreateUser().getBtnCancel()){
@@ -97,6 +105,8 @@ public class Controller {
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnLogout()){
 
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
+
+
             }
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnPlaySnake()){
 
