@@ -13,6 +13,7 @@ import sun.org.mozilla.javascript.internal.json.JsonParser;
 
 
 import java.nio.file.FileSystems;
+import java.util.Date;
 
 
 /**
@@ -92,6 +93,27 @@ public class ServerConnection {
             return "null";
         }
     }
+
+    public void parser(String json, User user){
+
+        JSONParser jsonParser = new JSONParser();
+
+        try{
+
+            Object obj  = jsonParser.parse(json);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            user.setEmail((String) jsonObject.get("email"));
+            user.setFirst_name((String) jsonObject.get("firstName"));
+            user.setLast_name((String) jsonObject.get("lastName"));
+            user.setStatus((String) jsonObject.get("status"));
+            user.setCreated((Date) jsonObject.get("created"));
+
+        }catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 

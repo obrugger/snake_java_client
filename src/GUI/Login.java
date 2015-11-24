@@ -21,6 +21,7 @@ public class Login extends JPanel {
     private JLabel lblPassword;
     private JPasswordField passwordField;
     private JButton btnLogin;
+    private JButton btnCreate;
 
     /**
      * Create the panel.
@@ -85,19 +86,20 @@ public class Login extends JPanel {
         btnLogin.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(btnLogin);
 
+        btnCreate = new JButton("Create User");
+        btnCreate.setBounds(150, 1250, 400, 100);
+        btnCreate.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        add(btnCreate);
 
-    }
 
-    public JTextField getTxtUsername() {
-        return txtUsername;
-    }
-
-    public JPasswordField getPasswordField() {
-        return passwordField;
     }
 
     public JButton getBtnLogin() {
         return btnLogin;
+    }
+
+    public JButton getBtnCreate() {
+        return btnCreate;
     }
 
     public String getUsername(){
@@ -110,8 +112,14 @@ public class Login extends JPanel {
         return password;
     }
 
+    public void clearLogin(){
+        txtUsername.setText("");
+        passwordField.setText("");
+    }
+
     public void addActionListener(ActionListener l){
         btnLogin.addActionListener(l);
+        btnCreate.addActionListener(l);
     }
 
     protected void paintComponent(Graphics graphics){

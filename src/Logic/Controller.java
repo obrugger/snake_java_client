@@ -7,23 +7,11 @@ import com.google.gson.GsonBuilder;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import javax.swing.*;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.MediaType;
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.print.Book;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.nio.file.FileSystems;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Oscar on 26-10-2015.
@@ -48,6 +36,7 @@ public class Controller {
         frame.getMainPanel().getHighscore().addActionListener(new HighscoreActionListener());
         frame.getMainPanel().getJoinGame().addActionListener(new JoinGameActionListener());
         frame.getMainPanel().getPlaySnake().addActionListener(new PlaySnakeActionListener());
+        frame.getMainPanel().getCreateUser().addActionListener(new CreateUserActionListener());
 
 
 
@@ -62,41 +51,31 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
 
-                String userName = frame.getMainPanel().getLogin().getUsername();
-                String password = frame.getMainPanel().getLogin().getPassword();
+                if(userAuthentication()) {
 
-                if(!userName.equals("") && !password.equals("")) {
+                    frame.getMainPanel().getMenu().getLblhelloUser().setText("Hello "
+                            + currentUser.getFirst_name() + "!");
 
-                    User user = new User();
-                    user.setPassword(password);
-                    user.setUsername(userName);
+                    DateFormat df = new SimpleDateFormat("dd/MM/yy");
+                    Date dateobj = new Date();
 
-
-                    String json = new Gson().toJson(user);
-
-                    sc.send(json, "login/");
-
-                    currentUser = user;
-
-                    System.out.println("Current id is " + currentUser.getId());
-
-                    messageParser(sc.get("users/" + currentUser.getId() + "/"));
-
-                    System.out.println(currentUser.getFirst_name());
-
-
+                    frame.getMainPanel().getMenu().getLbldate().setText(df.format(dateobj));
 
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                    frame.getMainPanel().getLogin().clearLogin();
+
+
                 }
+            }
+            else if(e.getSource() == frame.getMainPanel().getLogin().getBtnCreate()){
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getCREATEUSER());
             }
         }
     }
 
-    public void messageParser(String json){
+    public void parser(String json){
 
         JSONParser jsonParser = new JSONParser();
-
-        String message = "";
 
         try{
 
@@ -107,10 +86,16 @@ public class Controller {
             currentUser.setFirst_name((String) jsonObject.get("firstName"));
             currentUser.setLast_name((String) jsonObject.get("lastName"));
             currentUser.setStatus((String) jsonObject.get("status"));
-           // currentUser.setType((String) jsonObject.get("type"));
+            currentUser.setCreated((Date) jsonObject.get("created"));
 
         }catch (org.json.simple.parser.ParseException e) {
             e.printStackTrace();
+        }
+    }
+
+    private class CreateUserActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+
         }
     }
 
@@ -194,5 +179,33 @@ public class Controller {
 
             }
         }
+    }
+
+    public boolean userAuthentication() {
+
+        String userName = frame.getMainPanel().getLogin().getUsername();
+        String password = frame.getMainPanel().getLogin().getPassword();
+
+        if (!userName.equals("") && !password.equals("")) {
+
+            User user = new User();
+            user.setPassword(password);
+            user.setUsername(userName);
+
+            String json = new Gson().toJson(user);
+
+            sc.send(json, "login/");
+
+            currentUser = user;
+
+            System.out.println("Current id is " + currentUser.getId());
+            parser(sc.get("users/" + currentUser.getId() + "/"));
+
+            System.out.print(currentUser.getFirst_name());
+
+            return true;
+
+        }
+        return false;
     }
 }

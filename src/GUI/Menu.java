@@ -1,5 +1,7 @@
 package GUI;
 
+import com.sun.javafx.css.StyleableProperty;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -13,6 +15,8 @@ public class Menu extends JPanel {
     private JButton btnHighscores;
     private JButton btnDeleteGame;
     private JButton btnLogout;
+    private JLabel lblhelloUser;
+    private JLabel lbldate;
 
     private ImageIcon image;
     private JLabel labelIamge;
@@ -60,8 +64,17 @@ public class Menu extends JPanel {
         btnLogout.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         add(btnLogout);
 
+        lblhelloUser = new JLabel();
+        lblhelloUser.setBounds(500, 90, 575, 35);
+        lblhelloUser.setForeground(fontColor);
+        lblhelloUser.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
+        add(lblhelloUser);
 
-
+        lbldate = new JLabel();
+        lbldate.setBounds(500, 135, 575, 35);
+        lbldate.setForeground(fontColor);
+        lbldate.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
+        add(lbldate);
     }
 
     public JButton getBtnPlaySnake() {
@@ -78,6 +91,14 @@ public class Menu extends JPanel {
 
     public JButton getBtnLogout() {
         return btnLogout;
+    }
+
+    public JLabel getLbldate() {
+        return lbldate;
+    }
+
+    public JLabel getLblhelloUser() {
+        return lblhelloUser;
     }
 
     public void addActionListener(ActionListener l){

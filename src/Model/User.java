@@ -13,9 +13,9 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private String created;
     private String status;
     private int type;
+    private Date created;
 
     public User(){}
 
@@ -75,19 +75,19 @@ public class User {
         this.password = password;
     }
 
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setCreated(Date created){
+        this.created = created;
+    }
+
+    public Date getCreated(){
+        return created;
     }
 }
