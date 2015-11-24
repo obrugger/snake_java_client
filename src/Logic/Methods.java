@@ -37,8 +37,6 @@ public class Methods {
 
                 String json = new Gson().toJson(user);
 
-
-
                 String msg = loginParser(sc.send(json, "login/", frame), user);
 
                 if(msg.equals("Login successful")){
@@ -106,6 +104,7 @@ public class Methods {
                 if (msg.equals("User was created")){
 
                     currentUser = user;
+                    frame.getMainPanel().getCreateUser().clearText();
                     return true;
                 }
                 else if (msg.equals("Username or email already exists")){
