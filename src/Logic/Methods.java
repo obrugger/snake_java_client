@@ -140,7 +140,7 @@ public class Methods {
             JSONObject jsonObjectMsg = (JSONObject) objMsg;
 
             msg = ((String) jsonObjectMsg.get("message"));
-            user.setId((int) jsonObjectMsg.get("id"));
+            user.setId((long) jsonObjectMsg.get("userid"));
 
 
         }
