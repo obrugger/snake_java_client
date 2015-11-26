@@ -220,15 +220,15 @@ public class Controller {
 
                 String json = new Gson().toJson(user);
 
-                String msg = methods.loginParser(methods.sc.send(json, "login/", frame), user);
+                String msg = methods.loginParser(methods.getSc().send(json, "login/", frame), user);
 
                 if(msg.equals("Login successful")){
 
 
                     currentUser = user;
 
-
-                    methods.sc.parser(methods.sc.get("users/" + currentUser.getId() + "/"), currentUser);
+                    methods.getSc().parser(methods.getSc()
+                            .get("users/" + currentUser.getId() + "/"), currentUser);
 
                     frame.getMainPanel().getMenu().getLblhelloUser().
                             setText("Hello " + currentUser.getFirst_name() + "!");

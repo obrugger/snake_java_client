@@ -10,23 +10,21 @@ import com.google.gson.Gson;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javax.swing.*;
+import javax.swing.text.html.ObjectView;
 
 /**
  * Created by Oscar on 23-11-2015.
  */
 public class Methods {
 
-    ServerConnection sc;
-    User currentUser;
+    private ServerConnection sc;
+
 
     public Methods(){
 
         sc = new ServerConnection();
 
-
-
     }
-    
 
     public boolean createUser(Frame frame, User currentUser){
 
@@ -130,26 +128,22 @@ public class Methods {
                game.setMapSize(mapSize);
                game.setHost(gamer);
 
-
-
-
-
                String json = new Gson().toJson(game);
-               System.out.println(gamer.getId());
-               String msg = messageParser(sc.send(json, "games/", frame));
+
+               String msg = createGameParser(sc.send(json, "games/", frame));
+
+               if (msg.equals(game.getName())){
+
+                   return true;
+
+               }
 
 
-
-
-               System.out.println("Besked fra serveren: " + msg
-                       + "\nSucces?");
-               return true;
-
-
-
-               /*if (msg.equals("Error in JSON") || msg.equals("something went wrong")){
-                   System.out.println("Hard times");
-               }*/
+               else if (msg.equals("Error in JSON") || msg.equals("something went wrong")){
+                   JOptionPane.showMessageDialog(frame, "Check input",
+                           "Error", JOptionPane.ERROR_MESSAGE);
+               }
+               else System.out.println("Parseren gik galt.");
            }
        }
        catch(Exception e){
@@ -257,5 +251,32 @@ public class Methods {
         return null;
     }
 
+    public String createGameParser(String str){
 
+        JSONParser jsonParser = new JSONParser();
+        String gameName = new String();
+
+        try {
+
+            Object obj = jsonParser.parse(str);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            gameName = ((String) jsonObject.get("name"));
+
+            Game game = new Game();
+
+            game.setName(gameName);
+
+            return gameName;
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ServerConnection getSc() {
+        return sc;
+    }
 }
