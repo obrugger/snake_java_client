@@ -1,6 +1,8 @@
 package Logic;
 
 import GUI.Frame;
+import Model.Game;
+import Model.Gamer;
 import Model.Highscore;
 import SDK.ServerConnection;
 import Model.User;
@@ -15,10 +17,13 @@ import javax.swing.*;
 public class Methods {
 
     ServerConnection sc;
+    User currentUser;
 
     public Methods(){
 
         sc = new ServerConnection();
+        createUser = new User();
+
 
     }
 
@@ -154,7 +159,55 @@ public class Methods {
         return false;
     }
 
-    public void highscores(Frame frame, User currentUser){
+   public boolean createGame(Frame frame, Gamer gamer, User currentUser){
+
+       try {
+
+           String gameName = frame.getMainPanel().getCreateGame().getGamename();
+           int mapSize = frame.getMainPanel().getCreateGame().getMapsize();
+           String gameControls = frame.getMainPanel().getCreateGame().getControls();
+
+           if (!gameName.equals("") && mapSize != 0 && !gameControls.equals("")){
+
+
+
+               Game game = new Game();
+
+               gamer.setId(currentUser.getId());
+               gamer.setControls(gameControls);
+               game.setName(gameName);
+               game.setMapSize(mapSize);
+               game.setHost(gamer);
+
+
+
+
+
+               String json = new Gson().toJson(game);
+               System.out.println(gamer.getId());
+               String msg = messageParser(sc.send(json, "games/", frame));
+
+
+
+
+               System.out.println("Besked fra serveren: " + msg
+                       + "\nSucces?");
+               return true;
+
+
+
+               /*if (msg.equals("Error in JSON") || msg.equals("something went wrong")){
+                   System.out.println("Hard times");
+               }*/
+           }
+       }
+       catch(Exception e){
+           e.printStackTrace();
+       }
+       return false;
+   }
+
+    public void highscores(Frame frame){
 
         try{
 
@@ -252,4 +305,6 @@ public class Methods {
         }
         return null;
     }
+
+
 }

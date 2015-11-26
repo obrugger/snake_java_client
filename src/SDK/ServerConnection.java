@@ -56,7 +56,7 @@ public class ServerConnection {
             System.out.println(output);
 
             if(clientResponse != null) {
-                return  output; //clientResponse.getEntity(String.class);
+                return  output;
 
             }
 

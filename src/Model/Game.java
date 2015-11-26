@@ -7,40 +7,38 @@ import java.util.Date;
  */
 public class Game {
 
-    private int id;
-    private int host;
-    private int opponent;
+    private long gameId;
+    private Gamer winner;
     private String name;
+    private Gamer host;
+    private Gamer opponent;
     private String status;
     private Date created;
-    private int winner;
-    private String hostControls;
-    private String opponentControls;
     private int mapSize;
 
     public Game(){}
 
-    public int getId() {
-        return id;
+    public long getGameId() {
+        return gameId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setGameId(long gameId) {
+        this.gameId = gameId;
     }
 
-    public int getHost() {
+    public Gamer getHost() {
         return host;
     }
 
-    public void setHost(int host) {
+    public void setHost(Gamer host) {
         this.host = host;
     }
 
-    public int getOpponent() {
+    public Gamer getOpponent() {
         return opponent;
     }
 
-    public void setOpponent(int opponent) {
+    public void setOpponent(Gamer opponent) {
         this.opponent = opponent;
     }
 
@@ -68,28 +66,12 @@ public class Game {
         this.created = created;
     }
 
-    public int getWinner() {
+    public Gamer getWinner() {
         return winner;
     }
 
-    public void setWinner(int winner) {
+    public void setWinner(Gamer winner) {
         this.winner = winner;
-    }
-
-    public String getHostControls() {
-        return hostControls;
-    }
-
-    public void setHostControls(String hostControls) {
-        this.hostControls = hostControls;
-    }
-
-    public String getOpponentControls() {
-        return opponentControls;
-    }
-
-    public void setOpponentControls(String opponentControls) {
-        this.opponentControls = opponentControls;
     }
 
     public int getMapSize() {

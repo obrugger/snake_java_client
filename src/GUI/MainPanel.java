@@ -17,6 +17,7 @@ public class MainPanel extends JPanel {
     private static final String HIGHSCORE = "HIGHSCORE";
     private static final String WELCOME = "WELCOME";
     private static final String CREATEUSER = "CREATEUSER";
+    private static final String CREATEGAME = "CREATEGAME";
 
     private Login login;
     private Menu menu;
@@ -26,6 +27,7 @@ public class MainPanel extends JPanel {
     private Highscore highscore;
     private Welcome welcome;
     private CreateUser createUser;
+    private CreateGame createGame;
 
     private CardLayout c;
 
@@ -63,6 +65,9 @@ public class MainPanel extends JPanel {
         createUser = new CreateUser();
         add(createUser, CREATEUSER);
 
+        createGame = new CreateGame();
+        add(createGame, CREATEGAME);
+
 
         c.show(this, LOGIN);
        // c.show(this, WELCOME);
@@ -95,6 +100,10 @@ public class MainPanel extends JPanel {
 
     public CreateUser getCreateUser() {
         return createUser;
+    }
+
+    public CreateGame getCreateGame() {
+        return createGame;
     }
 
     public CardLayout getC() {
@@ -131,5 +140,9 @@ public class MainPanel extends JPanel {
 
     public static String getCREATEUSER() {
         return CREATEUSER;
+    }
+
+    public static String getCREATEGAME() {
+        return CREATEGAME;
     }
 }

@@ -1,5 +1,6 @@
 package Logic;
 import GUI.Frame;
+import Model.Gamer;
 import Model.User;
 
 import javax.swing.*;
@@ -29,6 +30,7 @@ public class Controller {
         frame.getMainPanel().getJoinGame().addActionListener(new JoinGameActionListener());
         frame.getMainPanel().getPlaySnake().addActionListener(new PlaySnakeActionListener());
         frame.getMainPanel().getCreateUser().addActionListener(new CreateUserActionListener());
+        frame.getMainPanel().getCreateGame().addActionListener(new CreateGameActionListener());
 
 
         methods = new Methods();
@@ -89,7 +91,7 @@ public class Controller {
             }
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnHighscores()){
 
-                methods.highscores(frame,currentUser);
+                methods.highscores(frame);
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getHIGHSCORE());
 
             }
@@ -145,6 +147,8 @@ public class Controller {
             }
             else if (e.getSource() == frame.getMainPanel().getPlaySnake().getBtnCreateGame()){
 
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getCREATEGAME());
+
             }
 
         }
@@ -171,6 +175,29 @@ public class Controller {
                 else {
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getDELETEGAME());
                 }
+            }
+        }
+    }
+    private class CreateGameActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+
+            if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCreate()) {
+
+                Gamer gamer = new Gamer();
+                //Gamer gamer = (Gamer) currentUser;
+
+                if (methods.createGame(frame, gamer, currentUser)){
+                    System.out.println("Fungerer hele vejen igennem");
+                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                }
+
+
+
+            }
+            else if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCancel()){
+
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+
             }
         }
     }
