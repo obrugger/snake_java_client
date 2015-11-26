@@ -7,10 +7,14 @@ import Model.Highscore;
 import SDK.ServerConnection;
 import Model.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javax.swing.*;
-import javax.swing.text.html.ObjectView;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Oscar on 23-11-2015.
@@ -134,6 +138,9 @@ public class Methods {
 
                if (msg.equals(game.getName())){
 
+                   JOptionPane.showMessageDialog(frame, "Game was created!\nIt's called "
+                           + game.getName(), "Success!", JOptionPane.ERROR_MESSAGE);
+
                    return true;
 
                }
@@ -170,6 +177,28 @@ public class Methods {
                     "Error", JOptionPane.ERROR_MESSAGE);
             frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
         }
+    }
+
+    public Game[] getOpenGames(Frame frame){
+
+        try {
+
+
+            Game[] games = openGamesParser(sc.get("games/open/"));
+
+            for (Game gm : games){
+
+                frame.getMainPanel().getJoinGame().getComboBox().addItem(gm.getName());
+
+            }
+
+            return games;
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String loginParser(String str, User user){
@@ -276,7 +305,21 @@ public class Methods {
         return null;
     }
 
+    public Game[] openGamesParser(String str){
+        try {
+            Gson gson = new Gson();
+            Game[] games = gson.fromJson(str, Game[].class);
+
+            return games;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ServerConnection getSc() {
         return sc;
     }
+
 }

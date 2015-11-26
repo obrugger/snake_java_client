@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -14,6 +15,7 @@ public class JoinGame extends JPanel {
     private JButton btnJoinGame;
     private JButton btnBack;
 
+    private Methods methods;
     /**
      * Create the panel.
      */
@@ -24,24 +26,37 @@ public class JoinGame extends JPanel {
         setOpaque(false);
         setBackground(Color.BLUE);
 
+        methods = new Methods();
+
         lblJoinGame = new JLabel("JOIN GAME");
-        lblJoinGame.setBounds(529, 79, 136, 33);
+        lblJoinGame.setBounds(760, 200, 480, 81);
+        methods.fontColor(lblJoinGame);
+        methods.setAlignment(lblJoinGame);
+        methods.setFontHeadline(lblJoinGame);
         add(lblJoinGame);
 
-        lblSearchForGame = new JLabel("Search for game");
-        lblSearchForGame.setBounds(499, 252, 196, 33);
+        lblSearchForGame = new JLabel("Select game to join");
+        lblSearchForGame.setBounds(851, 500, 298, 38);
+        methods.fontColor(lblSearchForGame);
+        methods.setAlignment(lblSearchForGame);
+        methods.setFontLabel(lblSearchForGame);
         add(lblSearchForGame);
 
         comboBox = new JComboBox();
-        comboBox.setBounds(471, 313, 252, 39);
+        comboBox.setBounds(800, 600, 400, 60);
+        comboBox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        ((JLabel)comboBox.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        ((JLabel)comboBox.getRenderer()).setVerticalAlignment(JLabel.CENTER);
         add(comboBox);
 
         btnJoinGame = new JButton("Join game");
-        btnJoinGame.setBounds(511, 479, 171, 41);
+        btnJoinGame.setBounds(425, 1000, 400, 100);
+        btnJoinGame.setFont(methods.getFontLabel());
         add(btnJoinGame);
 
         btnBack = new JButton("Back");
-        btnBack.setBounds(26, 773, 171, 41);
+        btnBack.setBounds(1175, 1000, 400, 100);
+        btnBack.setFont(methods.getFontLabel());
         add(btnBack);
 
     }

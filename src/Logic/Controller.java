@@ -100,6 +100,8 @@ public class Controller {
             }
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnLogout()){
 
+
+                userAuthentication() = false;
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
 
 
@@ -127,9 +129,11 @@ public class Controller {
         public void actionPerformed(ActionEvent e){
 
             if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnBack()){
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
             }
             else if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnJoinGame()){
+
+
 
             }
         }
@@ -145,6 +149,8 @@ public class Controller {
             }
             else if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnJoinGame()){
 
+
+                methods.getOpenGames(frame);
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME());
 
             }

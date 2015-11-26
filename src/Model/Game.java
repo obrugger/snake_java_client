@@ -13,7 +13,7 @@ public class Game {
     private Gamer host;
     private Gamer opponent;
     private String status;
-    private Date created;
+    //private Date created;
     private int mapSize;
 
     public Game(){}
@@ -58,13 +58,13 @@ public class Game {
         this.status = status;
     }
 
-    public Date getCreated() {
+    /*public Date getCreated() {
         return created;
     }
 
     public void setCreated(Date created) {
         this.created = created;
-    }
+    }*/
 
     public Gamer getWinner() {
         return winner;

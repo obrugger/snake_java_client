@@ -1,13 +1,17 @@
 package SDK;
 
 import GUI.Frame;
+import Model.Game;
 import Model.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import sun.org.mozilla.javascript.internal.json.JsonParser;
@@ -15,8 +19,11 @@ import sun.swing.StringUIClientPropertyKey;
 
 
 import javax.swing.*;
+import java.lang.reflect.Array;
 import java.nio.file.FileSystems;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -67,6 +74,36 @@ public class ServerConnection {
         }
 
         return "";
+    }
+
+    public JSONArray getJsonArray(String path){
+
+        try {
+
+
+            Client client = Client.create();
+
+            WebResource webResource = client.resource(getUrl() + ":" + getServerPort() + "/api/" + path);
+            ClientResponse clientResponse = webResource.type("application/json").get(ClientResponse.class);
+
+            //TypeToken<List<Game>> token = new TypeToken<List<Game>>(){};
+            //List<Game> games = new Gson().fromJson(clientResponse.getEntity(String.class), token.getType());
+           // ArrayList<Game> arrayList = clientResponse.getEntity(ArrayList.class);
+            //System.out.println(arrayList);
+
+            /*JSONArray jsonArray = clientResponse.getEntity(JSONArray.class);
+            System.out.println(jsonArray);
+            return jsonArray;*/
+            ArrayList<Game> games = clientResponse.getEntity(new GenericType<ArrayList<Game>>(){});
+
+
+
+            //return arrayList;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String get(String path){

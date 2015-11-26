@@ -21,6 +21,8 @@ public class CreateGame extends JPanel {
     private JButton btnCreate;
     private JButton btnCancel;
 
+    private Methods methods;
+
 
     public CreateGame(){
 
@@ -28,11 +30,13 @@ public class CreateGame extends JPanel {
         setBackground(Color.BLUE);
         setLayout(null);
 
+        methods = new Methods();
 
         lblCreateGame = new JLabel("CREATE GAME");
         lblCreateGame.setBounds(760, 200, 480, 81);
-        lblCreateGame.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
-        lblCreateGame.setHorizontalAlignment(SwingConstants.CENTER);
+        methods.fontColor(lblCreateGame);
+        methods.setAlignment(lblCreateGame);
+        methods.setFontHeadline(lblCreateGame);
         add(lblCreateGame);
 
         lblEnterGamename = new JLabel("Enter game name");

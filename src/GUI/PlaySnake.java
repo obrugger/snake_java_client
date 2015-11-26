@@ -33,15 +33,18 @@ public class PlaySnake extends JPanel {
         add(lblPlaySnake);
 
         btnCreateGame = new JButton("Create Game");
-        btnCreateGame.setBounds(422, 289, 187, 41);
+        btnCreateGame.setBounds(1175, 500, 400, 100);
+        btnCreateGame.setFont(methods.getFontLabel());
         add(btnCreateGame);
 
         btnJoinGame = new JButton("Join game");
-        btnJoinGame.setBounds(422, 418, 187, 41);
+        btnJoinGame.setBounds(425, 500, 400, 100);
+        btnJoinGame.setFont(methods.getFontLabel());
         add(btnJoinGame);
 
         btnBack = new JButton("Back");
-        btnBack.setBounds(26, 819, 171, 41);
+        btnBack.setBounds(800, 1000, 400, 100);
+        btnBack.setFont(methods.getFontLabel());
         add(btnBack);
     }
 
