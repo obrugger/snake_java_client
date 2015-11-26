@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutionException;
 
 import SDK.SDK;
 import SDK.ServerConnection;
-import Test.User;
+import Model.User;
 
 import javax.swing.*;
 

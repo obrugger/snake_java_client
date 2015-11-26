@@ -2,6 +2,7 @@ package Logic;
 import GUI.Frame;
 import Model.Gamer;
 import Model.User;
+import com.google.gson.Gson;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -45,9 +46,11 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
 
-                if (methods.userAuthentication(currentUser, frame)) {
+                if (userAuthentication()) {
 
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                    System.out.println(currentUser.getId());
+
 
                 }
             }
@@ -63,7 +66,7 @@ public class Controller {
 
             if(e.getSource() == frame.getMainPanel().getCreateUser().getBtnCreate()){
 
-                if(methods.createUser(frame,currentUser)){
+                if(methods.createUser(frame, currentUser)){
 
                     JOptionPane.showMessageDialog(frame, "User created!", "Success", JOptionPane.PLAIN_MESSAGE);
 
@@ -200,5 +203,55 @@ public class Controller {
 
             }
         }
+    }
+
+    public boolean userAuthentication(){
+
+        try{
+
+            String username = frame.getMainPanel().getLogin().getUsername();
+            String password = frame.getMainPanel().getLogin().getPassword();
+
+            if(!username.equals("") && !password.equals("")) {
+
+                User user = new User();
+                user.setPassword(password);
+                user.setUsername(username);
+
+                String json = new Gson().toJson(user);
+
+                String msg = methods.loginParser(methods.sc.send(json, "login/", frame), user);
+
+                if(msg.equals("Login successful")){
+
+
+                    currentUser = user;
+
+
+                    methods.sc.parser(methods.sc.get("users/" + currentUser.getId() + "/"), currentUser);
+
+                    frame.getMainPanel().getMenu().getLblhelloUser().
+                            setText("Hello " + currentUser.getFirst_name() + "!");
+
+                    frame.getMainPanel().getLogin().clearLogin();
+
+                    return true;
+                }
+                else if(msg.equals("Wrong username or password")){
+                    JOptionPane.showMessageDialog(frame, "Wrong username or password",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else if (msg.equals("Error in JSON")){
+                    JOptionPane.showMessageDialog(frame, "Backend issue",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(frame, "Recheck spelling",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+
     }
 }

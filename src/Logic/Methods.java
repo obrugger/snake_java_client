@@ -22,60 +22,11 @@ public class Methods {
     public Methods(){
 
         sc = new ServerConnection();
-        createUser = new User();
 
 
-    }
-
-    public boolean userAuthentication( User currentUser, Frame frame){
-
-        try{
-
-            String username = frame.getMainPanel().getLogin().getUsername();
-            String password = frame.getMainPanel().getLogin().getPassword();
-
-            if(!username.equals("") && !password.equals("")) {
-
-                User user = new User();
-                user.setPassword(password);
-                user.setUsername(username);
-
-                String json = new Gson().toJson(user);
-
-                String msg = loginParser(sc.send(json, "login/", frame), user);
-
-                if(msg.equals("Login successful")){
-
-
-                    currentUser = user;
-
-                    sc.parser(sc.get("users/" + currentUser.getId() + "/"), currentUser);
-
-                    frame.getMainPanel().getMenu().getLblhelloUser().
-                            setText("Hello " + currentUser.getFirst_name() + "!");
-
-                    frame.getMainPanel().getLogin().clearLogin();
-
-                    return true;
-                }
-                else if(msg.equals("Wrong username or password")){
-                    JOptionPane.showMessageDialog(frame, "Wrong username or password",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else if (msg.equals("Error in JSON")){
-                    JOptionPane.showMessageDialog(frame, "Backend issue",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(frame, "Recheck spelling",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        return false;
 
     }
-
+    
 
     public boolean createUser(Frame frame, User currentUser){
 
