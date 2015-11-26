@@ -81,11 +81,11 @@ public class ServerConnection {
             /*
             if (clientResponse.getStatus() != 200){
                 throw new RuntimeException("HTTP errorcode: " + clientResponse.getStatus());
-            }
+            }*/
 
-            System.out.println("\nOutput from Server .... \n");*/
+            System.out.println("\nOutput from Server .... \n");
             String output = clientResponse.getEntity(String.class);
-           // System.out.println(output);
+            System.out.println(output);
 
             return output;
 
@@ -93,6 +93,29 @@ public class ServerConnection {
         catch (Exception e){
             e.printStackTrace();
             return "null";
+        }
+    }
+
+    public String delete(String path){
+
+        try {
+
+            Client client = Client.create();
+
+            WebResource webResource = client.resource(getUrl() + ":" + getServerPort() + "/api/" + path);
+            ClientResponse clientResponse = webResource.type("application/json").delete(ClientResponse.class);
+
+            System.out.println("\nOutput from server ....\n");
+            String output = clientResponse.getEntity(String.class);
+            System.out.println(output);
+
+            return output;
+
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 

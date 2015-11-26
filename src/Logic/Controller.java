@@ -66,7 +66,6 @@ public class Controller {
                     JOptionPane.showMessageDialog(frame, "User created!", "Success", JOptionPane.PLAIN_MESSAGE);
 
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
-
                 }
             }
 
@@ -85,9 +84,12 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getMenu().getBtnDeleteGame()){
 
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getDELETEGAME());
+
             }
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnHighscores()){
 
+                methods.highscores(frame,currentUser);
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getHIGHSCORE());
 
             }
@@ -158,6 +160,17 @@ public class Controller {
             }
             else if(e.getSource() == frame.getMainPanel().getDeleteGame().getBtnDelete()) {
 
+                if (methods.deleteGame(currentUser, frame)){
+
+                    JOptionPane.showMessageDialog(frame, "Game was deleted!",
+                            "Success", JOptionPane.ERROR_MESSAGE);
+
+                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+
+                }
+                else {
+                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getDELETEGAME());
+                }
             }
         }
     }

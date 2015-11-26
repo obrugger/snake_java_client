@@ -1,12 +1,12 @@
 package Logic;
 
 import GUI.Frame;
+import Model.Highscore;
 import SDK.ServerConnection;
 import Model.User;
 import com.google.gson.Gson;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import javax.swing.*;
 
 /**
@@ -88,7 +88,7 @@ public class Methods {
             if(!username.equals("")&& !password.equals("") && !firstname.equals("")
                     && !lastname.equals("") && !email.equals("")){
 
-                Model.User user = new User();
+                User user = new User();
                 user.setType(type);
                 user.setStatus("active");
                 user.setPassword(password);
@@ -99,7 +99,7 @@ public class Methods {
 
                 String json = new Gson().toJson(user);
 
-                String msg = messageParser((sc.send(json, "users/", frame)));
+                String msg = messageParser(sc.send(json, "users/", frame));
 
                 if (msg.equals("User was created")){
 
@@ -118,13 +118,60 @@ public class Methods {
                             "Error",JOptionPane.ERROR_MESSAGE );
                 }
             }
-
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(frame, "Recheck spelling",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
         return false;
+    }
+
+    public boolean deleteGame(User currentUser, Frame frame){
+
+        try{
+            int gameId = frame.getMainPanel().getDeleteGame().getGameId();
+
+            if ( gameId != 0){
+
+                String msg = messageParser(sc.delete("games/" + gameId));
+
+                if (msg.equals("Game was deleted")){
+
+                    return true;
+                }
+                else if (msg.equals("Failed. Game was not deleted")){
+
+                    JOptionPane.showMessageDialog(frame, "Wrong Game ID",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(frame, "Backend error",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
+
+    public void highscores(Frame frame, User currentUser){
+
+        try{
+
+            Highscore highscore = highscoreParser(sc.get("scores/"));
+
+            frame.getMainPanel().getHighscore().getLbl1score().setText(String.valueOf(highscore.getH1()));
+            frame.getMainPanel().getHighscore().getLbl2score().setText(String.valueOf(highscore.getH2()));
+            frame.getMainPanel().getHighscore().getLbl3score().setText(String.valueOf(highscore.getH3()));
+            frame.getMainPanel().getHighscore().getLbl4score().setText(String.valueOf(highscore.getH4()));
+            frame.getMainPanel().getHighscore().getLbl5score().setText(String.valueOf(highscore.getH5()));
+
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(frame, "Issue in HTTP",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+        }
     }
 
     public String loginParser(String str, User user){
@@ -166,5 +213,43 @@ public class Methods {
         }
 
         return msg;
+    }
+
+
+
+    public Highscore highscoreParser (String str){
+
+        JSONParser parser = new JSONParser();
+        long h1;
+        long h2;
+        long h3;
+        long h4;
+        long h5;
+
+        try {
+            Object obj = parser.parse(str);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            h1 = ((long) jsonObject.get("h1"));
+            h2 = ((long) jsonObject.get("h2"));
+            h3 = ((long) jsonObject.get("h3"));
+            h4 = ((long) jsonObject.get("h4"));
+            h5 = ((long) jsonObject.get("h5"));
+
+            Highscore highscore = new Highscore();
+
+            highscore.setH1(h1);
+            highscore.setH2(h2);
+            highscore.setH3(h3);
+            highscore.setH4(h4);
+            highscore.setH5(h5);
+
+            return highscore;
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

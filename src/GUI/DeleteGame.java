@@ -1,5 +1,7 @@
 package GUI;
 
+import Logic.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -13,41 +15,55 @@ public class DeleteGame extends JPanel {
     private JTextField txtInsertgameid;
     private JButton btnDelete;
     private JButton btnBack;
+    private Methods methods;
 
     /**
      * Create the panel.
      */
     public DeleteGame() {
 
+        methods = new Methods();
+
         setLayout(null);
         setOpaque(false);
         setBackground(Color.BLUE);
 
         lblDeleteGame = new JLabel("DELETE GAME");
-        lblDeleteGame.setBounds(406, 128, 170, 33);
+        lblDeleteGame.setBounds(775, 200, 466, 81);
+        methods.fontColor(lblDeleteGame);
+        methods.setFontHeadline(lblDeleteGame);
+        methods.setAlignment(lblDeleteGame);
         add(lblDeleteGame);
 
         lblInsertGameId = new JLabel("Insert Game ID ");
-        lblInsertGameId.setBounds(395, 282, 191, 33);
+        lblInsertGameId.setBounds(875, 450, 250, 35);
+        methods.fontColor(lblInsertGameId);
+        methods.setFontLabel(lblInsertGameId);
+        methods.setAlignment(lblInsertGameId);
         add(lblInsertGameId);
 
         txtInsertgameid = new JTextField();
-        txtInsertgameid.setBounds(377, 367, 236, 39);
+        txtInsertgameid.setBounds(825, 590, 350, 60);
+        methods.setFontText(txtInsertgameid);
+        methods.setAlignmentText(txtInsertgameid);
         add(txtInsertgameid);
         txtInsertgameid.setColumns(10);
 
         btnDelete = new JButton("Delete");
-        btnDelete.setBounds(405, 517, 171, 41);
+        btnDelete.setBounds(1175, 1000, 400, 100);
+        btnDelete.setFont(methods.getFontLabel());
         add(btnDelete);
 
         btnBack = new JButton("Back");
-        btnBack.setBounds(26, 774, 171, 41);
+        btnBack.setBounds(425, 1000, 400, 100);
+        btnBack.setFont(methods.getFontLabel());
         add(btnBack);
 
     }
 
-    public JTextField getTxtInsertgameid() {
-        return txtInsertgameid;
+    public int getGameId(){
+
+        return Integer.parseInt(txtInsertgameid.getText());
     }
 
     public JButton getBtnDelete() {
