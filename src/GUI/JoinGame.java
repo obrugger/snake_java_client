@@ -14,6 +14,8 @@ public class JoinGame extends JPanel {
     private JComboBox comboBox;
     private JButton btnJoinGame;
     private JButton btnBack;
+    private JTextField txtControls;
+    private JLabel lblControls;
 
     private Methods methods;
     /**
@@ -49,13 +51,26 @@ public class JoinGame extends JPanel {
         ((JLabel)comboBox.getRenderer()).setVerticalAlignment(JLabel.CENTER);
         add(comboBox);
 
+        lblControls = new JLabel("Enter controls");
+        lblControls.setBounds(890, 725, 220, 38);
+        methods.fontColor(lblControls);
+        methods.setAlignment(lblControls);
+        methods.setFontLabel(lblControls);
+        add(lblControls);
+
+        txtControls = new JTextField();
+        txtControls.setBounds(800, 800, 400, 60);
+        methods.setFontText(txtControls);
+        methods.setAlignmentText(txtControls);
+        add(txtControls);
+
         btnJoinGame = new JButton("Join game");
-        btnJoinGame.setBounds(425, 1000, 400, 100);
+        btnJoinGame.setBounds(425, 1150, 400, 100);
         btnJoinGame.setFont(methods.getFontLabel());
         add(btnJoinGame);
 
         btnBack = new JButton("Back");
-        btnBack.setBounds(1175, 1000, 400, 100);
+        btnBack.setBounds(1175, 1150, 400, 100);
         btnBack.setFont(methods.getFontLabel());
         add(btnBack);
 
@@ -71,6 +86,10 @@ public class JoinGame extends JPanel {
 
     public JComboBox getComboBox() {
         return comboBox;
+    }
+
+    public String getControls(){
+        return txtControls.getText();
     }
 
     public void addActionListener(ActionListener l){

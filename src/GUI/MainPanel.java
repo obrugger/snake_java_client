@@ -18,6 +18,7 @@ public class MainPanel extends JPanel {
     private static final String WELCOME = "WELCOME";
     private static final String CREATEUSER = "CREATEUSER";
     private static final String CREATEGAME = "CREATEGAME";
+    private static final String JOINGAME2 = "JOINGAME2";
 
     private Login login;
     private Menu menu;
@@ -28,6 +29,7 @@ public class MainPanel extends JPanel {
     private Welcome welcome;
     private CreateUser createUser;
     private CreateGame createGame;
+    private JoinGame2 joinGame2;
 
     private CardLayout c;
 
@@ -68,6 +70,9 @@ public class MainPanel extends JPanel {
         createGame = new CreateGame();
         add(createGame, CREATEGAME);
 
+        joinGame2 = new JoinGame2();
+        add(joinGame2, JOINGAME2);
+
 
         c.show(this, LOGIN);
        // c.show(this, WELCOME);
@@ -104,6 +109,10 @@ public class MainPanel extends JPanel {
 
     public CreateGame getCreateGame() {
         return createGame;
+    }
+
+    public JoinGame2 getJoinGame2() {
+        return joinGame2;
     }
 
     public CardLayout getC() {
@@ -144,5 +153,9 @@ public class MainPanel extends JPanel {
 
     public static String getCREATEGAME() {
         return CREATEGAME;
+    }
+
+    public static String getJOINGAME2() {
+        return JOINGAME2;
     }
 }

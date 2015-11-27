@@ -17,6 +17,7 @@ public class Controller {
 
     User currentUser = new User();
     Methods methods;
+    Gamer gamer;
 
 
     public Controller(){
@@ -32,9 +33,11 @@ public class Controller {
         frame.getMainPanel().getPlaySnake().addActionListener(new PlaySnakeActionListener());
         frame.getMainPanel().getCreateUser().addActionListener(new CreateUserActionListener());
         frame.getMainPanel().getCreateGame().addActionListener(new CreateGameActionListener());
+        frame.getMainPanel().getJoinGame2().addActionListener(new JoinGame2ActionListener());
 
 
         methods = new Methods();
+        gamer = new Gamer();
 
 
     }
@@ -100,8 +103,7 @@ public class Controller {
             }
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnLogout()){
 
-
-                userAuthentication() = false;
+                currentUser = null;
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
 
 
@@ -110,7 +112,6 @@ public class Controller {
 
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
             }
-
         }
     }
 
@@ -121,7 +122,6 @@ public class Controller {
 
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
             }
-
         }
     }
 
@@ -133,9 +133,31 @@ public class Controller {
             }
             else if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnJoinGame()){
 
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME2());
+
+            }
+        }
+    }
+
+    private class JoinGame2ActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+
+            if (e.getSource() == frame.getMainPanel().getJoinGame2().getBtnBack()){
+
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+
+            }
+            else if (e.getSource() == frame.getMainPanel().getJoinGame2().getBtnStartGame()){
+
+                Gamer gamer = new Gamer();
+
+                if (methods.joinGame(frame, currentUser, gamer)){
+
+                }
 
 
             }
+
         }
     }
 
@@ -192,7 +214,6 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCreate()) {
 
-                Gamer gamer = new Gamer();
                 //Gamer gamer = (Gamer) currentUser;
 
                 if (methods.createGame(frame, gamer, currentUser)){

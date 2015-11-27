@@ -179,18 +179,36 @@ public class Methods {
         }
     }
 
-    public Game[] getOpenGames(Frame frame){
+    public Game[] getOpenGames(Frame frame, User currentUser, Gamer gamer){
 
         try {
-
+            String controls = frame.getMainPanel().getJoinGame().getControls();
 
             Game[] games = openGamesParser(sc.get("games/open/"));
 
             for (Game gm : games){
 
                 frame.getMainPanel().getJoinGame().getComboBox().addItem(gm.getName());
+            }
+
+            if (!controls.equals("")){
+
+
+                Game game = new Game();
+
+                gamer.setId(currentUser.getId());
+                gamer.setControls(controls);
+                game.setOpponent(gamer);
+
+                String json = new Gson().toJson(game);
+
+                String msg = messageParser(sc.put("games/join/", json));
+
+
 
             }
+
+
 
             return games;
 
@@ -199,6 +217,44 @@ public class Methods {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean joinGame(Frame frame, User currentUser, Gamer gamer){
+
+        try {
+
+            if (!controls.equals("")) {
+
+                Game game = new Game();
+
+                gamer.setId(currentUser.getId());
+                gamer.setControls(controls);
+                game.setOpponent(gamer);
+
+                String json = new Gson().toJson(game);
+
+                String msg = messageParser(sc.put("games/join/", json));
+
+                if (msg.equals("Game was joined")){
+
+                    JOptionPane.showMessageDialog(frame, "Game was joined!",
+                            "Success", JOptionPane.PLAIN_MESSAGE);
+                    return true;
+                }
+                else if (msg.equals("Game closed")){
+                    JOptionPane.showMessageDialog(frame, "Game closed",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else if (msg.equals("Error in JSON")){
+                    JOptionPane.showMessageDialog(frame, "Error in JSON",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public String loginParser(String str, User user){
@@ -321,5 +377,4 @@ public class Methods {
     public ServerConnection getSc() {
         return sc;
     }
-
 }

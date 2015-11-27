@@ -76,35 +76,6 @@ public class ServerConnection {
         return "";
     }
 
-    public JSONArray getJsonArray(String path){
-
-        try {
-
-
-            Client client = Client.create();
-
-            WebResource webResource = client.resource(getUrl() + ":" + getServerPort() + "/api/" + path);
-            ClientResponse clientResponse = webResource.type("application/json").get(ClientResponse.class);
-
-            //TypeToken<List<Game>> token = new TypeToken<List<Game>>(){};
-            //List<Game> games = new Gson().fromJson(clientResponse.getEntity(String.class), token.getType());
-           // ArrayList<Game> arrayList = clientResponse.getEntity(ArrayList.class);
-            //System.out.println(arrayList);
-
-            /*JSONArray jsonArray = clientResponse.getEntity(JSONArray.class);
-            System.out.println(jsonArray);
-            return jsonArray;*/
-            ArrayList<Game> games = clientResponse.getEntity(new GenericType<ArrayList<Game>>(){});
-
-
-
-            //return arrayList;
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public String get(String path){
 
@@ -154,6 +125,27 @@ public class ServerConnection {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public String put(String path, String json){
+        try {
+
+            Client client = Client.create();
+
+            WebResource webResource = client.resource(getUrl() + ":" + getServerPort() + "/api/" + path);
+            ClientResponse clientResponse = webResource.type("application/json").put(ClientResponse.class, json);
+
+            System.out.println("\nOutput from server ....\n");
+            String output = clientResponse.getEntity(String.class);
+            System.out.println(output);
+
+            return output;
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void parser(String json, User user){
