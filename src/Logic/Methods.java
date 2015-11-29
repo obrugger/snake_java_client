@@ -112,52 +112,52 @@ public class Methods {
         return false;
     }
 
-   public boolean createGame(Frame frame, Gamer gamer, User currentUser){
+    public boolean createGame(Frame frame, Gamer gamer, User currentUser){
 
-       try {
+        try {
 
-           String gameName = frame.getMainPanel().getCreateGame().getGamename();
-           int mapSize = frame.getMainPanel().getCreateGame().getMapsize();
-           String gameControls = frame.getMainPanel().getCreateGame().getControls();
+            String gameName = frame.getMainPanel().getCreateGame().getGamename();
+            int mapSize = frame.getMainPanel().getCreateGame().getMapsize();
+            String gameControls = frame.getMainPanel().getCreateGame().getControls();
 
-           if (!gameName.equals("") && mapSize != 0 && !gameControls.equals("")){
-
-
-
-               Game game = new Game();
-
-               gamer.setId(currentUser.getId());
-               gamer.setControls(gameControls);
-               game.setName(gameName);
-               game.setMapSize(mapSize);
-               game.setHost(gamer);
-
-               String json = new Gson().toJson(game);
-
-               String msg = createGameParser(sc.send(json, "games/", frame));
-
-               if (msg.equals(game.getName())){
-
-                   JOptionPane.showMessageDialog(frame, "Game was created!\nIt's called "
-                           + game.getName(), "Success!", JOptionPane.ERROR_MESSAGE);
-
-                   return true;
-
-               }
+            if (!gameName.equals("") && mapSize != 0 && !gameControls.equals("")){
 
 
-               else if (msg.equals("Error in JSON") || msg.equals("something went wrong")){
-                   JOptionPane.showMessageDialog(frame, "Check input",
-                           "Error", JOptionPane.ERROR_MESSAGE);
-               }
-               else System.out.println("Parseren gik galt.");
-           }
-       }
-       catch(Exception e){
-           e.printStackTrace();
-       }
-       return false;
-   }
+
+                Game game = new Game();
+
+                gamer.setId(currentUser.getId());
+                gamer.setControls(gameControls);
+                game.setName(gameName);
+                game.setMapSize(mapSize);
+                game.setHost(gamer);
+
+                String json = new Gson().toJson(game);
+
+                String msg = createGameParser(sc.send(json, "games/", frame));
+
+                if (msg.equals(game.getName())){
+
+                    JOptionPane.showMessageDialog(frame, "Game was created!\nIt's called "
+                            + game.getName(), "Success!", JOptionPane.ERROR_MESSAGE);
+
+                    return true;
+
+                }
+
+
+                else if (msg.equals("Error in JSON") || msg.equals("something went wrong")){
+                    JOptionPane.showMessageDialog(frame, "Check input",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else System.out.println("Parseren gik galt.");
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public void highscores(Frame frame){
 
@@ -179,49 +179,48 @@ public class Methods {
         }
     }
 
-    public Game[] getOpenGames(Frame frame, User currentUser, Gamer gamer){
+    public boolean getOpenGames(Frame frame, User currentUser, Gamer gamer){
 
         try {
             String controls = frame.getMainPanel().getJoinGame().getControls();
 
+            Game game = new Game();
+
             Game[] games = openGamesParser(sc.get("games/open/"));
 
-            for (Game gm : games){
+            for (Game gm : games) {
 
                 frame.getMainPanel().getJoinGame().getComboBox().addItem(gm.getName());
-            }
-
-            if (!controls.equals("")){
-
-
-                Game game = new Game();
-
-                gamer.setId(currentUser.getId());
-                gamer.setControls(controls);
-                game.setOpponent(gamer);
-
-                String json = new Gson().toJson(game);
-
-                String msg = messageParser(sc.put("games/join/", json));
-
-
 
             }
 
+            gamer.setControls(controls);
+            gamer.setId(currentUser.getId());
+            game.setOpponent(gamer);
 
+            String json = new Gson().toJson(game);
 
-            return games;
+            String msg = messageParser(sc.put("games/join/", json));
 
+            if (msg.equals("Game was joined")) {
+
+                JOptionPane.showMessageDialog(frame, "Game was joined!",
+                        "Success", JOptionPane.PLAIN_MESSAGE);
+
+                return true;
+            }
         }
-        catch (Exception e) {
-            e.printStackTrace();
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
         }
-        return null;
-    }
 
     public boolean joinGame(Frame frame, User currentUser, Gamer gamer){
 
         try {
+
+            String controls = frame.getMainPanel().getJoinGame2().getControls();
 
             if (!controls.equals("")) {
 
@@ -251,7 +250,7 @@ public class Methods {
                 }
             }
         }
-        catch (Exception e){
+        catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -271,13 +270,15 @@ public class Methods {
             msg = ((String) jsonObjectMsg.get("message"));
             user.setId((long) jsonObjectMsg.get("userid"));
 
+            return msg;
+
 
         }
-        catch (Exception e){
+        catch (Exception e) {
             e.printStackTrace();
-        }
 
-        return msg;
+        }
+        return null;
     }
 
     public String messageParser(String str){

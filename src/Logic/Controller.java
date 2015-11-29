@@ -1,5 +1,6 @@
 package Logic;
 import GUI.Frame;
+import Model.Game;
 import Model.Gamer;
 import Model.User;
 import com.google.gson.Gson;
@@ -133,7 +134,12 @@ public class Controller {
             }
             else if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnJoinGame()){
 
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME2());
+                if (methods.joinGame(frame,currentUser,gamer)){
+
+                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                }
+
+                //frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME2());
 
             }
         }
@@ -172,7 +178,7 @@ public class Controller {
             else if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnJoinGame()){
 
 
-                methods.getOpenGames(frame);
+                methods.getOpenGames(frame, currentUser, gamer);
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME());
 
             }
@@ -277,6 +283,7 @@ public class Controller {
         catch (Exception e){
             JOptionPane.showMessageDialog(frame, "Recheck spelling",
                     "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
         return false;
 
