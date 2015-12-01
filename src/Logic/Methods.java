@@ -17,13 +17,11 @@ import javax.swing.*;
  */
 public class Methods {
 
-    private ServerConnection sc;
     private JSONParsers jp;
 
 
     public Methods(){
 
-        sc = new ServerConnection();
         jp = new JSONParsers();
 
     }
@@ -104,7 +102,7 @@ public class Methods {
 
                 String json = new Gson().toJson(user);
 
-                String msg = messageParser(sc.send(json, "users/", frame));
+                String msg = messageParser(jp.getSc().send(json, "users/", frame));
 
                 if (msg.equals("User was created")){
 
@@ -138,7 +136,7 @@ public class Methods {
 
             if ( gameId != 0){
 
-                String msg = messageParser(sc.delete("games/" + gameId));
+                String msg = messageParser(jp.getSc().delete("games/" + gameId));
 
                 if (msg.equals("Game was deleted")){
 
@@ -181,7 +179,7 @@ public class Methods {
 
                 String json = new Gson().toJson(game);
 
-                String msg = createGameParser(sc.send(json, "games/", frame));
+                String msg = createGameParser(jp.getSc().send(json, "games/", frame));
 
                 if (msg.equals(game.getName())){
 
@@ -210,7 +208,7 @@ public class Methods {
 
         try{
 
-            Highscore highscore = highscoreParser(sc.get("scores/"));
+            Highscore highscore = highscoreParser(jp.getSc().get("scores/"));
 
             frame.getMainPanel().getHighscore().getLbl1score().setText(String.valueOf(highscore.getH1()));
             frame.getMainPanel().getHighscore().getLbl2score().setText(String.valueOf(highscore.getH2()));
@@ -233,7 +231,7 @@ public class Methods {
 
             String msg = frame.getMainPanel().getJoinGame().getComboBox().getSelectedItem().toString();
 
-            Game game = getGame(sc.get("game/" + msg + "/"));
+            Game game = getGame(jp.getSc().get("game/" + msg + "/"));
 
             frame.getMainPanel().getJoinGame().getLblGameName().setText("Game name: " + game.getName());
 
@@ -251,7 +249,7 @@ public class Methods {
 
         try {
 
-            Game[] games = openGamesParser(sc.get("games/open/"));
+            Game[] games = openGamesParser(jp.getSc().get("games/open/"));
 
             for (Game gm : games) {
 
@@ -287,12 +285,12 @@ public class Methods {
 
                 String json = gson.toJson(game);
 
-                String msg = messageParser(sc.put("games/join/", json));
+                String msg = messageParser(jp.getSc().put("games/join/", json));
 
                 if (msg.equals("Game was joined")){
 
 
-                    Game game1 = getGame(sc.put("games/start/", json));
+                    Game game1 = getGame(jp.getSc().put("games/start/", json));
 
                     System.out.println(game1.getWinner());
 
@@ -429,12 +427,6 @@ public class Methods {
             e.printStackTrace();
         }
         return null;
-    }
-
-
-
-    public ServerConnection getSc() {
-        return sc;
     }
 
     public JSONParsers getJp() {

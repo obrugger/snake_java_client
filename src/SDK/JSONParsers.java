@@ -31,7 +31,10 @@ public class JSONParsers {
             JSONObject jsonObjectMsg = (JSONObject) objMsg;
 
             msg = ((String) jsonObjectMsg.get("message"));
-            user.setId((long) jsonObjectMsg.get("userid"));
+
+            if (msg.equals("Login successful")) {
+                user.setId((long) jsonObjectMsg.get("userid"));
+            }
 
             return msg;
 
@@ -43,6 +46,8 @@ public class JSONParsers {
         }
         return null;
     }
+
+
 
     public ServerConnection getSc() {
         return sc;

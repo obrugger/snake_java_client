@@ -52,14 +52,6 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
 
-                /*if (userAuthentication()) {
-
-                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
-                    System.out.println(currentUser.getId());
-
-
-                }*/
-
                 currentUser = methods.userAuthentication(frame, currentUser);
                 if (currentUser == null){
 
@@ -245,56 +237,5 @@ public class Controller {
 
             }
         }
-    }
-
-    public boolean userAuthentication(){
-
-        try{
-
-            String username = frame.getMainPanel().getLogin().getUsername();
-            String password = frame.getMainPanel().getLogin().getPassword();
-
-            if(!username.equals("") && !password.equals("")) {
-
-                User user = new User();
-                user.setPassword(password);
-                user.setUsername(username);
-
-                String json = new Gson().toJson(user);
-
-                String msg = methods.getJp().loginParser((methods.getSc().send(json, "login/", frame)), user);
-
-                if(msg.equals("Login successful")){
-
-
-                    currentUser = user;
-
-                    methods.getSc().parser(methods.getSc()
-                            .get("users/" + currentUser.getId() + "/"), currentUser);
-
-                    frame.getMainPanel().getMenu().getLblhelloUser().
-                            setText("Hello " + currentUser.getFirst_name() + "!");
-
-                    frame.getMainPanel().getLogin().clearLogin();
-
-                    return true;
-                }
-                else if(msg.equals("Wrong username or password")){
-                    JOptionPane.showMessageDialog(frame, "Wrong username or password",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else if (msg.equals("Error in JSON")){
-                    JOptionPane.showMessageDialog(frame, "Backend issue",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(frame, "Recheck spelling",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
-        return false;
-
     }
 }
