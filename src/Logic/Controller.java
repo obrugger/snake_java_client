@@ -52,7 +52,22 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
 
-                if (userAuthentication()) {
+                /*if (userAuthentication()) {
+
+                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                    System.out.println(currentUser.getId());
+
+
+                }*/
+
+                currentUser = methods.userAuthentication(frame, currentUser);
+                if (currentUser == null){
+
+                    System.out.println("Fejl i login");
+
+
+                }
+                else {
 
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
                     System.out.println(currentUser.getId());

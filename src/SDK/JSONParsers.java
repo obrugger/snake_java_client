@@ -9,9 +9,13 @@ import org.json.simple.parser.JSONParser;
  */
 public class JSONParsers {
 
+    private ServerConnection sc;
+
 
 
     public JSONParsers(){
+
+        sc = new ServerConnection();
 
     }
 
@@ -40,5 +44,7 @@ public class JSONParsers {
         return null;
     }
 
-
+    public ServerConnection getSc() {
+        return sc;
+    }
 }

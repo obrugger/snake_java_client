@@ -28,19 +28,7 @@ public class Methods {
 
     }
 
-    public User login() {
-
-        if (userAuthentication()){
-
-            
-
-
-        }
-
-        return null;
-    }
-
-    public boolean userAuthentication(){
+    public User userAuthentication(Frame frame, User currentUser){
 
         try{
 
@@ -55,22 +43,21 @@ public class Methods {
 
                 String json = new Gson().toJson(user);
 
-                String msg = methods.getJp().loginParser((methods.getSc().send(json, "login/", frame)), user);
+                String msg = jp.loginParser((jp.getSc().send(json, "login/", frame)), user);
 
                 if(msg.equals("Login successful")){
 
 
                     currentUser = user;
 
-                    methods.getSc().parser(methods.getSc()
-                            .get("users/" + currentUser.getId() + "/"), currentUser);
+                    jp.getSc().parser(jp.getSc().get("users/" + currentUser.getId() + "/"), currentUser);
 
                     frame.getMainPanel().getMenu().getLblhelloUser().
                             setText("Hello " + currentUser.getFirst_name() + "!");
 
                     frame.getMainPanel().getLogin().clearLogin();
 
-                    return true;
+                    return currentUser;
                 }
                 else if(msg.equals("Wrong username or password")){
                     JOptionPane.showMessageDialog(frame, "Wrong username or password",
@@ -87,8 +74,7 @@ public class Methods {
                     "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-        return false;
-
+        return null;
     }
 
     public boolean createUser(Frame frame, User currentUser){
