@@ -16,6 +16,7 @@ public class JoinGame extends JPanel {
     private JButton btnBack;
     private JTextField txtControls;
     private JLabel lblControls;
+    private JLabel lblGameName;
 
     private Methods methods;
     /**
@@ -38,18 +39,25 @@ public class JoinGame extends JPanel {
         add(lblJoinGame);
 
         lblSearchForGame = new JLabel("Select game to join");
-        lblSearchForGame.setBounds(851, 500, 298, 38);
+        lblSearchForGame.setBounds(851, 400, 298, 38);
         methods.fontColor(lblSearchForGame);
         methods.setAlignment(lblSearchForGame);
         methods.setFontLabel(lblSearchForGame);
         add(lblSearchForGame);
 
         comboBox = new JComboBox();
-        comboBox.setBounds(800, 600, 400, 60);
+        comboBox.setBounds(800, 500, 400, 60);
         comboBox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
         ((JLabel)comboBox.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
         ((JLabel)comboBox.getRenderer()).setVerticalAlignment(JLabel.CENTER);
         add(comboBox);
+
+        lblGameName = new JLabel();
+        lblGameName.setBounds(750, 600, 500, 38);
+        methods.fontColor(lblGameName);
+        methods.setAlignment(lblGameName);
+        methods.setFontLabel(lblGameName);
+        add(lblGameName);
 
         lblControls = new JLabel("Enter controls");
         lblControls.setBounds(890, 725, 220, 38);
@@ -96,11 +104,18 @@ public class JoinGame extends JPanel {
 
         btnBack.addActionListener(l);
         btnJoinGame.addActionListener(l);
+        comboBox.addActionListener(l);
+    }
+
+
+    public JLabel getLblGameName() {
+        return lblGameName;
     }
 
     public void clearGames(){
 
         comboBox.removeAllItems();
+        txtControls.setText("");
 
     }
 

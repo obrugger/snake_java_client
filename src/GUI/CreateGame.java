@@ -106,6 +106,13 @@ public class CreateGame extends JPanel {
 
     }
 
+    public void clearTxt(){
+
+        txtControls.setText("");
+        txtGamename.setText("");
+        txtMapsize.setText("");
+    }
+
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);

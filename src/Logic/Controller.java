@@ -16,9 +16,10 @@ public class Controller {
 
     private Frame frame;
 
-    User currentUser = new User();
-    Methods methods;
-    Gamer gamer;
+    private User currentUser = new User();
+    private Methods methods;
+    private Gamer gamer;
+    private Game game;
 
 
     public Controller(){
@@ -34,11 +35,12 @@ public class Controller {
         frame.getMainPanel().getPlaySnake().addActionListener(new PlaySnakeActionListener());
         frame.getMainPanel().getCreateUser().addActionListener(new CreateUserActionListener());
         frame.getMainPanel().getCreateGame().addActionListener(new CreateGameActionListener());
-        frame.getMainPanel().getJoinGame2().addActionListener(new JoinGame2ActionListener());
+        //frame.getMainPanel().getJoinGame2().addActionListener(new JoinGame2ActionListener());
 
 
         methods = new Methods();
         gamer = new Gamer();
+        game = new Game();
 
 
     }
@@ -130,42 +132,36 @@ public class Controller {
         public void actionPerformed(ActionEvent e){
 
             if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnBack()){
+
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+                frame.getMainPanel().getJoinGame().clearGames();
             }
             else if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnJoinGame()){
 
-                if (methods.joinGame(frame,currentUser,gamer)){
 
-                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                if (methods.joinGame(frame, currentUser, gamer, game)){
+
+                    JOptionPane.showMessageDialog(frame, "Congrats, you won!", "Success!",
+                            JOptionPane.PLAIN_MESSAGE);
+
+                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+                    frame.getMainPanel().getJoinGame().clearGames();
+
                 }
 
-                //frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME2());
-
-            }
-        }
-    }
-
-    private class JoinGame2ActionListener implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-
-            if (e.getSource() == frame.getMainPanel().getJoinGame2().getBtnBack()){
+                else JOptionPane.showMessageDialog(frame, "You lost!", "Failure",
+                        JOptionPane.WARNING_MESSAGE);
 
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
-
-            }
-            else if (e.getSource() == frame.getMainPanel().getJoinGame2().getBtnStartGame()){
-
-                Gamer gamer = new Gamer();
-
-                if (methods.joinGame(frame, currentUser, gamer)){
-
-                }
-
-
+                frame.getMainPanel().getJoinGame().clearGames();
             }
 
+            else if (e.getSource() == frame.getMainPanel().getJoinGame().getComboBox()) {
+                game = methods.showGameInfo(frame);
+            }
         }
     }
+
 
     private class PlaySnakeActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
@@ -178,7 +174,7 @@ public class Controller {
             else if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnJoinGame()){
 
 
-                methods.getOpenGames(frame, currentUser, gamer);
+                methods.showOpenGames(frame, game);
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME());
 
             }
@@ -220,19 +216,17 @@ public class Controller {
 
             if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCreate()) {
 
-                //Gamer gamer = (Gamer) currentUser;
-
                 if (methods.createGame(frame, gamer, currentUser)){
-                    System.out.println("Fungerer hele vejen igennem");
+
                     frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                    frame.getMainPanel().getCreateGame().clearTxt();
                 }
-
-
 
             }
             else if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCancel()){
 
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+                frame.getMainPanel().getCreateGame().clearTxt();
 
             }
         }

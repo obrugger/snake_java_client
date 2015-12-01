@@ -7,14 +7,9 @@ import Model.Highscore;
 import SDK.ServerConnection;
 import Model.User;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Oscar on 23-11-2015.
@@ -179,66 +174,82 @@ public class Methods {
         }
     }
 
-    public boolean getOpenGames(Frame frame, User currentUser, Gamer gamer){
+    public Game showGameInfo(Frame frame){
+
 
         try {
-            String controls = frame.getMainPanel().getJoinGame().getControls();
 
-            Game game = new Game();
+            String msg = frame.getMainPanel().getJoinGame().getComboBox().getSelectedItem().toString();
+
+            Game game = getGame(sc.get("game/" + msg + "/"));
+
+            frame.getMainPanel().getJoinGame().getLblGameName().setText("Game name: " + game.getName());
+
+            return game;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            //JOptionPane.showMessageDialog(frame, "Error in methods",
+              //      "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
+
+    public void showOpenGames(Frame frame, Game game){
+
+        try {
 
             Game[] games = openGamesParser(sc.get("games/open/"));
 
             for (Game gm : games) {
 
-                frame.getMainPanel().getJoinGame().getComboBox().addItem(gm.getName());
+                frame.getMainPanel().getJoinGame().getComboBox().addItem(gm.getGameId());
 
-            }
-
-            gamer.setControls(controls);
-            gamer.setId(currentUser.getId());
-            game.setOpponent(gamer);
-
-            String json = new Gson().toJson(game);
-
-            String msg = messageParser(sc.put("games/join/", json));
-
-            if (msg.equals("Game was joined")) {
-
-                JOptionPane.showMessageDialog(frame, "Game was joined!",
-                        "Success", JOptionPane.PLAIN_MESSAGE);
-
-                return true;
+                System.out.println(gm.getGameId() + ":\t" + gm.getName());
             }
         }
             catch (Exception e) {
                 e.printStackTrace();
             }
-            return false;
         }
 
-    public boolean joinGame(Frame frame, User currentUser, Gamer gamer){
+
+    public boolean joinGame(Frame frame, User currentUser, Gamer gamer, Game game){
+
+        Gson gson;
+
 
         try {
 
-            String controls = frame.getMainPanel().getJoinGame2().getControls();
+            gson = new Gson();
+
+
+            String controls = frame.getMainPanel().getJoinGame().getControls();
 
             if (!controls.equals("")) {
 
-                Game game = new Game();
-
+                System.out.println(game.getGameId());
                 gamer.setId(currentUser.getId());
                 gamer.setControls(controls);
                 game.setOpponent(gamer);
 
-                String json = new Gson().toJson(game);
+                String json = gson.toJson(game);
 
                 String msg = messageParser(sc.put("games/join/", json));
 
                 if (msg.equals("Game was joined")){
 
-                    JOptionPane.showMessageDialog(frame, "Game was joined!",
-                            "Success", JOptionPane.PLAIN_MESSAGE);
-                    return true;
+
+                    Game game1 = getGame(sc.put("games/start/", json));
+
+                    System.out.println(game1.getWinner());
+
+                    if (game1.getWinner().isWinner()){
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
                 }
                 else if (msg.equals("Game closed")){
                     JOptionPane.showMessageDialog(frame, "Game closed",
@@ -374,6 +385,26 @@ public class Methods {
         }
         return null;
     }
+
+
+
+    public Game getGame(String str){
+        try {
+
+            Gson gson = new Gson();
+
+            Game game = gson.fromJson(str, Game.class);
+
+            return game;
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 
     public ServerConnection getSc() {
         return sc;
