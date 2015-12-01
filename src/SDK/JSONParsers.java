@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.IOException;
+
 /**
  * Created by Oscar on 01-12-2015.
  */
@@ -16,7 +18,7 @@ public class JSONParsers {
 
 
 
-    public JSONParsers(){
+    public JSONParsers() throws IOException{
 
         sc = new ServerConnection();
 
@@ -48,6 +50,26 @@ public class JSONParsers {
 
         }
         return null;
+    }
+
+    public void parser(String json, User user){
+
+        JSONParser jsonParser = new JSONParser();
+
+        try{
+
+            Object obj  = jsonParser.parse(json);
+            JSONObject jsonObject = (JSONObject) obj;
+
+            user.setEmail((String) jsonObject.get("email"));
+            user.setFirst_name((String) jsonObject.get("firstName"));
+            user.setLast_name((String) jsonObject.get("lastName"));
+            user.setStatus((String) jsonObject.get("status"));
+            user.setCreated((String) jsonObject.get("created"));
+
+        }catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public String messageParser(String str){

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Created by Oscar on 26-10-2015.
@@ -22,7 +23,7 @@ public class Controller {
     private Game game;
 
 
-    public Controller(){
+    public Controller() throws IOException{
 
         frame = new Frame();
         frame.setVisible(true);

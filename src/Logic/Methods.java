@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javax.swing.*;
+import java.io.IOException;
 
 /**
  * Created by Oscar on 23-11-2015.
@@ -20,7 +21,7 @@ public class Methods {
     private JSONParsers jp;
 
 
-    public Methods(){
+    public Methods() throws IOException{
 
         jp = new JSONParsers();
 
@@ -48,7 +49,7 @@ public class Methods {
 
                     currentUser = user;
 
-                    jp.getSc().parser(jp.getSc().get("users/" + currentUser.getId() + "/"), currentUser);
+                    jp.parser(jp.getSc().get("users/" + currentUser.getId() + "/"), currentUser);
 
                     frame.getMainPanel().getMenu().getLblhelloUser().
                             setText("Hello " + currentUser.getFirst_name() + "!");

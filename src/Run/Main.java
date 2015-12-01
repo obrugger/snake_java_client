@@ -1,6 +1,7 @@
 package Run;
 
 import Logic.Controller;
+import Model.Config;
 
 import java.awt.*;
 
@@ -20,10 +21,13 @@ public class Main {
 
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    Config.configInit();
+                    Controller controller = new Controller();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Controller controller = new Controller();
+
+
             }
         });
 
