@@ -29,7 +29,6 @@ public class MainPanel extends JPanel {
     private Welcome welcome;
     private CreateUser createUser;
     private CreateGame createGame;
-    private JoinGame2 joinGame2;
 
     private CardLayout c;
 
@@ -70,9 +69,6 @@ public class MainPanel extends JPanel {
         createGame = new CreateGame();
         add(createGame, CREATEGAME);
 
-        joinGame2 = new JoinGame2();
-        add(joinGame2, JOINGAME2);
-
 
         c.show(this, LOGIN);
        // c.show(this, WELCOME);
@@ -109,10 +105,6 @@ public class MainPanel extends JPanel {
 
     public CreateGame getCreateGame() {
         return createGame;
-    }
-
-    public JoinGame2 getJoinGame2() {
-        return joinGame2;
     }
 
     public CardLayout getC() {

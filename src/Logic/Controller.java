@@ -247,7 +247,7 @@ public class Controller {
 
                 String json = new Gson().toJson(user);
 
-                String msg = methods.loginParser(methods.getSc().send(json, "login/", frame), user);
+                String msg = methods.getJp().loginParser((methods.getSc().send(json, "login/", frame)), user);
 
                 if(msg.equals("Login successful")){
 

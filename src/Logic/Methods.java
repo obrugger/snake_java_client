@@ -4,6 +4,7 @@ import GUI.Frame;
 import Model.Game;
 import Model.Gamer;
 import Model.Highscore;
+import SDK.JSONParsers;
 import SDK.ServerConnection;
 import Model.User;
 import com.google.gson.Gson;
@@ -17,11 +18,76 @@ import javax.swing.*;
 public class Methods {
 
     private ServerConnection sc;
+    private JSONParsers jp;
 
 
     public Methods(){
 
         sc = new ServerConnection();
+        jp = new JSONParsers();
+
+    }
+
+    public User login() {
+
+        if (userAuthentication()){
+
+            
+
+
+        }
+
+        return null;
+    }
+
+    public boolean userAuthentication(){
+
+        try{
+
+            String username = frame.getMainPanel().getLogin().getUsername();
+            String password = frame.getMainPanel().getLogin().getPassword();
+
+            if(!username.equals("") && !password.equals("")) {
+
+                User user = new User();
+                user.setPassword(password);
+                user.setUsername(username);
+
+                String json = new Gson().toJson(user);
+
+                String msg = methods.getJp().loginParser((methods.getSc().send(json, "login/", frame)), user);
+
+                if(msg.equals("Login successful")){
+
+
+                    currentUser = user;
+
+                    methods.getSc().parser(methods.getSc()
+                            .get("users/" + currentUser.getId() + "/"), currentUser);
+
+                    frame.getMainPanel().getMenu().getLblhelloUser().
+                            setText("Hello " + currentUser.getFirst_name() + "!");
+
+                    frame.getMainPanel().getLogin().clearLogin();
+
+                    return true;
+                }
+                else if(msg.equals("Wrong username or password")){
+                    JOptionPane.showMessageDialog(frame, "Wrong username or password",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else if (msg.equals("Error in JSON")){
+                    JOptionPane.showMessageDialog(frame, "Backend issue",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(frame, "Recheck spelling",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        return false;
 
     }
 
@@ -267,31 +333,6 @@ public class Methods {
         return false;
     }
 
-    public String loginParser(String str, User user){
-
-        JSONParser parser = new JSONParser();
-        String msg = new String();
-        int id = 0;
-
-        try{
-
-            Object objMsg = parser.parse(str);
-            JSONObject jsonObjectMsg = (JSONObject) objMsg;
-
-            msg = ((String) jsonObjectMsg.get("message"));
-            user.setId((long) jsonObjectMsg.get("userid"));
-
-            return msg;
-
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-
-        }
-        return null;
-    }
-
     public String messageParser(String str){
         JSONParser parser = new JSONParser();
         String msg = new String();
@@ -408,5 +449,9 @@ public class Methods {
 
     public ServerConnection getSc() {
         return sc;
+    }
+
+    public JSONParsers getJp() {
+        return jp;
     }
 }
