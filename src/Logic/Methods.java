@@ -102,7 +102,7 @@ public class Methods {
 
                 String json = new Gson().toJson(user);
 
-                String msg = messageParser(jp.getSc().send(json, "users/", frame));
+                String msg = jp.messageParser(jp.getSc().send(json, "users/", frame));
 
                 if (msg.equals("User was created")){
 
@@ -136,7 +136,7 @@ public class Methods {
 
             if ( gameId != 0){
 
-                String msg = messageParser(jp.getSc().delete("games/" + gameId));
+                String msg = jp.messageParser(jp.getSc().delete("games/" + gameId));
 
                 if (msg.equals("Game was deleted")){
 
@@ -179,7 +179,7 @@ public class Methods {
 
                 String json = new Gson().toJson(game);
 
-                String msg = createGameParser(jp.getSc().send(json, "games/", frame));
+                String msg = jp.createGameParser(jp.getSc().send(json, "games/", frame));
 
                 if (msg.equals(game.getName())){
 
@@ -208,7 +208,7 @@ public class Methods {
 
         try{
 
-            Highscore highscore = highscoreParser(jp.getSc().get("scores/"));
+            Highscore highscore = jp.highscoreParser(jp.getSc().get("scores/"));
 
             frame.getMainPanel().getHighscore().getLbl1score().setText(String.valueOf(highscore.getH1()));
             frame.getMainPanel().getHighscore().getLbl2score().setText(String.valueOf(highscore.getH2()));
@@ -231,7 +231,7 @@ public class Methods {
 
             String msg = frame.getMainPanel().getJoinGame().getComboBox().getSelectedItem().toString();
 
-            Game game = getGame(jp.getSc().get("game/" + msg + "/"));
+            Game game = jp.getGame(jp.getSc().get("game/" + msg + "/"));
 
             frame.getMainPanel().getJoinGame().getLblGameName().setText("Game name: " + game.getName());
 
@@ -249,7 +249,7 @@ public class Methods {
 
         try {
 
-            Game[] games = openGamesParser(jp.getSc().get("games/open/"));
+            Game[] games = jp.openGamesParser(jp.getSc().get("games/open/"));
 
             for (Game gm : games) {
 
@@ -285,12 +285,12 @@ public class Methods {
 
                 String json = gson.toJson(game);
 
-                String msg = messageParser(jp.getSc().put("games/join/", json));
+                String msg = jp.messageParser(jp.getSc().put("games/join/", json));
 
                 if (msg.equals("Game was joined")){
 
 
-                    Game game1 = getGame(jp.getSc().put("games/start/", json));
+                    Game game1 = jp.getGame(jp.getSc().put("games/start/", json));
 
                     System.out.println(game1.getWinner());
 
@@ -317,117 +317,6 @@ public class Methods {
         return false;
     }
 
-    public String messageParser(String str){
-        JSONParser parser = new JSONParser();
-        String msg = new String();
-
-        try {
-            Object obj = parser.parse(str);
-            JSONObject jsonObject = (JSONObject) obj;
-
-            msg = ((String) jsonObject.get("message"));
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return msg;
-    }
-
-
-
-    public Highscore highscoreParser (String str){
-
-        JSONParser parser = new JSONParser();
-        long h1;
-        long h2;
-        long h3;
-        long h4;
-        long h5;
-
-        try {
-            Object obj = parser.parse(str);
-            JSONObject jsonObject = (JSONObject) obj;
-
-            h1 = ((long) jsonObject.get("h1"));
-            h2 = ((long) jsonObject.get("h2"));
-            h3 = ((long) jsonObject.get("h3"));
-            h4 = ((long) jsonObject.get("h4"));
-            h5 = ((long) jsonObject.get("h5"));
-
-            Highscore highscore = new Highscore();
-
-            highscore.setH1(h1);
-            highscore.setH2(h2);
-            highscore.setH3(h3);
-            highscore.setH4(h4);
-            highscore.setH5(h5);
-
-            return highscore;
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public String createGameParser(String str){
-
-        JSONParser jsonParser = new JSONParser();
-        String gameName = new String();
-
-        try {
-
-            Object obj = jsonParser.parse(str);
-            JSONObject jsonObject = (JSONObject) obj;
-
-            gameName = ((String) jsonObject.get("name"));
-
-            Game game = new Game();
-
-            game.setName(gameName);
-
-            return gameName;
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public Game[] openGamesParser(String str){
-        try {
-            Gson gson = new Gson();
-            Game[] games = gson.fromJson(str, Game[].class);
-
-            return games;
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
-
-    public Game getGame(String str){
-        try {
-
-            Gson gson = new Gson();
-
-            Game game = gson.fromJson(str, Game.class);
-
-            return game;
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public JSONParsers getJp() {
         return jp;
