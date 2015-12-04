@@ -9,19 +9,37 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 26-10-2015.
  */
 public class Menu extends JPanel {
+    
+    /** The lbl menu. */
     private JLabel lblMenu;
+    
+    /** The btn play snake. */
     private JButton btnPlaySnake;
+    
+    /** The btn highscores. */
     private JButton btnHighscores;
+    
+    /** The btn delete game. */
     private JButton btnDeleteGame;
+    
+    /** The btn logout. */
     private JButton btnLogout;
+    
+    /** The lblhello user. */
     private JLabel lblhelloUser;
+    
+    /** The lbldate. */
     private JLabel lbldate;
 
+    /** The image. */
     private ImageIcon image;
+    
+    /** The label iamge. */
     private JLabel labelIamge;
     /**
      * Create the panel.
@@ -84,30 +102,65 @@ public class Menu extends JPanel {
 
     }
 
+    /**
+     * Gets the btn play snake.
+     *
+     * @return the btn play snake
+     */
     public JButton getBtnPlaySnake() {
         return btnPlaySnake;
     }
 
+    /**
+     * Gets the btn highscores.
+     *
+     * @return the btn highscores
+     */
     public JButton getBtnHighscores() {
         return btnHighscores;
     }
 
+    /**
+     * Gets the btn delete game.
+     *
+     * @return the btn delete game
+     */
     public JButton getBtnDeleteGame() {
         return btnDeleteGame;
     }
 
+    /**
+     * Gets the btn logout.
+     *
+     * @return the btn logout
+     */
     public JButton getBtnLogout() {
         return btnLogout;
     }
 
+    /**
+     * Gets the lbldate.
+     *
+     * @return the lbldate
+     */
     public JLabel getLbldate() {
         return lbldate;
     }
 
+    /**
+     * Gets the lblhello user.
+     *
+     * @return the lblhello user
+     */
     public JLabel getLblhelloUser() {
         return lblhelloUser;
     }
 
+    /**
+     * Adds the action listener.
+     *
+     * @param l the l
+     */
     public void addActionListener(ActionListener l){
 
         btnDeleteGame.addActionListener(l);
@@ -116,6 +169,9 @@ public class Menu extends JPanel {
         btnPlaySnake.addActionListener(l);
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);

@@ -1,12 +1,14 @@
 package GUI;
 
 import java.awt.*;
-import java.io.File;
+import java.io.*;
+import sun.audio.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 26-10-2015.
  */
@@ -15,8 +17,13 @@ import javax.swing.border.EmptyBorder;
 
 public class Frame extends JFrame {
 
+    /** The background. */
     private Background background;
+    
+    /** The main panel. */
     private MainPanel mainPanel;
+    
+    /** The image icon. */
     private ImageIcon imageIcon;
 
     /**
@@ -50,8 +57,15 @@ public class Frame extends JFrame {
 
     }
 
+    /**
+     * Gets the main panel.
+     *
+     * @return the main panel
+     */
     public MainPanel getMainPanel() {
         return mainPanel;
     }
+
+
 }
 

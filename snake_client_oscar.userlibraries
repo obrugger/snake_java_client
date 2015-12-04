@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="jax-rs-jersey-1.12">
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/comresrcgen-1.0.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/asm-3.3.1.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/activation-1.1.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jackson-jaxrs-1.9.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/FastInfoset-1.2.12.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jackson-core-asl-1.9.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jackson-xc-1.9.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/grizzly-servlet-webserver-1.9.45.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jaxb-api-2.1.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jackson-mapper-asl-1.9.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jdom-1.0.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jaxb-impl-2.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jersey-client-1.12.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jersey-core-1.12.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jersey-grizzly-1.12.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jersey-multipart-1.12.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jettison-1.1.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/localizer-1.0.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/mimepull-1.3.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jaxb-xjc-2.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/mail-1.4.4.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/persistence-api-1.0.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/jersey-bundle-1.12.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/stax-api-1.0-2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/wadl-cmdline-1.1.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/rome-1.0.jar" />
+    <archive path="C:/Users/Oscar/Desktop/snake_java_client/lib/wadl-core-1.1.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/DIS/gson-2.2.2.jar/gson-2.2.2.jar" />
+    <archive path="C:/Users/Oscar/Desktop/DIS/json-20150729.jar" />
+    <archive path="C:/Users/Oscar/Desktop/json-simple-1.1.jar/json-simple-1.1.jar" />
+  </library>
+</eclipse-userlibraries>
+

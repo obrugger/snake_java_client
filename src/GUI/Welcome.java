@@ -3,11 +3,15 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 17-11-2015.
  */
 public class Welcome extends JPanel {
 
+    /**
+     * Instantiates a new welcome.
+     */
     public Welcome(){
 
         setOpaque(false);
@@ -16,6 +20,9 @@ public class Welcome extends JPanel {
 
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);

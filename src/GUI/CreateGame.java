@@ -4,26 +4,46 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 26-10-2015.
  */
 public class CreateGame extends JPanel {
 
+    /** The lbl create game. */
     private JLabel lblCreateGame;
+    
+    /** The lbl enter gamename. */
     private JLabel lblEnterGamename;
+    
+    /** The lbl enter mapsize. */
     private JLabel lblEnterMapsize;
+    
+    /** The lbl enter controls. */
     private JLabel lblEnterControls;
 
+    /** The txt gamename. */
     private JTextField txtGamename;
+    
+    /** The txt mapsize. */
     private JTextField txtMapsize;
+    
+    /** The txt controls. */
     private JTextField txtControls;
 
+    /** The btn create. */
     private JButton btnCreate;
+    
+    /** The btn cancel. */
     private JButton btnCancel;
 
+    /** The methods. */
     private Methods methods;
 
 
+    /**
+     * Instantiates a new creates the game.
+     */
     public CreateGame(){
 
         setOpaque(false);
@@ -41,29 +61,42 @@ public class CreateGame extends JPanel {
 
         lblEnterGamename = new JLabel("Enter game name");
         lblEnterGamename.setBounds(875, 395, 250, 35);
-        lblEnterGamename.setHorizontalAlignment(SwingConstants.CENTER);
+        methods.fontColor(lblEnterGamename);
+        methods.setAlignment(lblEnterGamename);
+        methods.setFontLabel(lblEnterGamename);
         add(lblEnterGamename);
 
         txtGamename = new JTextField();
         txtGamename.setBounds(825, 455, 350, 60);
+        methods.setAlignmentText(txtGamename);
+        methods.setFontText(txtGamename);
         add(txtGamename);
         txtGamename.setColumns(10);
 
         lblEnterMapsize = new JLabel("Enter map size");
         lblEnterMapsize.setBounds(905, 630, 190, 35);
+        methods.fontColor(lblEnterMapsize);
+        methods.setAlignment(lblEnterMapsize);
+        methods.setFontLabel(lblEnterMapsize);
         add(lblEnterMapsize);
 
         txtMapsize = new JTextField();
         txtMapsize.setBounds(825, 690, 350, 60);
+        methods.setAlignmentText(txtMapsize);
+        methods.setFontText(txtMapsize);
         add(txtMapsize);
 
         lblEnterControls = new JLabel("Enter controls");
         lblEnterControls.setBounds(905, 865, 190, 35);
-        lblEnterControls.setHorizontalAlignment(SwingConstants.CENTER);
+        methods.fontColor(lblEnterControls);
+        methods.setAlignment(lblEnterControls);
+        methods.setFontLabel(lblEnterControls);
         add(lblEnterControls);
 
         txtControls = new JTextField();
         txtControls.setBounds(825, 925, 350, 60);
+        methods.setAlignmentText(txtControls);
+        methods.setFontText(txtControls);
         add(txtControls);
         txtControls.setColumns(10);
 
@@ -79,26 +112,56 @@ public class CreateGame extends JPanel {
 
     }
 
+    /**
+     * Gets the btn create.
+     *
+     * @return the btn create
+     */
     public JButton getBtnCreate() {
         return btnCreate;
     }
 
+    /**
+     * Gets the btn cancel.
+     *
+     * @return the btn cancel
+     */
     public JButton getBtnCancel() {
         return btnCancel;
     }
 
+    /**
+     * Gets the gamename.
+     *
+     * @return the gamename
+     */
     public String getGamename(){
         return txtGamename.getText();
     }
 
+    /**
+     * Gets the mapsize.
+     *
+     * @return the mapsize
+     */
     public int getMapsize(){
         return Integer.parseInt(txtMapsize.getText());
     }
 
+    /**
+     * Gets the controls.
+     *
+     * @return the controls
+     */
     public String getControls(){
         return txtControls.getText();
     }
 
+    /**
+     * Adds the action listener.
+     *
+     * @param l the l
+     */
     public void addActionListener(ActionListener l) {
 
         btnCancel.addActionListener(l);
@@ -106,6 +169,9 @@ public class CreateGame extends JPanel {
 
     }
 
+    /**
+     * Clear txt.
+     */
     public void clearTxt(){
 
         txtControls.setText("");
@@ -113,6 +179,9 @@ public class CreateGame extends JPanel {
         txtMapsize.setText("");
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);

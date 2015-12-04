@@ -9,18 +9,32 @@ import java.awt.font.TextLayout;
 
 import javax.swing.*;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 26-10-2015.
  */
 public class Login extends JPanel {
 
 
+    /** The lbl login. */
     private JLabel lblLogin;
+    
+    /** The lbl username. */
     private JLabel lblUsername;
+    
+    /** The txt username. */
     private JTextField txtUsername;
+    
+    /** The lbl password. */
     private JLabel lblPassword;
+    
+    /** The password field. */
     private JPasswordField passwordField;
+    
+    /** The btn login. */
     private JButton btnLogin;
+    
+    /** The btn create. */
     private JButton btnCreate;
 
     /**
@@ -94,34 +108,65 @@ public class Login extends JPanel {
 
     }
 
+    /**
+     * Gets the btn login.
+     *
+     * @return the btn login
+     */
     public JButton getBtnLogin() {
         return btnLogin;
     }
 
+    /**
+     * Gets the btn create.
+     *
+     * @return the btn create
+     */
     public JButton getBtnCreate() {
         return btnCreate;
     }
 
+    /**
+     * Gets the username.
+     *
+     * @return the username
+     */
     public String getUsername(){
         return txtUsername.getText();
     }
 
+    /**
+     * Gets the password.
+     *
+     * @return the password
+     */
     public String getPassword(){
         char[] charPass = passwordField.getPassword();
         String password = new String(charPass);
         return password;
     }
 
+    /**
+     * Clear login.
+     */
     public void clearLogin(){
         txtUsername.setText("");
         passwordField.setText("");
     }
 
+    /**
+     * Adds the action listener.
+     *
+     * @param l the l
+     */
     public void addActionListener(ActionListener l){
         btnLogin.addActionListener(l);
         btnCreate.addActionListener(l);
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);
@@ -133,6 +178,9 @@ public class Login extends JPanel {
         graphics2D.setComposite(old);
     }
 
+    /* (non-Javadoc)
+     * @see java.awt.Container#paintComponents(java.awt.Graphics)
+     */
     public void paintComponents (Graphics g){
         super.paintComponents(g);
 
@@ -150,6 +198,11 @@ public class Login extends JPanel {
 
     }
 
+    /**
+     * Sets the alignment.
+     *
+     * @param label the new alignment
+     */
     public void setAlignment(JLabel label){
 
         label.setHorizontalAlignment(SwingConstants.LEFT);

@@ -6,15 +6,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 26-10-2015.
  */
 public class DeleteGame extends JPanel {
+    
+    /** The lbl delete game. */
     private JLabel lblDeleteGame;
+    
+    /** The lbl insert game id. */
     private JLabel lblInsertGameId;
+    
+    /** The txt insertgameid. */
     private JTextField txtInsertgameid;
+    
+    /** The btn delete. */
     private JButton btnDelete;
+    
+    /** The btn back. */
     private JButton btnBack;
+    
+    /** The methods. */
     private Methods methods;
 
     /**
@@ -61,19 +74,39 @@ public class DeleteGame extends JPanel {
 
     }
 
+    /**
+     * Gets the game id.
+     *
+     * @return the game id
+     */
     public int getGameId(){
 
         return Integer.parseInt(txtInsertgameid.getText());
     }
 
+    /**
+     * Gets the btn delete.
+     *
+     * @return the btn delete
+     */
     public JButton getBtnDelete() {
         return btnDelete;
     }
 
+    /**
+     * Gets the btn back.
+     *
+     * @return the btn back
+     */
     public JButton getBtnBack() {
         return btnBack;
     }
 
+    /**
+     * Adds the action listener.
+     *
+     * @param l the l
+     */
     public void addActionListener(ActionListener l){
 
         btnDelete.addActionListener(l);
@@ -81,6 +114,9 @@ public class DeleteGame extends JPanel {
 
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);

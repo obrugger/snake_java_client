@@ -6,6 +6,7 @@ import Model.User;
 import com.google.gson.Gson;
 
 import javax.swing.*;
+import javax.swing.tree.ExpandVetoException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -46,28 +47,55 @@ public class Controller {
 
     }
 
-    private class LoginActionListener implements ActionListener{
-        public void actionPerformed(ActionEvent e){
 
+    public void actionPerformed(ActionEvent e){
 
+    }
 
-            if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()){
+    private void loading(){
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
 
-                currentUser = methods.userAuthentication(frame, currentUser);
-                if (currentUser == null){
+                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOADING());
 
-                    System.out.println("Fejl i login");
-
-
-                }
-                else {
-
-                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
-                    System.out.println(currentUser.getId());
-
-
-                }
             }
+        });
+    }
+
+
+
+    private class LoginActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+
+
+            if (e.getSource() == frame.getMainPanel().getLogin().getBtnLogin()) {
+
+                Thread thread = new Thread() {
+
+                    public void run() {
+
+                        loading();
+
+                        currentUser = methods.userAuthentication(frame, currentUser);
+
+                        if (currentUser == null) {
+
+                            frame.getMainPanel().getC().show(frame.getMainPanel(),
+                                    frame.getMainPanel().getLOGIN());
+
+                        } else {
+
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU());
+                        }
+                    }
+                };
+                thread.start();
+            }
+
+
+
             else if(e.getSource() == frame.getMainPanel().getLogin().getBtnCreate()){
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getCREATEUSER());
             }
@@ -78,14 +106,27 @@ public class Controller {
     private class CreateUserActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
 
-            if(e.getSource() == frame.getMainPanel().getCreateUser().getBtnCreate()){
+            if(e.getSource() == frame.getMainPanel().getCreateUser().getBtnCreate()) {
 
-                if(methods.createUser(frame, currentUser)){
+                Thread thread = new Thread() {
+                    public void run() {
 
-                    JOptionPane.showMessageDialog(frame, "User created!", "Success", JOptionPane.PLAIN_MESSAGE);
+                        loading();
 
-                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
-                }
+                        if (methods.createUser(frame, currentUser)) {
+
+                            JOptionPane.showMessageDialog(
+                                    frame, "User created!", "Success", JOptionPane.PLAIN_MESSAGE);
+
+                            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getLOGIN());
+                        }
+                        else {
+                            frame.getMainPanel().getC().show(frame.getMainPanel(),
+                                    frame.getMainPanel().getMENU());
+                        }
+                    }
+                };
+                thread.start();
             }
 
             else if(e.getSource() == frame.getMainPanel().getCreateUser().getBtnCancel()){
@@ -106,11 +147,18 @@ public class Controller {
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getDELETEGAME());
 
             }
-            else if (e.getSource() == frame.getMainPanel().getMenu().getBtnHighscores()){
+            else if (e.getSource() == frame.getMainPanel().getMenu().getBtnHighscores()) {
 
-                methods.highscores(frame);
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getHIGHSCORE());
+                Thread thread = new Thread() {
+                    public void run() {
+                        loading();
 
+                        methods.highscores(frame);
+                        frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getHIGHSCORE());
+
+                    }
+                };
+                thread.start();
             }
             else if (e.getSource() == frame.getMainPanel().getMenu().getBtnLogout()){
 
@@ -182,7 +230,7 @@ public class Controller {
             else if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnJoinGame()){
 
 
-                methods.showOpenGames(frame, game);
+                methods.showOpenGames(frame);
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME());
 
             }

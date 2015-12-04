@@ -1,32 +1,41 @@
 package Logic;
 
 import GUI.Frame;
-import Model.Game;
-import Model.Gamer;
-import Model.Highscore;
+import Model.*;
 import SDK.JSONParsers;
-import SDK.ServerConnection;
-import Model.User;
 import com.google.gson.Gson;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 import javax.swing.*;
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 23-11-2015.
  */
 public class Methods {
 
+    /** The jp. */
     private JSONParsers jp;
 
 
+    /**
+     * Instantiates a new methods.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public Methods() throws IOException{
 
         jp = new JSONParsers();
 
     }
 
+    /**
+     * User authentication.
+     *
+     * @param frame the frame
+     * @param currentUser the current user
+     * @return the user
+     */
     public User userAuthentication(Frame frame, User currentUser){
 
         try{
@@ -34,7 +43,7 @@ public class Methods {
             String username = frame.getMainPanel().getLogin().getUsername();
             String password = frame.getMainPanel().getLogin().getPassword();
 
-            if(!username.equals("") && !password.equals("")) {
+            if(!username.equals(null) && !password.equals(null)) {
 
                 User user = new User();
                 user.setPassword(password);
@@ -42,7 +51,7 @@ public class Methods {
 
                 String json = new Gson().toJson(user);
 
-                String msg = jp.loginParser((jp.getSc().send(json, "login/", frame)), user);
+                String msg = jp.loginParser(jp.getSc().post(json, "login/", frame), user);
 
                 if(msg.equals("Login successful")){
 
@@ -73,9 +82,17 @@ public class Methods {
                     "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
+
         return null;
     }
 
+    /**
+     * Creates the user.
+     *
+     * @param frame the frame
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     public boolean createUser(Frame frame, User currentUser){
 
         try {
@@ -103,7 +120,7 @@ public class Methods {
 
                 String json = new Gson().toJson(user);
 
-                String msg = jp.messageParser(jp.getSc().send(json, "users/", frame));
+                String msg = jp.messageParser(jp.getSc().post(json, "users/", frame));
 
                 if (msg.equals("User was created")){
 
@@ -130,6 +147,13 @@ public class Methods {
         return false;
     }
 
+    /**
+     * Delete game.
+     *
+     * @param currentUser the current user
+     * @param frame the frame
+     * @return true, if successful
+     */
     public boolean deleteGame(User currentUser, Frame frame){
 
         try{
@@ -158,6 +182,14 @@ public class Methods {
         return false;
     }
 
+    /**
+     * Creates the game.
+     *
+     * @param frame the frame
+     * @param gamer the gamer
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     public boolean createGame(Frame frame, Gamer gamer, User currentUser){
 
         try {
@@ -180,7 +212,7 @@ public class Methods {
 
                 String json = new Gson().toJson(game);
 
-                String msg = jp.createGameParser(jp.getSc().send(json, "games/", frame));
+                String msg = jp.createGameParser(jp.getSc().post(json, "games/", frame));
 
                 if (msg.equals(game.getName())){
 
@@ -205,17 +237,47 @@ public class Methods {
         return false;
     }
 
+    /**
+     * Highscores.
+     *
+     * @param frame the frame
+     */
     public void highscores(Frame frame){
 
         try{
 
-            Highscore highscore = jp.highscoreParser(jp.getSc().get("scores/"));
+            User user1 = new User();
+            User user2 = new User();
+            User user3 = new User();
+            User user4 = new User();
+            User user5 = new User();
 
-            frame.getMainPanel().getHighscore().getLbl1score().setText(String.valueOf(highscore.getH1()));
-            frame.getMainPanel().getHighscore().getLbl2score().setText(String.valueOf(highscore.getH2()));
-            frame.getMainPanel().getHighscore().getLbl3score().setText(String.valueOf(highscore.getH3()));
-            frame.getMainPanel().getHighscore().getLbl4score().setText(String.valueOf(highscore.getH4()));
-            frame.getMainPanel().getHighscore().getLbl5score().setText(String.valueOf(highscore.getH5()));
+            Highscore highscore = jp.highscoreParser(jp.getSc().get("scores/"),
+                    user1, user2, user3, user4, user5);
+
+            jp.parser(jp.getSc().get("users/" + user1.getId() + "/"), user1);
+            jp.parser(jp.getSc().get("users/" + user2.getId() + "/"), user2);
+            jp.parser(jp.getSc().get("users/" + user3.getId() + "/"), user3);
+            jp.parser(jp.getSc().get("users/" + user4.getId() + "/"), user4);
+            jp.parser(jp.getSc().get("users/" + user5.getId() + "/"), user5);
+
+
+
+            frame.getMainPanel().getHighscore().getLbl1score().setText(String.valueOf(
+                    highscore.getH1().getScore()) + " scored by " + user1.getFirst_name());
+
+            frame.getMainPanel().getHighscore().getLbl2score().setText(String.valueOf(
+                    highscore.getH2().getScore()) + " scored by " + user2.getFirst_name());
+
+            frame.getMainPanel().getHighscore().getLbl3score().setText(String.valueOf(
+                    highscore.getH3().getScore()) + " scored by " + user3.getFirst_name());
+
+            frame.getMainPanel().getHighscore().getLbl4score().setText(String.valueOf(
+                    highscore.getH4().getScore()) + " scored by " + user4.getFirst_name());
+
+            frame.getMainPanel().getHighscore().getLbl5score().setText(String.valueOf(
+                    highscore.getH5().getScore()) + " scored by " + user5.getFirst_name());
+
 
         }
         catch (Exception e){
@@ -225,6 +287,12 @@ public class Methods {
         }
     }
 
+    /**
+     * Show game info.
+     *
+     * @param frame the frame
+     * @return the game
+     */
     public Game showGameInfo(Frame frame){
 
 
@@ -246,7 +314,13 @@ public class Methods {
         return null;
     }
 
-    public void showOpenGames(Frame frame, Game game){
+    /**
+     * Show open games.
+     *
+     * @param frame the frame
+     * @param game the game
+     */
+    public void showOpenGames(Frame frame){
 
         try {
 
@@ -265,6 +339,15 @@ public class Methods {
         }
 
 
+    /**
+     * Join game.
+     *
+     * @param frame the frame
+     * @param currentUser the current user
+     * @param gamer the gamer
+     * @param game the game
+     * @return true, if successful
+     */
     public boolean joinGame(Frame frame, User currentUser, Gamer gamer, Game game){
 
         Gson gson;
@@ -319,6 +402,11 @@ public class Methods {
     }
 
 
+    /**
+     * Gets the jp.
+     *
+     * @return the jp
+     */
     public JSONParsers getJp() {
         return jp;
     }

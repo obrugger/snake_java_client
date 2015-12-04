@@ -4,23 +4,49 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 24-11-2015.
  */
 public class CreateUser extends JPanel {
 
+    /** The lbl create user. */
     private JLabel lblCreateUser;
+    
+    /** The lbl enter username. */
     private JLabel lblEnterUsername;
+    
+    /** The txt username. */
     private JTextField txtUsername;
+    
+    /** The lbl enter password. */
     private JLabel lblEnterPassword;
+    
+    /** The pwd password. */
     private JPasswordField pwdPassword;
+    
+    /** The lbl first name. */
     private JLabel lblFirstName;
+    
+    /** The txt firstname. */
     private JTextField txtFirstname;
+    
+    /** The lbl last name. */
     private JLabel lblLastName;
+    
+    /** The txt lastname. */
     private JTextField txtLastname;
+    
+    /** The lbl email. */
     private JLabel lblEmail;
+    
+    /** The txt email. */
     private JTextField txtEmail;
+    
+    /** The btn create. */
     private JButton btnCreate;
+    
+    /** The btn cancel. */
     private JButton btnCancel;
 
     /**
@@ -124,36 +150,74 @@ public class CreateUser extends JPanel {
 
     }
 
+    /**
+     * Gets the btn cancel.
+     *
+     * @return the btn cancel
+     */
     public JButton getBtnCancel() {
         return btnCancel;
     }
 
+    /**
+     * Gets the btn create.
+     *
+     * @return the btn create
+     */
     public JButton getBtnCreate() {
         return btnCreate;
     }
 
+    /**
+     * Gets the email.
+     *
+     * @return the email
+     */
     public String getEmail(){
         return txtEmail.getText();
     }
 
+    /**
+     * Gets the first name.
+     *
+     * @return the first name
+     */
     public String getFirstName(){
         return txtFirstname.getText();
     }
 
+    /**
+     * Gets the last name.
+     *
+     * @return the last name
+     */
     public String getLastName(){
         return txtLastname.getText();
     }
 
+    /**
+     * Gets the username.
+     *
+     * @return the username
+     */
     public String getUsername(){
         return txtUsername.getText();
     }
 
+    /**
+     * Gets the password.
+     *
+     * @return the password
+     */
     public String getPassword(){
         char[] charPass = pwdPassword.getPassword();
         String password = new String(charPass);
         return password;
     }
 
+    /**
+     * Clear text.
+     */
     public void clearText(){
         txtEmail.setText("");
         txtFirstname.setText("");
@@ -162,11 +226,19 @@ public class CreateUser extends JPanel {
         pwdPassword.setText("");
     }
 
+    /**
+     * Adds the action listener.
+     *
+     * @param l the l
+     */
     public void addActionListener(ActionListener l){
         btnCancel.addActionListener(l);
         btnCreate.addActionListener(l);
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);

@@ -1,59 +1,58 @@
 package Model;
 
-import java.util.Date;
-
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 19-11-2015.
  */
 public class Scores {
 
-    private int id;
-    private int user_id;
-    private int game_id;
+    /** The user id. */
+    private int userId;
+    
+    /** The score. */
     private int score;
-    private int opponent_id;
 
+
+    /**
+     * Instantiates a new scores.
+     */
     public Scores(){
 
     }
 
-    public int getId() {
-        return id;
+    /**
+     * Gets the user id.
+     *
+     * @return the user id
+     */
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    /**
+     * Sets the user id.
+     *
+     * @param userId the new user id
+     */
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public int getGame_id() {
-        return game_id;
-    }
-
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
-    }
-
+    /**
+     * Gets the score.
+     *
+     * @return the score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Sets the score.
+     *
+     * @param score the new score
+     */
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public int getOpponent_id() {
-        return opponent_id;
-    }
-
-    public void setOpponent_id(int opponent_id) {
-        this.opponent_id = opponent_id;
     }
 }

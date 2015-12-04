@@ -6,15 +6,20 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 16-11-2015.
  */
 public class Background extends JPanel {
 
 
+    /** The image. */
     BufferedImage image;
 
 
+    /**
+     * Instantiates a new background.
+     */
     public Background() {
 
         setLayout(new BorderLayout());
@@ -29,9 +34,18 @@ public class Background extends JPanel {
         }
     }
 
+    /**
+     * Gets the preffered size.
+     *
+     * @return the preffered size
+     */
     public Dimension getPrefferedSize(){
         return image == null ? super.getPreferredSize() : new Dimension(image.getWidth(), image.getHeight());
     }
+    
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     public void paintComponent(Graphics g){
 
         super.paintComponent(g);

@@ -6,20 +6,49 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Highscore.
+ */
 public class Highscore extends JPanel {
+    
+    /** The lbl highscore. */
     private JLabel lblHighscore;
+    
+    /** The lbl1st place. */
     private JLabel lbl1stPlace;
+    
+    /** The lbl1score. */
     private JLabel lbl1score;
+    
+    /** The lbl2nd place. */
     private JLabel lbl2ndPlace;
+    
+    /** The lbl2score. */
     private JLabel lbl2score;
+    
+    /** The lbl3rd place. */
     private JLabel lbl3rdPlace;
+    
+    /** The lbl3score. */
     private JLabel lbl3score;
+    
+    /** The lbl4th place. */
     private JLabel lbl4thPlace;
+    
+    /** The lbl4score. */
     private JLabel lbl4score;
+    
+    /** The lbl5th place. */
     private JLabel lbl5thPlace;
+    
+    /** The lbl5score. */
     private JLabel lbl5score;
+    
+    /** The btn back. */
     private JButton btnBack;
 
+    /** The methods. */
     private Methods methods;
 
     /**
@@ -117,34 +146,72 @@ public class Highscore extends JPanel {
 
     }
 
+    /**
+     * Gets the lbl5score.
+     *
+     * @return the lbl5score
+     */
     public JLabel getLbl5score() {
         return lbl5score;
     }
 
+    /**
+     * Gets the lbl4score.
+     *
+     * @return the lbl4score
+     */
     public JLabel getLbl4score() {
         return lbl4score;
     }
 
+    /**
+     * Gets the lbl3score.
+     *
+     * @return the lbl3score
+     */
     public JLabel getLbl3score() {
         return lbl3score;
     }
 
+    /**
+     * Gets the lbl2score.
+     *
+     * @return the lbl2score
+     */
     public JLabel getLbl2score() {
         return lbl2score;
     }
 
+    /**
+     * Gets the lbl1score.
+     *
+     * @return the lbl1score
+     */
     public JLabel getLbl1score() {
         return lbl1score;
     }
 
+    /**
+     * Gets the btn back.
+     *
+     * @return the btn back
+     */
     public JButton getBtnBack(){
         return btnBack;
     }
 
+    /**
+     * Adds the action listener.
+     *
+     * @param l the l
+     */
     public void addActionListener(ActionListener l){
         btnBack.addActionListener(l);
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);

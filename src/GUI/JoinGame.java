@@ -5,19 +5,37 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 26-10-2015.
  */
 public class JoinGame extends JPanel {
+    
+    /** The lbl join game. */
     private JLabel lblJoinGame;
+    
+    /** The lbl search for game. */
     private JLabel lblSearchForGame;
+    
+    /** The combo box. */
     private JComboBox comboBox;
+    
+    /** The btn join game. */
     private JButton btnJoinGame;
+    
+    /** The btn back. */
     private JButton btnBack;
+    
+    /** The txt controls. */
     private JTextField txtControls;
+    
+    /** The lbl controls. */
     private JLabel lblControls;
+    
+    /** The lbl game name. */
     private JLabel lblGameName;
 
+    /** The methods. */
     private Methods methods;
     /**
      * Create the panel.
@@ -84,22 +102,47 @@ public class JoinGame extends JPanel {
 
     }
 
+    /**
+     * Gets the btn back.
+     *
+     * @return the btn back
+     */
     public JButton getBtnBack() {
         return btnBack;
     }
 
+    /**
+     * Gets the btn join game.
+     *
+     * @return the btn join game
+     */
     public JButton getBtnJoinGame() {
         return btnJoinGame;
     }
 
+    /**
+     * Gets the combo box.
+     *
+     * @return the combo box
+     */
     public JComboBox getComboBox() {
         return comboBox;
     }
 
+    /**
+     * Gets the controls.
+     *
+     * @return the controls
+     */
     public String getControls(){
         return txtControls.getText();
     }
 
+    /**
+     * Adds the action listener.
+     *
+     * @param l the l
+     */
     public void addActionListener(ActionListener l){
 
         btnBack.addActionListener(l);
@@ -108,10 +151,18 @@ public class JoinGame extends JPanel {
     }
 
 
+    /**
+     * Gets the lbl game name.
+     *
+     * @return the lbl game name
+     */
     public JLabel getLblGameName() {
         return lblGameName;
     }
 
+    /**
+     * Clear games.
+     */
     public void clearGames(){
 
         comboBox.removeAllItems();
@@ -119,6 +170,9 @@ public class JoinGame extends JPanel {
 
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);

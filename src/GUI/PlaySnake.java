@@ -4,13 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 30-10-2015.
  */
 public class PlaySnake extends JPanel {
+    
+    /** The lbl play snake. */
     private JLabel lblPlaySnake;
+    
+    /** The btn create game. */
     private JButton btnCreateGame;
+    
+    /** The btn join game. */
     private JButton btnJoinGame;
+    
+    /** The btn back. */
     private JButton btnBack;
 
     /**
@@ -48,18 +57,38 @@ public class PlaySnake extends JPanel {
         add(btnBack);
     }
 
+    /**
+     * Gets the btn join game.
+     *
+     * @return the btn join game
+     */
     public JButton getBtnJoinGame() {
         return btnJoinGame;
     }
 
+    /**
+     * Gets the btn back.
+     *
+     * @return the btn back
+     */
     public JButton getBtnBack() {
         return btnBack;
     }
 
+    /**
+     * Gets the btn create game.
+     *
+     * @return the btn create game
+     */
     public JButton getBtnCreateGame() {
         return btnCreateGame;
     }
 
+    /**
+     * Adds the action listener.
+     *
+     * @param l the l
+     */
     public void addActionListener(ActionListener l){
 
         btnBack.addActionListener(l);
@@ -68,6 +97,9 @@ public class PlaySnake extends JPanel {
 
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     protected void paintComponent(Graphics graphics){
 
         super.paintComponent(graphics);
