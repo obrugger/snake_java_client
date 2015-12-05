@@ -242,7 +242,7 @@ public class Methods {
      *
      * @param frame the frame
      */
-    public void highscores(Frame frame){
+    public boolean highscores(Frame frame){
 
         try{
 
@@ -278,6 +278,8 @@ public class Methods {
             frame.getMainPanel().getHighscore().getLbl5score().setText(String.valueOf(
                     highscore.getH5().getScore()) + " scored by " + user5.getFirst_name());
 
+            return true;
+
 
         }
         catch (Exception e){
@@ -285,6 +287,7 @@ public class Methods {
                     "Error", JOptionPane.ERROR_MESSAGE);
             frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
         }
+        return false;
     }
 
     /**
@@ -320,7 +323,7 @@ public class Methods {
      * @param frame the frame
      * @param game the game
      */
-    public void showOpenGames(Frame frame){
+    public boolean showOpenGames(Frame frame){
 
         try {
 
@@ -332,11 +335,13 @@ public class Methods {
 
                 System.out.println(gm.getGameId() + ":\t" + gm.getName());
             }
+            return true;
         }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
+        catch (Exception e) {
+            e.printStackTrace();
         }
+        return false;
+    }
 
 
     /**

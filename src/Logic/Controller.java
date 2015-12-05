@@ -3,10 +3,8 @@ import GUI.Frame;
 import Model.Game;
 import Model.Gamer;
 import Model.User;
-import com.google.gson.Gson;
 
 import javax.swing.*;
-import javax.swing.tree.ExpandVetoException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -22,9 +20,12 @@ public class Controller {
     private Methods methods;
     private Gamer gamer;
     private Game game;
+    private Thread thread;
 
 
     public Controller() throws IOException{
+
+        //thread = new Thread();
 
         frame = new Frame();
         frame.setVisible(true);
@@ -97,6 +98,7 @@ public class Controller {
 
 
             else if(e.getSource() == frame.getMainPanel().getLogin().getBtnCreate()){
+
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getCREATEUSER());
             }
         }
@@ -153,9 +155,13 @@ public class Controller {
                     public void run() {
                         loading();
 
-                        methods.highscores(frame);
-                        frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getHIGHSCORE());
+                        if (methods.highscores(frame)) {
 
+                            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getHIGHSCORE());
+                        }
+                        else {
+                            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                        }
                     }
                 };
                 thread.start();
@@ -194,22 +200,27 @@ public class Controller {
             }
             else if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnJoinGame()){
 
+                Thread thread = new Thread() {
+                    public void run() {
 
-                if (methods.joinGame(frame, currentUser, gamer, game)){
+                        loading();
 
-                    JOptionPane.showMessageDialog(frame, "Congrats, you won!", "Success!",
-                            JOptionPane.PLAIN_MESSAGE);
+                        if (methods.joinGame(frame, currentUser, gamer, game)) {
 
-                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
-                    frame.getMainPanel().getJoinGame().clearGames();
+                            JOptionPane.showMessageDialog(frame, "Congrats, you won!", "Success!",
+                                    JOptionPane.PLAIN_MESSAGE);
 
-                }
+                            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+                            frame.getMainPanel().getJoinGame().clearGames();
 
-                else JOptionPane.showMessageDialog(frame, "You lost!", "Failure",
-                        JOptionPane.WARNING_MESSAGE);
+                        } else JOptionPane.showMessageDialog(frame, "You lost!", "Failure",
+                                JOptionPane.WARNING_MESSAGE);
 
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
-                frame.getMainPanel().getJoinGame().clearGames();
+                        frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+                        frame.getMainPanel().getJoinGame().clearGames();
+                    }
+                };
+                thread.start();
             }
 
             else if (e.getSource() == frame.getMainPanel().getJoinGame().getComboBox()) {
@@ -229,10 +240,25 @@ public class Controller {
             }
             else if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnJoinGame()){
 
+                Thread thread = new Thread() {
+                    public void run() {
 
-                methods.showOpenGames(frame);
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getJOINGAME());
+                        loading();
 
+                        if (methods.showOpenGames(frame)) {
+
+                            frame.getMainPanel().getC().show(frame.getMainPanel(),
+                                    frame.getMainPanel().getJOINGAME());
+
+                        } else {
+                            JOptionPane.showMessageDialog(frame, "Backend issue", "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                            frame.getMainPanel().getC().show(frame.getMainPanel(),
+                                    frame.getMainPanel().getMENU());
+                        }
+                    }
+                };
+                thread.start();
             }
             else if (e.getSource() == frame.getMainPanel().getPlaySnake().getBtnCreateGame()){
 
@@ -253,31 +279,55 @@ public class Controller {
             }
             else if(e.getSource() == frame.getMainPanel().getDeleteGame().getBtnDelete()) {
 
-                if (methods.deleteGame(currentUser, frame)){
+                Thread thread = new Thread() {
+                    public void run() {
 
-                    JOptionPane.showMessageDialog(frame, "Game was deleted!",
-                            "Success", JOptionPane.ERROR_MESSAGE);
+                        loading();
 
-                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+                        if (methods.deleteGame(currentUser, frame)) {
 
-                }
-                else {
-                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getDELETEGAME());
-                }
+                            JOptionPane.showMessageDialog(frame, "Game was deleted!",
+                                    "Success", JOptionPane.ERROR_MESSAGE);
+
+                            frame.getMainPanel().getC().show(frame.getMainPanel(),
+                                    frame.getMainPanel().getMENU());
+
+                        } else {
+
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getDELETEGAME()
+                            );
+                        }
+                    }
+                };
+                thread.start();
             }
         }
     }
     private class CreateGameActionListener implements ActionListener{
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(final ActionEvent e) {
 
             if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCreate()) {
 
-                if (methods.createGame(frame, gamer, currentUser)){
+                Thread thread = new Thread() {
+                    public void run() {
+                        if (methods.createGame(frame, gamer, currentUser)) {
 
-                    frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
-                    frame.getMainPanel().getCreateGame().clearTxt();
-                }
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                            );
+                            frame.getMainPanel().getCreateGame().clearTxt();
+                        }
+                        else {
 
+                            JOptionPane.showMessageDialog(
+                                    frame, "Backend issue", "Error", JOptionPane.ERROR_MESSAGE
+                            );
+
+                        }
+                    }
+                };
+                thread.start();
             }
             else if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCancel()){
 
