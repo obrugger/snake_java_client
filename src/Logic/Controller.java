@@ -567,79 +567,150 @@ public class Controller {
             //Else if actionEvent equals btnCreateGame, then:
             else if (e.getSource() == frame.getMainPanel().getPlaySnake().getBtnCreateGame()){
 
-                //
+                //Show the CREATEGAME panel.
                 frame.getMainPanel().getC().show(
                         frame.getMainPanel(), frame.getMainPanel().getCREATEGAME()
                 );
-
             }
-
         }
     }
 
+    /**
+     * The listener interface for receiving deleteGameAction events.
+     * The class that is interested in processing a deleteGameAction
+     * event implements this interface, and the object created
+     * with that class is registered with a component using the
+     * component's <code>addDeleteGameActionListener<code> method. When
+     * the deleteGameAction event occurs, that object's appropriate
+     * method is invoked.
+     */
     private class DeleteGameActionListener implements ActionListener {
+
+        /**
+         * Action Performed.
+         *
+         * @see ActionEvent
+         * @param e
+         */
         public void actionPerformed(ActionEvent e){
 
+            //If actionEvent equals the btnBack, then:
             if(e.getSource() == frame.getMainPanel().getDeleteGame().getBtnBack()){
 
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
-
+                //Show the MENU panel.
+                frame.getMainPanel().getC().show(
+                        frame.getMainPanel(), frame.getMainPanel().getMENU()
+                );
             }
+
+            //If actionEvent equals btnDelete, then:
             else if(e.getSource() == frame.getMainPanel().getDeleteGame().getBtnDelete()) {
 
+                //Ref. line 148
                 Thread thread = new Thread() {
+
+                    /**
+                     * Run.
+                     */
                     public void run() {
 
+                        //Call loading method.
                         loading();
 
+                        //If deleteGame returns true, then:
                         if (methods.deleteGame(currentUser, frame)) {
 
-                            JOptionPane.showMessageDialog(frame, "Game was deleted!",
-                                    "Success", JOptionPane.ERROR_MESSAGE);
+                            //Show confirmation dialog.
+                            JOptionPane.showMessageDialog(
+                                    frame, "Game was deleted!", "Success", JOptionPane.PLAIN_MESSAGE
+                            );
 
-                            frame.getMainPanel().getC().show(frame.getMainPanel(),
-                                    frame.getMainPanel().getMENU());
+                            //Show MENU panel.
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                            );
+                        }
+                        //If deleteGame returns false, tehn:
+                        else {
 
-                        } else {
-
+                            //Show DELETEGAME panel.
                             frame.getMainPanel().getC().show(
                                     frame.getMainPanel(), frame.getMainPanel().getDELETEGAME()
                             );
                         }
                     }
                 };
+
+                //Start thread.
                 thread.start();
             }
         }
     }
+
+    /**
+     * The listener interface for receiving createGameAction events.
+     * The class that is interested in processing a createGameAction
+     * event implements this interface, and the object created
+     * with that class is registered with a component using the
+     * component's <code>addCreateGameActionListener<code> method. When
+     * the createGameAction event occurs, that object's appropriate
+     * method is invoked.
+     */
     private class CreateGameActionListener implements ActionListener{
+
+        /**
+         * Action Performed.
+         *
+         * @see ActionEvent
+         * @param e
+         */
         public void actionPerformed(final ActionEvent e) {
 
+            //If actionEvent equals the btnCreate, then:
             if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCreate()) {
 
+                //Ref. line 148
                 Thread thread = new Thread() {
+
+                    /**
+                     * Run.
+                     */
                     public void run() {
+
+                        //If createGame returns true, then:
                         if (methods.createGame(frame, gamer, currentUser)) {
 
+                            //Show MENU panel
                             frame.getMainPanel().getC().show(
                                     frame.getMainPanel(), frame.getMainPanel().getMENU()
                             );
+
+                            //Call clearTxt method from CreateGame class.
                             frame.getMainPanel().getCreateGame().clearTxt();
                         }
+
+                        //If createGame returns false, then:
                         else {
 
-                            JOptionPane.showMessageDialog(
-                                    frame, "Backend issue", "Error", JOptionPane.ERROR_MESSAGE
+                            //Show the MENU panel.
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
                             );
-
                         }
                     }
                 };
+
+                //Start thread.
                 thread.start();
             }
+
+            //If actionEvent equals btnCancel, then:
             else if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCancel()){
 
+                //Show PLAYSNAKE panel.
                 frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+
+                //Call method clearTxt from CreateGame class.
                 frame.getMainPanel().getCreateGame().clearTxt();
 
             }
