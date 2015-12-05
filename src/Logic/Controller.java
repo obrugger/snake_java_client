@@ -399,86 +399,178 @@ public class Controller {
      * method is invoked.
      */
     private class  JoinGameActionListener implements ActionListener{
+
+        /**
+         * Action Performed.
+         *
+         * @see ActionEvent
+         * @param e
+         */
         public void actionPerformed(ActionEvent e){
 
+            //If the actionEvent equals the btnBack, then:
             if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnBack()){
 
+                //Show the PLAYSNAKE panel.
                 frame.getMainPanel().getC().show(
                         frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE()
                 );
+
+                //Call method clearGames
                 frame.getMainPanel().getJoinGame().clearGames();
             }
+
+            //Else if actionEvent equals btnJoinGame
             else if(e.getSource() == frame.getMainPanel().getJoinGame().getBtnJoinGame()){
 
+                //Ref. line 148
                 Thread thread = new Thread() {
+
+                    /**
+                     * Run.
+                     */
                     public void run() {
 
+                        //Call loading method.
                         loading();
 
+                        //If joinGame method returns true, then:
                         if (methods.joinGame(frame, currentUser, gamer, game)) {
 
+                            //Show confirmation Dialog.
                             JOptionPane.showMessageDialog(frame, "Congrats, you won!", "Success!",
                                     JOptionPane.PLAIN_MESSAGE);
 
+                            //Shows the MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE()
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
                             );
+                            //Call the clearGames method from JoinGame class.
                             frame.getMainPanel().getJoinGame().clearGames();
 
-                        } else {
+                        }
+                        //If joinGame method returns false, then:
+                        else {
+
+                            //Show loss messageDialog.
                             JOptionPane.showMessageDialog(frame, "You lost!", "Failure",
                                     JOptionPane.WARNING_MESSAGE);
 
+                            //Show the MENU panel
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE()
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
                             );
+
+                            //Call clearGames method from JoinGame class.
                             frame.getMainPanel().getJoinGame().clearGames();
                         }
                     }
                 };
+
+                //Start thread.
                 thread.start();
             }
 
+            //Else if the actionEvent equals the JComboBox, then:
             else if (e.getSource() == frame.getMainPanel().getJoinGame().getComboBox()) {
-                game = methods.showGameInfo(frame);
+
+                //Ref. line 148
+                Thread thread = new Thread() {
+
+                    /**
+                     * Run.
+                     */
+                    public void run() {
+
+                        //Set the game equal to the one returned
+                        game = methods.showGameInfo(frame);
+                    }
+                };
+                thread.start();
             }
         }
     }
 
 
+    /**
+     * The listener interface for receiving playSnakeAction events.
+     * The class that is interested in processing a playSnakeAction
+     * event implements this interface, and the object created
+     * with that class is registered with a component using the
+     * component's <code>addPlaySnakeActionListener<code> method. When
+     * the playSnakeAction event occurs, that object's appropriate
+     * method is invoked.
+     */
     private class PlaySnakeActionListener implements ActionListener{
+
+        /**
+         * Action Performed.
+         *
+         * @see ActionEvent
+         * @param e
+         */
         public void actionPerformed(ActionEvent e){
 
+
+            //If the actionEvent is equal to btnBack, then:
             if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnBack()){
 
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
-
+                //Show the MENU panel.
+                frame.getMainPanel().getC().show(
+                        frame.getMainPanel(), frame.getMainPanel().getMENU()
+                );
             }
+
+            //Else if the actionEvent is equal to btnJoinGame, then:
             else if(e.getSource() == frame.getMainPanel().getPlaySnake().getBtnJoinGame()){
 
+                //Ref. line 148
                 Thread thread = new Thread() {
+
+                    /**
+                     * Run.
+                     */
                     public void run() {
 
+                        //Call loading method.
                         loading();
 
+                        //If showOpenGames returns true, then:
                         if (methods.showOpenGames(frame)) {
 
-                            frame.getMainPanel().getC().show(frame.getMainPanel(),
-                                    frame.getMainPanel().getJOINGAME());
+                            //Show the JOINGAME panel
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getJOINGAME()
+                            );
 
-                        } else {
-                            JOptionPane.showMessageDialog(frame, "Backend issue", "Error",
-                                    JOptionPane.ERROR_MESSAGE);
-                            frame.getMainPanel().getC().show(frame.getMainPanel(),
-                                    frame.getMainPanel().getMENU());
+                        }
+
+                        //If showOpenGames returns false, then:
+                        else {
+
+                            //Show error-pane
+                            JOptionPane.showMessageDialog(
+                                    frame, "Backend issue", "Error", JOptionPane.ERROR_MESSAGE
+                            );
+
+                            //Show the MENU panel.
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                            );
                         }
                     }
                 };
+                //Start thread.
                 thread.start();
             }
+
+            //Else if actionEvent equals btnCreateGame, then:
             else if (e.getSource() == frame.getMainPanel().getPlaySnake().getBtnCreateGame()){
 
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getCREATEGAME());
+                //
+                frame.getMainPanel().getC().show(
+                        frame.getMainPanel(), frame.getMainPanel().getCREATEGAME()
+                );
 
             }
 

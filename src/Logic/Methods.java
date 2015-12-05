@@ -449,6 +449,7 @@ public class Methods {
         }
         //Ref. line 409
         catch (Exception e){
+
             frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
         }
         //Returns null, if any exception is caught.
@@ -489,9 +490,6 @@ public class Methods {
         }
         //Catches any exception thrown by try-block.
         catch (Exception e) {
-            JOptionPane.showMessageDialog(frame, "Backend error.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
 
         }
         //If exception is caught, then return false.
@@ -551,8 +549,9 @@ public class Methods {
 
                     System.out.println(game1);
 
+                    //TODO: Ændr server og gamer klaase, lav winner til int i stedet for boolean
                     //If the value of get-winner is true, then:
-                    if (game1.getWinner().isWinner()){
+                    if (game1.getWinner().getId() == currentUser.getId()){
 
                         //Return true
                         return true;
