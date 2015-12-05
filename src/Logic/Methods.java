@@ -251,7 +251,10 @@ public class Methods {
             //If the number is not 0.
             if ( gameId != 0){
 
-                //Ref. line 80-88
+                /*
+                Ref. line 80-88.
+                Uses HTTP delete-method instead of post.
+                 */
                 String msg = jp.messageParser(jp.getSc().delete("games/" + gameId));
 
                 //If the msg object equals to "Game was deleted", then:
@@ -345,20 +348,32 @@ public class Methods {
      * Highscores.
      *
      * @param frame the frame
+     * @return true, if succesful
      */
     public boolean highscores(Frame frame){
 
         try{
 
+            //Initializes 5 instances of User object.
             User user1 = new User();
             User user2 = new User();
             User user3 = new User();
             User user4 = new User();
             User user5 = new User();
 
+            /*
+            Instantiates Highscore object with the method highscoreParser from jp object.
+            The parameter in the method is the ServerConnection method, get. Where the
+            parameter is the path. The five objects of User, is parameters in the
+            highscore parser method.
+             */
             Highscore highscore = jp.highscoreParser(jp.getSc().get("scores/"),
                     user1, user2, user3, user4, user5);
 
+            /*
+            Uses the parser-method for every object of User, to define each of the
+            variables for each User object.
+             */
             jp.parser(jp.getSc().get("users/" + user1.getId() + "/"), user1);
             jp.parser(jp.getSc().get("users/" + user2.getId() + "/"), user2);
             jp.parser(jp.getSc().get("users/" + user3.getId() + "/"), user3);
@@ -366,7 +381,11 @@ public class Methods {
             jp.parser(jp.getSc().get("users/" + user5.getId() + "/"), user5);
 
 
-
+            /*
+            Uses the setText method from JLabels on the five different JLabels,
+            in the GUI.Highscore class.
+            It defines the score from the five different users and gets their firstName.
+             */
             frame.getMainPanel().getHighscore().getLbl1score().setText(String.valueOf(
                     highscore.getH1().getScore()) + " scored by " + user1.getFirst_name());
 
@@ -382,15 +401,18 @@ public class Methods {
             frame.getMainPanel().getHighscore().getLbl5score().setText(String.valueOf(
                     highscore.getH5().getScore()) + " scored by " + user5.getFirst_name());
 
+            //Returns true.
             return true;
 
 
         }
+        //Catches all exceptions thrown by the try-block
         catch (Exception e){
-            JOptionPane.showMessageDialog(frame, "Issue in HTTP",
+            JOptionPane.showMessageDialog(frame, "Backend error.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
         }
+        //Returns false, if any exception is caught.
         return false;
     }
 
@@ -405,45 +427,74 @@ public class Methods {
 
         try {
 
-            String msg = frame.getMainPanel().getJoinGame().getComboBox().getSelectedItem().toString();
+            /*
+            Instantiates the String object, gameId, to contain the value of
+            the select item in the JComboBox, which is parsed to a String.
+            To get the selected itme, the method getSelectedItem is uset. To parse it
+            from type Object to type String, method toString is used.
+             */
+            String gameId = frame.getMainPanel().getJoinGame().getComboBox().getSelectedItem().toString();
 
-            Game game = jp.getGame(jp.getSc().get("game/" + msg + "/"));
+            /*
+            Ref. line 365-368.
+            Uses the getGame method from jp-object instead of highscoreParser.
+             */
+            Game game = jp.getGame(jp.getSc().get("game/" + gameId + "/"));
 
+            //Ref. line 110-112
             frame.getMainPanel().getJoinGame().getLblGameName().setText("Game name: " + game.getName());
 
+            //Returns the game.
             return game;
         }
+        //Ref. line 409
         catch (Exception e){
-            e.printStackTrace();
-            //JOptionPane.showMessageDialog(frame, "Error in methods",
-              //      "Error", JOptionPane.ERROR_MESSAGE);
+            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
         }
+        //Returns null, if any exception is caught.
         return null;
     }
 
     /**
      * Show open games.
      *
-     * @param frame the frame
-     * @param game the game
+     * @param frame
      */
     public boolean showOpenGames(Frame frame){
 
         try {
 
+            /*
+            Instantiates an Array of type Game, called games. It contains the
+            games returned by the openGamesParser, called from the jp-object.
+            The parser takes the ServerConnection-method, get, as parameter.
+             */
             Game[] games = jp.openGamesParser(jp.getSc().get("games/open/"));
 
+            /*
+            Uses enhanced for-statement to read through the Games Array, games.
+            And then for every object of Game, then:
+             */
             for (Game gm : games) {
 
+                /*
+                Uses the JComboBox method, addItem, to add every gameId located in the games object.
+                It takes the gm-variable's gameId as parameter.
+                 */
                 frame.getMainPanel().getJoinGame().getComboBox().addItem(gm.getGameId());
 
-                System.out.println(gm.getGameId() + ":\t" + gm.getName());
             }
+            //Returns true.
             return true;
         }
+        //Catches any exception thrown by try-block.
         catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(frame, "Backend error.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+
         }
+        //If exception is caught, then return false.
         return false;
     }
 
@@ -451,60 +502,83 @@ public class Methods {
     /**
      * Join game.
      *
-     * @param frame the frame
-     * @param currentUser the current user
-     * @param gamer the gamer
-     * @param game the game
+     * @param frame
+     * @param currentUser
+     * @param gamer
+     * @param game
      * @return true, if successful
      */
     public boolean joinGame(Frame frame, User currentUser, Gamer gamer, Game game){
 
+        //Declares local variable gson, of type Gson.
         Gson gson;
 
 
         try {
 
+            //Initializes gson variable.
             gson = new Gson();
 
-
+            //Ref. line 51-53
             String controls = frame.getMainPanel().getJoinGame().getControls();
 
+            //Ref. line 58
             if (!controls.equals("")) {
 
-                System.out.println(game.getGameId());
+                //Sets the variables for game object.
                 gamer.setId(currentUser.getId());
                 gamer.setControls(controls);
                 game.setOpponent(gamer);
 
+                //Ref. line 73-76
                 String json = gson.toJson(game);
 
+                /*
+                Ref. line 80-88
+                Uses HTTP method put, instead of post.
+                 */
                 String msg = jp.messageParser(jp.getSc().put("games/join/", json));
 
+                //Ref. line 93
                 if (msg.equals("Game was joined")){
 
 
+                    /*
+                    Instantiates a game object, game1, to contain the Game returned by jp-method
+                    getGame. The method takes the path and json object as parameters.
+                     */
                     Game game1 = jp.getGame(jp.getSc().put("games/start/", json));
 
-                    System.out.println(game1.getWinner());
+                    System.out.println(game1);
 
+                    //If the value of get-winner is true, then:
                     if (game1.getWinner().isWinner()){
+
+                        //Return true
                         return true;
                     }
                     else {
-                        return false;
+                        //If not, then show JOptionpane.
+                        JOptionPane.showMessageDialog(frame, "You lost!",
+                                "Failure", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                else if (msg.equals("Game closed")){
+
+                //If msg instead equals either "Game closed" or "Error in JSON", then:
+                else if (msg.equals("Game closed") ||
+                         msg.equals("Error in JSON")){
+
+                    //Show JOptionPane.
                     JOptionPane.showMessageDialog(frame, "Game closed",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else if (msg.equals("Error in JSON")){
-                    JOptionPane.showMessageDialog(frame, "Error in JSON",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
+        //Ref. line 490
         catch (Exception e) {
+            frame.getMainPanel().getC().show(
+                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+            );
             e.printStackTrace();
         }
         return false;
@@ -514,7 +588,7 @@ public class Methods {
     /**
      * Gets the jp.
      *
-     * @return the jp
+     * @return jp
      */
     public JSONParsers getJp() {
         return jp;
