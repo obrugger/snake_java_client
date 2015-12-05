@@ -1,7 +1,13 @@
 package Model;
 
-// TODO: Auto-generated Javadoc
 /**
+ * The Gamer class - an extension of User.
+ * Used for storing information after a
+ * game played.
+ *
+ * @author Oscar
+ * @since 26-11-2015
+ *
  * Created by Oscar on 26-11-2015.
  */
 public class Gamer extends User{
@@ -23,7 +29,7 @@ public class Gamer extends User{
     private boolean winner;
 
     /**
-     * Instantiates a new gamer.
+     * Creates the Gamer constructor.
      */
     public Gamer(){
 

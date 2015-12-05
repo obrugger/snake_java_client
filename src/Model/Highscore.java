@@ -1,8 +1,15 @@
 package Model;
 
 
-// TODO: Auto-generated Javadoc
 /**
+ * The Highscore class.
+ * Used for storing the five highest scores
+ * obtained from the server.
+ * Each of the variables are of type Scores.
+ *
+ * @author Oscar
+ * @since 25-11-2015
+ *
  * Created by Oscar on 25-11-2015.
  */
 public class Highscore {
@@ -24,7 +31,7 @@ public class Highscore {
     private Scores h5;
 
     /**
-     * Instantiates a new highscore.
+     * Creates the Highscore constructor.
      */
     public Highscore() {
 

@@ -1,9 +1,13 @@
 package Model;
 
-import java.util.Date;
-
-// TODO: Auto-generated Javadoc
 /**
+ * The Game class.
+ * Used for storing information about a game object.
+ * Consist of different tyeps of variables.
+ *
+ * @author Oscar
+ * @since 19-11-2015
+ *
  * Created by Oscar on 19-11-2015.
  */
 public class Game {
@@ -25,7 +29,7 @@ public class Game {
     
     /** The status. */
     private String status;
-    //private Date created;
+
     /** The map size. */
     private int mapSize;
 

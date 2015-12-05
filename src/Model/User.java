@@ -1,7 +1,12 @@
 package Model;
 
-// TODO: Auto-generated Javadoc
 /**
+ * The User class.
+ * Full of variables, which a User contains.
+ *
+ * @author Oscar
+ * @since 19-11-2015
+ *
  * Created by Oscar on 19-11-2015.
  */
 public class User {
@@ -34,7 +39,7 @@ public class User {
     private String created;
 
     /**
-     * Instantiates a new user.
+     * Creates the constructor.
      */
     public User(){}
 

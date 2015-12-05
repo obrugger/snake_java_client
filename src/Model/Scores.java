@@ -1,7 +1,14 @@
 package Model;
 
-// TODO: Auto-generated Javadoc
+
 /**
+ * The Scores class.
+ * Contains the variables, used for retreiving
+ * the highscore.
+ *
+ * @author Oscar
+ * @since 19-11-2015
+ *
  * Created by Oscar on 19-11-2015.
  */
 public class Scores {
@@ -14,7 +21,7 @@ public class Scores {
 
 
     /**
-     * Instantiates a new scores.
+     * Creates the Scores constructor.
      */
     public Scores(){
 

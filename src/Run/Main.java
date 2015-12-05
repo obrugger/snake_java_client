@@ -3,12 +3,17 @@ package Run;
 import Logic.Controller;
 import Model.Config;
 
-import java.awt.*;
+import javax.swing.UIManager;
+import java.awt.EventQueue;
 
-import javax.swing.*;
-
-// TODO: Auto-generated Javadoc
 /**
+ * The Main class.
+ * Contains the main-method which is used to start
+ * the application.
+ *
+ * @author Oscar
+ * @since 26-10-2015
+ *
  * Created by Oscar on 26-10-2015.
  */
 public class Main {
