@@ -26,29 +26,26 @@ public class DeleteGame extends JPanel {
     
     /** The btn back. */
     private JButton btnBack;
-    
-    /** The methods. */
-    private Methods methods;
 
     /**
      * Create the panel.
      */
     public DeleteGame() {
 
-        methods = new Methods();
+        Methods methods = new Methods();
 
         setLayout(null);
         setOpaque(false);
 
         lblDeleteGame = new JLabel("DELETE GAME");
-        lblDeleteGame.setBounds(775, 200, 466, 81);
+        lblDeleteGame.setBounds(737, 200, 525, 85);
         methods.fontColor(lblDeleteGame);
         methods.setFontHeadline(lblDeleteGame);
         methods.setAlignment(lblDeleteGame);
         add(lblDeleteGame);
 
         lblInsertGameId = new JLabel("Insert Game ID ");
-        lblInsertGameId.setBounds(875, 450, 250, 35);
+        lblInsertGameId.setBounds(862, 450, 275, 38);
         methods.fontColor(lblInsertGameId);
         methods.setFontLabel(lblInsertGameId);
         methods.setAlignment(lblInsertGameId);

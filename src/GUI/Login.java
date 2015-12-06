@@ -1,12 +1,8 @@
 package GUI;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.font.FontRenderContext;
-import java.awt.font.TextLayout;
-import java.awt.geom.AffineTransform;
+
 
 import javax.swing.*;
 
@@ -44,67 +40,54 @@ public class Login extends JPanel {
     public Login() {
 
         Methods methods = new Methods();
-        Color fontColor = Color.decode("#FFFAFA");
-        Color textColor = Color.decode("#A9A9A9");
-
-        int screenWidth = methods.getScreenWidth();
-        int screenHeight = methods.getScreenHeight();
-
-        double width = 0.109375*screenWidth;
-        double height = 0.033333*screenHeight;
-
-        int txt_width = (int) width;
-        int txt_height = (int) height;
-
-        System.out.println(txt_width + "\n" + txt_height);
 
         setLayout(null);
         setOpaque(false);
-        //setBackground(Color.BLUE);
-
 
         lblLogin = new JLabel("LOGIN");
         lblLogin.setBounds(792, 200, 415, 80);
-        lblLogin.setForeground(fontColor);
-        lblLogin.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+        methods.fontColor(lblLogin);
+        methods.setFontHeadline(lblLogin);
         methods.setAlignment(lblLogin);
         add(lblLogin);
 
         lblUsername = new JLabel("Username");
-        lblUsername.setBounds(920, 430, 155, 40);
-        lblUsername.setForeground(fontColor);
-        lblUsername.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        lblUsername.setBounds(825, 430, 350, 35);
+        methods.fontColor(lblUsername);
+        methods.setAlignment(lblUsername);
+        methods.setFontLabel(lblUsername);
         add(lblUsername);
 
         txtUsername = new JTextField();
         txtUsername.setBounds(825, 490, 350, 60);
-        txtUsername.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
-        txtUsername.setHorizontalAlignment(SwingConstants.CENTER);
+        methods.setAlignmentText(txtUsername);
+        methods.setFontText(txtUsername);
         add(txtUsername);
-        txtUsername.setColumns(100);
 
         lblPassword = new JLabel("Password");
-        lblPassword.setBounds(920, 650, 155, 40);
-        lblPassword.setForeground(fontColor);
-        lblPassword.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        lblPassword.setBounds(825, 650, 350, 35);
+        methods.setAlignment(lblPassword);
+        methods.setFontLabel(lblPassword);
+        methods.fontColor(lblPassword);
         add(lblPassword);
 
         passwordField = new JPasswordField();
         passwordField.setBounds(825, 710, 350, 60);
-        passwordField.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
+        passwordField.setFont(new Font("Segoe UI Emoji", Font.BOLD, 30));
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         add(passwordField);
-        passwordField.setColumns(100);
 
         btnLogin = new JButton("Login");
         btnLogin.setBounds(800, 1000, 400, 100);
-        btnLogin.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        btnLogin.setFont(methods.getFontLabel());
         add(btnLogin);
 
         btnCreate = new JButton("Create User");
         btnCreate.setBounds(150, 1250, 400, 100);
-        btnCreate.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        btnCreate.setFont(methods.getFontLabel());
         add(btnCreate);
+
+
 
 
     }
@@ -142,7 +125,17 @@ public class Login extends JPanel {
      * @return the password
      */
     public String getPassword(){
+
+        /*
+        Instantiates an array of chars, with the getPassword method
+        from the passwordField object.
+         */
         char[] charPass = passwordField.getPassword();
+
+        /*
+        Initializes String object with the Array of chars, that
+        contain the password.
+         */
         String password = new String(charPass);
         return password;
     }
@@ -178,54 +171,4 @@ public class Login extends JPanel {
         graphics2D.fillRect(0,0, getWidth(),getHeight());
         graphics2D.setComposite(old);
     }
-
-    /* (non-Javadoc)
-     * @see java.awt.Container#paintComponents(java.awt.Graphics)
-     */
-    public void paintComponentents (Graphics g){
-        super.paintComponents(g);
-
-        int width = getSize().width;
-        int height = getSize().height;
-
-        Graphics2D g2 = (Graphics2D) g;
-
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g2.setRenderingHint(RenderingHints.KEY_RENDERING,
-                RenderingHints.VALUE_RENDER_QUALITY);
-
-        FontRenderContext frc = g2.getFontRenderContext();
-
-        Font f = new Font("Segoe UI Emoji", Font.PLAIN, 75);
-        String s = new String("Jaaaaaa");
-        TextLayout textLayout = new TextLayout(s, f , frc);
-        AffineTransform transform;
-
-        Shape outline = textLayout.getOutline(null);
-        Rectangle outlineBounds = outline.getBounds();
-        transform = g2.getTransform();
-        transform.translate(width / 2 - (outlineBounds.width / 2), height / 2
-                + (outlineBounds.height / 2));
-        g2.transform(transform);
-        g2.setColor(Color.blue);
-        g2.draw(outline);
-        g2.setClip(outline);
-
-
-
-
-    }
-
-    /**
-     * Sets the alignment.
-     *
-     * @param label the new alignment
-     */
-    public void setAlignment(JLabel label){
-
-        label.setHorizontalAlignment(SwingConstants.LEFT);
-    }
-
 }

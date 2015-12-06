@@ -61,14 +61,14 @@ public class CreateUser extends JPanel {
 
 
         lblCreateUser = new JLabel("CREATE USER");
-        lblCreateUser.setBounds(775, 200, 450, 85);
+        lblCreateUser.setBounds(737, 200, 525, 85);
         methods.fontColor(lblCreateUser);
         methods.setFontHeadline(lblCreateUser);
         methods.setAlignment(lblCreateUser);
         add(lblCreateUser);
 
         lblEnterUsername = new JLabel("Enter username");
-        lblEnterUsername.setBounds(875, 350, 250, 35);
+        lblEnterUsername.setBounds(862, 350, 275, 38);
         methods.fontColor(lblEnterUsername);
         methods.setFontLabel(lblEnterUsername);
         methods.setAlignment(lblEnterUsername);
@@ -82,7 +82,7 @@ public class CreateUser extends JPanel {
         txtUsername.setColumns(10);
 
         lblEnterPassword = new JLabel("Enter password");
-        lblEnterPassword.setBounds(875, 505, 250, 35);
+        lblEnterPassword.setBounds(862, 505, 275, 38);
         methods.fontColor(lblEnterPassword);
         methods.setFontLabel(lblEnterPassword);
         methods.setAlignment(lblEnterPassword);

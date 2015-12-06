@@ -48,21 +48,18 @@ public class Highscore extends JPanel {
     /** The btn back. */
     private JButton btnBack;
 
-    /** The methods. */
-    private Methods methods;
-
     /**
      * Create the panel.
      */
     public Highscore() {
 
-        methods = new Methods();
+        Methods methods = new Methods();
 
         setLayout(null);
         setOpaque(false);
 
         lblHighscore = new JLabel("HIGHSCORES");
-        lblHighscore.setBounds(775, 200, 450, 85);
+        lblHighscore.setBounds(737, 200, 525, 85);
         methods.fontColor(lblHighscore);
         methods.setFontHeadline(lblHighscore);
         methods.setAlignment(lblHighscore);
@@ -76,7 +73,7 @@ public class Highscore extends JPanel {
         add(lbl1stPlace);
 
         lbl1score = new JLabel("");
-        lbl1score.setBounds(825, 410, 350, 35);
+        lbl1score.setBounds(750, 410, 500, 35);
         methods.fontColor(lbl1score);
         methods.setFontLabel(lbl1score);
         methods.setAlignment(lbl1score);
@@ -90,7 +87,7 @@ public class Highscore extends JPanel {
         add(lbl2ndPlace);
 
         lbl2score = new JLabel("");
-        lbl2score.setBounds(825, 575, 350, 35);
+        lbl2score.setBounds(750, 575, 500, 35);
         methods.fontColor(lbl2score);
         methods.setFontLabel(lbl2score);
         methods.setAlignment(lbl2score);
@@ -104,7 +101,7 @@ public class Highscore extends JPanel {
         add(lbl3rdPlace);
 
         lbl3score = new JLabel("");
-        lbl3score.setBounds(825, 740, 350, 35);
+        lbl3score.setBounds(750, 740, 500, 35);
         methods.fontColor(lbl3score);
         methods.setFontLabel(lbl3score);
         methods.setAlignment(lbl3score);
@@ -118,7 +115,7 @@ public class Highscore extends JPanel {
         add(lbl4thPlace);
 
         lbl4score = new JLabel("");
-        lbl4score.setBounds(825, 905, 350, 35);
+        lbl4score.setBounds(750, 905, 500, 35);
         methods.fontColor(lbl4score);
         methods.setFontLabel(lbl4score);
         methods.setAlignment(lbl4score);
@@ -132,7 +129,7 @@ public class Highscore extends JPanel {
         add(lbl5thPlace);
 
         lbl5score = new JLabel("");
-        lbl5score.setBounds(825, 1070, 350, 35);
+        lbl5score.setBounds(750, 1070, 500, 35);
         methods.fontColor(lbl5score);
         methods.setFontLabel(lbl5score);
         methods.setAlignment(lbl5score);

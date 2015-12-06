@@ -35,18 +35,15 @@ public class JoinGame extends JPanel {
     /** The lbl game name. */
     private JLabel lblGameName;
 
-    /** The methods. */
-    private Methods methods;
     /**
      * Create the panel.
      */
     public JoinGame() {
 
+        Methods methods = new Methods();
 
         setLayout(null);
         setOpaque(false);
-
-        methods = new Methods();
 
         lblJoinGame = new JLabel("JOIN GAME");
         lblJoinGame.setBounds(760, 200, 480, 81);
@@ -56,7 +53,7 @@ public class JoinGame extends JPanel {
         add(lblJoinGame);
 
         lblSearchForGame = new JLabel("Select game to join");
-        lblSearchForGame.setBounds(851, 400, 298, 38);
+        lblSearchForGame.setBounds(825, 400, 350, 38);
         methods.fontColor(lblSearchForGame);
         methods.setAlignment(lblSearchForGame);
         methods.setFontLabel(lblSearchForGame);
@@ -77,7 +74,7 @@ public class JoinGame extends JPanel {
         add(lblGameName);
 
         lblControls = new JLabel("Enter controls");
-        lblControls.setBounds(890, 725, 220, 38);
+        lblControls.setBounds(825, 725, 350, 38);
         methods.fontColor(lblControls);
         methods.setAlignment(lblControls);
         methods.setFontLabel(lblControls);

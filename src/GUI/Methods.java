@@ -3,65 +3,10 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 27-10-2015.
  */
-public class Methods {
-
-    /** The screen size. */
-    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-    /** The screen width. */
-    private int screenWidth = (int) screenSize.getWidth();
-    
-    /** The screen height. */
-    private int screenHeight = (int) screenSize.getHeight();
-
-    /** The frame width. */
-    private double frameWidth = screenWidth/1.3;
-    
-    /** The frame height. */
-    private double frameHeight = screenHeight/1.3;
-
-
-
-    /**
-     * Gets the screen height.
-     *
-     * @return the screen height
-     */
-    public int getScreenHeight() {
-        return screenHeight;
-    }
-
-    /**
-     * Gets the screen width.
-     *
-     * @return the screen width
-     */
-    public int getScreenWidth() {
-        return screenWidth;
-    }
-
-    /**
-     * Gets the frame height.
-     *
-     * @return the frame height
-     */
-    public double getFrameHeight(){
-        return frameHeight;
-    }
-
-    /**
-     * Gets the frame width.
-     *
-     * @return the frame width
-     */
-    public double getFrameWidth() {
-        return frameWidth;
-    }
-
+public class Methods extends JPanel{
     /**
      * Sets the alignment.
      *
@@ -86,7 +31,7 @@ public class Methods {
      * @return the font label
      */
     public Font getFontLabel(){
-        return new Font("Segoe UI Emoji", Font.PLAIN, 35);
+        return new Font("Segoe UI Emoji", Font.BOLD, 35);
     }
 
     /**
@@ -96,7 +41,7 @@ public class Methods {
      */
     public void setFontLabel(JLabel label){
 
-        label.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        label.setFont(new Font("Segoe UI Emoji", Font.BOLD, 35));
     }
 
     /**
@@ -106,7 +51,7 @@ public class Methods {
      */
     public void setFontHeadline(JLabel label){
 
-        label.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+        label.setFont(new Font("Segoe UI Emoji", Font.BOLD, 75));
 
     }
 
@@ -118,6 +63,7 @@ public class Methods {
     public void setFontText(JTextField txtField){
         txtField.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
     }
+
 
     /**
      * Font color.

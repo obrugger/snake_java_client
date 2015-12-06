@@ -1,7 +1,5 @@
 package GUI;
 
-import com.sun.javafx.css.StyleableProperty;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -50,8 +48,6 @@ public class Menu extends JPanel {
     public Menu() {
 
         Methods methods = new Methods();
-
-
 
         setLayout(null);
         setOpaque(false);

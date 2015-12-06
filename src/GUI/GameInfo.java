@@ -28,7 +28,7 @@ public class GameInfo extends JPanel {
 
         Methods methods = new Methods();
 
-        lblHeadline = new JLabel("JOIN GAME");
+        lblHeadline = new JLabel("GAME INFO");
         lblHeadline.setBounds(760, 200, 480, 81);
         methods.fontColor(lblHeadline);
         methods.setAlignment(lblHeadline);
@@ -57,21 +57,21 @@ public class GameInfo extends JPanel {
         add(lblGameName);
 
         lblShowGame = new JLabel();
-        lblShowGame.setBounds(851, 750, 500, 60);
-        methods.fontColor(lblGameName);
-        methods.setAlignment(lblGameName);
-        methods.setFontLabel(lblGameName);
+        lblShowGame.setBounds(851, 715, 298, 38);
+        methods.fontColor(lblShowGame);
+        methods.setAlignment(lblShowGame);
+        methods.setFontLabel(lblShowGame);
         add(lblShowGame);
 
         lblWinner = new JLabel("The winner was");
-        lblWinner.setBounds(851, 800, 298, 38);
+        lblWinner.setBounds(851, 865, 298, 38);
         methods.fontColor(lblWinner);
         methods.setAlignment(lblWinner);
         methods.setFontLabel(lblWinner);
         add(lblWinner);
 
         lblShowWinner = new JLabel();
-        lblShowWinner.setBounds(851,900,500,60);
+        lblShowWinner.setBounds(851,930,298,38);
         methods.fontColor(lblShowWinner);
         methods.setAlignment(lblShowWinner);
         methods.setFontLabel(lblShowWinner);

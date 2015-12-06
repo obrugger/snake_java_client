@@ -478,7 +478,6 @@ public class Methods {
         }
 
         catch (Exception e){
-            e.printStackTrace();
         }
 
         return false;

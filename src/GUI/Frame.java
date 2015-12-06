@@ -31,18 +31,15 @@ public class Frame extends JFrame {
      */
     public Frame() {
 
-        Methods methods = new Methods();
         background = new Background();
         mainPanel = new MainPanel();
 
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setSize((int) methods.getFrameWidth(), (int) methods.getFrameHeight());
         setSize(2000,1500);
-        System.out.print(methods.getFrameWidth() + "\t" + methods.getFrameHeight());
         setContentPane(background);
         setTitle("Snake");
         setLocationRelativeTo(null);
+
 
         //Builds path to snake.png in GUI package
         imageIcon = new ImageIcon(this.getClass().getResource("snake.png"));
@@ -50,11 +47,9 @@ public class Frame extends JFrame {
         //Uses setIconImage method to set the icon image to snake.png
         setIconImage(imageIcon.getImage());
 
-        background.setBorder(new EmptyBorder(0, 0, 0, 0));
+        //background.setBorder(new EmptyBorder(0, 0, 0, 0));
 
         add(mainPanel);
-
-
     }
 
     /**

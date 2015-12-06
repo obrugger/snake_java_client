@@ -51,8 +51,7 @@ public class CreateGame extends JPanel {
     /** The btn cancel. */
     private JButton btnCancel;
 
-    /** The methods. */
-    private Methods methods;
+
 
 
     /**
@@ -70,18 +69,18 @@ public class CreateGame extends JPanel {
         setLayout(null);
 
         //Initialize Methods variable.
-        methods = new Methods();
+        Methods methods = new Methods();
 
 
         lblCreateGame = new JLabel("CREATE GAME");
-        lblCreateGame.setBounds(760, 200, 480, 81);
+        lblCreateGame.setBounds(737, 200, 525, 85);
         methods.fontColor(lblCreateGame);
         methods.setAlignment(lblCreateGame);
         methods.setFontHeadline(lblCreateGame);
         add(lblCreateGame);
 
         lblEnterGamename = new JLabel("Enter game name");
-        lblEnterGamename.setBounds(875, 395, 250, 35);
+        lblEnterGamename.setBounds(825, 395, 350, 35);
         methods.fontColor(lblEnterGamename);
         methods.setAlignment(lblEnterGamename);
         methods.setFontLabel(lblEnterGamename);
@@ -95,7 +94,7 @@ public class CreateGame extends JPanel {
         txtGamename.setColumns(10);
 
         lblEnterMapsize = new JLabel("Enter map size");
-        lblEnterMapsize.setBounds(905, 630, 190, 35);
+        lblEnterMapsize.setBounds(825, 630, 350, 35);
         methods.fontColor(lblEnterMapsize);
         methods.setAlignment(lblEnterMapsize);
         methods.setFontLabel(lblEnterMapsize);
@@ -108,7 +107,7 @@ public class CreateGame extends JPanel {
         add(txtMapsize);
 
         lblEnterControls = new JLabel("Enter controls");
-        lblEnterControls.setBounds(905, 865, 190, 35);
+        lblEnterControls.setBounds(825, 865, 350, 35);
         methods.fontColor(lblEnterControls);
         methods.setAlignment(lblEnterControls);
         methods.setFontLabel(lblEnterControls);
@@ -123,10 +122,12 @@ public class CreateGame extends JPanel {
 
         btnCreate = new JButton("Create");
         btnCreate.setBounds(425, 1100, 400, 100);
+        btnCreate.setFont(methods.getFontLabel());
         add(btnCreate);
 
         btnCancel = new JButton("Cancel");
         btnCancel.setBounds(1175, 1100, 400, 100);
+        btnCancel.setFont(methods.getFontLabel());
         add(btnCancel);
 
 

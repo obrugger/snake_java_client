@@ -761,6 +761,8 @@ public class Controller {
 
                     public void run(){
 
+
+
                         if (methods.showGamesByID(frame)){
 
 
@@ -768,10 +770,6 @@ public class Controller {
                         }
 
                         else {
-
-                            JOptionPane.showMessageDialog(
-                                    frame, "Backend error.", "Error", JOptionPane.ERROR_MESSAGE
-                            );
 
                             //Show MENU panel.
                             frame.getMainPanel().getC().show(

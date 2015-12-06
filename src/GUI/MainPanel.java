@@ -28,9 +28,6 @@ public class MainPanel extends JPanel {
     /** The Constant HIGHSCORE. */
     private static final String HIGHSCORE = "HIGHSCORE";
     
-    /** The Constant WELCOME. */
-    private static final String WELCOME = "WELCOME";
-    
     /** The Constant CREATEUSER. */
     private static final String CREATEUSER = "CREATEUSER";
     
@@ -61,10 +58,7 @@ public class MainPanel extends JPanel {
     
     /** The highscore. */
     private Highscore highscore;
-    
-    /** The welcome. */
-    private Welcome welcome;
-    
+
     /** The create user. */
     private CreateUser createUser;
     
@@ -77,8 +71,6 @@ public class MainPanel extends JPanel {
 
     /** The c. */
     private CardLayout c;
-
-
 
     /**
      * Instantiates a new main panel.
@@ -108,9 +100,6 @@ public class MainPanel extends JPanel {
 
         deleteGame = new DeleteGame();
         add(deleteGame, DELETEGAME);
-
-        welcome = new Welcome();
-        add(welcome, WELCOME);
 
         createUser = new CreateUser();
         add(createUser, CREATEUSER);
@@ -260,15 +249,6 @@ public class MainPanel extends JPanel {
      */
     public static String getPLAYSNAKE() {
         return PLAYSNAKE;
-    }
-
-    /**
-     * Gets the welcome.
-     *
-     * @return the welcome
-     */
-    public static String getWELCOME() {
-        return WELCOME;
     }
 
     /**

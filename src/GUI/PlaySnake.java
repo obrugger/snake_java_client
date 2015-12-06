@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 30-10-2015.
  */
@@ -32,7 +31,6 @@ public class PlaySnake extends JPanel {
     public PlaySnake() {
 
         Methods methods = new Methods();
-        Color fontColor = Color.decode("#FFFAFA");
 
         setLayout(null);
         setOpaque(false);
@@ -44,8 +42,8 @@ public class PlaySnake extends JPanel {
 
         lblPlaySnake = new JLabel("PLAY SNAKE");
         lblPlaySnake.setBounds(792, 200, 415, 80);
-        lblPlaySnake.setForeground(fontColor);
-        lblPlaySnake.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 75));
+        methods.fontColor(lblPlaySnake);
+        methods.setFontHeadline(lblPlaySnake);
         methods.setAlignment(lblPlaySnake);
         add(lblPlaySnake);
 
