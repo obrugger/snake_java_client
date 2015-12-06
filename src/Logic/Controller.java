@@ -179,7 +179,8 @@ public class Controller {
 
                             //Show the MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU());
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                            );
                         }
                     }
                 };
@@ -761,25 +762,13 @@ public class Controller {
 
                     public void run(){
 
-
-
-                        if (methods.showGamesByID(frame)){
-
-
-
-                        }
-
-                        else {
+                        if (!methods.showGamesByID(frame)){
 
                             //Show MENU panel.
                             frame.getMainPanel().getC().show(
                                     frame.getMainPanel(), frame.getMainPanel().getMENU()
                             );
-
-
                         }
-
-
                     }
                 };
                 thread.start();
