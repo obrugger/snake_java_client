@@ -1,7 +1,11 @@
 package GUI;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Color;
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.AlphaComposite;
+import javax.swing.JPanel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -15,7 +19,6 @@ public class Welcome extends JPanel {
     public Welcome(){
 
         setOpaque(false);
-        setBackground(Color.BLUE);
 
 
     }

@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
 
 import javax.swing.*;
 
@@ -59,7 +60,7 @@ public class Login extends JPanel {
 
         setLayout(null);
         setOpaque(false);
-        setBackground(Color.BLUE);
+        //setBackground(Color.BLUE);
 
 
         lblLogin = new JLabel("LOGIN");
@@ -181,19 +182,38 @@ public class Login extends JPanel {
     /* (non-Javadoc)
      * @see java.awt.Container#paintComponents(java.awt.Graphics)
      */
-    public void paintComponents (Graphics g){
+    public void paintComponentents (Graphics g){
         super.paintComponents(g);
 
-        int w = getSize().width;
-        int h = getSize().height;
+        int width = getSize().width;
+        int height = getSize().height;
 
-        Graphics2D g2d = (Graphics2D) g;
-        FontRenderContext fontRenderContext = g2d.getFontRenderContext();
-        Font font = new Font("Segoe UI Emoji", Font.PLAIN, 35);
-        String st = "HELLO WORLD";
+        Graphics2D g2 = (Graphics2D) g;
 
-        TextLayout tl = new TextLayout(st,font,fontRenderContext);
-        Shape outline = tl.getOutline(null);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING,
+                RenderingHints.VALUE_RENDER_QUALITY);
+
+        FontRenderContext frc = g2.getFontRenderContext();
+
+        Font f = new Font("Segoe UI Emoji", Font.PLAIN, 75);
+        String s = new String("Jaaaaaa");
+        TextLayout textLayout = new TextLayout(s, f , frc);
+        AffineTransform transform;
+
+        Shape outline = textLayout.getOutline(null);
+        Rectangle outlineBounds = outline.getBounds();
+        transform = g2.getTransform();
+        transform.translate(width / 2 - (outlineBounds.width / 2), height / 2
+                + (outlineBounds.height / 2));
+        g2.transform(transform);
+        g2.setColor(Color.blue);
+        g2.draw(outline);
+        g2.setClip(outline);
+
+
 
 
     }

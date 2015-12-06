@@ -41,6 +41,9 @@ public class Menu extends JPanel {
     
     /** The label iamge. */
     private JLabel labelIamge;
+
+    private JButton btnGameInfo;
+
     /**
      * Create the panel.
      */
@@ -48,14 +51,10 @@ public class Menu extends JPanel {
 
         Methods methods = new Methods();
 
-        image = new ImageIcon(this.getClass().getResource("snake.png"));
-        labelIamge = new JLabel(image);
-        labelIamge.setBounds(0,70,300,300);
-        add(labelIamge);
+
 
         setLayout(null);
         setOpaque(false);
-        setBackground(Color.BLUE);
 
         lblMenu = new JLabel("MENU");
         lblMenu.setBounds(792, 200, 415, 80);
@@ -79,24 +78,31 @@ public class Menu extends JPanel {
         btnDeleteGame.setFont(methods.getFontLabel());
         add(btnDeleteGame);
 
+        btnGameInfo = new JButton("Show your games");
+        btnGameInfo.setBounds(800, 875, 400, 100);
+        btnGameInfo.setFont(methods.getFontLabel());
+        add(btnGameInfo);
+
         btnLogout = new JButton("Logout");
-        btnLogout.setBounds(800, 1000, 400, 100);
+        btnLogout.setBounds(800, 1250, 400, 100);
         btnLogout.setFont(methods.getFontLabel());
         add(btnLogout);
 
         lblhelloUser = new JLabel();
-        lblhelloUser.setBounds(500, 90, 575, 35);
+        lblhelloUser.setBounds(715, 50, 575, 35);
         methods.fontColor(lblhelloUser);
         methods.setFontLabel(lblhelloUser);
+        methods.setAlignment(lblhelloUser);
         add(lblhelloUser);
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date dateobj = new Date();
 
         lbldate = new JLabel(df.format(dateobj));
-        lbldate.setBounds(500, 135, 575, 35);
+        lbldate.setBounds(715, 95, 575, 35);
         methods.fontColor(lbldate);
         methods.setFontLabel(lbldate);
+        methods.setAlignment(lbldate);
         add(lbldate);
 
 
@@ -127,6 +133,15 @@ public class Menu extends JPanel {
      */
     public JButton getBtnDeleteGame() {
         return btnDeleteGame;
+    }
+
+    /**
+     * Gets then btn game info.
+     *
+     * @return the btn game info.
+     */
+    public JButton getBtnGameInfo() {
+        return btnGameInfo;
     }
 
     /**
@@ -167,6 +182,7 @@ public class Menu extends JPanel {
         btnHighscores.addActionListener(l);
         btnLogout.addActionListener(l);
         btnPlaySnake.addActionListener(l);
+        btnGameInfo.addActionListener(l);
     }
 
     /* (non-Javadoc)

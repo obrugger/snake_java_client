@@ -1,13 +1,20 @@
 package GUI;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.net.URL;
 
-// TODO: Auto-generated Javadoc
 /**
+ * The Background class.
+ * Works as an image container, that shows
+ * the background.
+ *
+ * @author Oscar
+ * @since 16-11-2015
+ *
  * Created by Oscar on 16-11-2015.
  */
 public class Background extends JPanel {
@@ -18,37 +25,54 @@ public class Background extends JPanel {
 
 
     /**
-     * Instantiates a new background.
+     * Creates the Background constructor.
      */
     public Background() {
 
+        //Sets the layour to anonymous class, BorderLayour.
         setLayout(new BorderLayout());
+
         try{
 
-            image = javax.imageio.ImageIO.read(
-                    new java.net.URL(getClass().getResource("background.png"), "background.png"));
-
+            /*
+            Instantiates the image variable by calling a static object of ImageIO,
+            and call the read method. The parameter for read method is an anonymous
+            class of URL, which takes a parameter of getting the ressouce, which
+            is the background picture.
+             */
+            image = ImageIO.read(
+                    new URL(
+                            getClass().getResource("background.png"), "background.png"
+                    )
+            );
         }
+
+        //Catches every exception thrown by try-block.
         catch(Exception e){
+            //Prints the stacktrace.
             e.printStackTrace();
         }
     }
 
     /**
-     * Gets the preffered size.
+     * The PaintComponent.
      *
-     * @return the preffered size
-     */
-    public Dimension getPrefferedSize(){
-        return image == null ? super.getPreferredSize() : new Dimension(image.getWidth(), image.getHeight());
-    }
-    
-    /* (non-Javadoc)
-     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     * @param g the graphic.
      */
     public void paintComponent(Graphics g){
 
+        /*
+        Calls the JComponent method paintComponent, which accepts
+        the parameter g, as its parameter.
+         */
         super.paintComponent(g);
+
+        /*
+        Calls drawImage method from g-object. For parameters, there are
+        the image object, two integer values of 0, then gets the width
+        and height of the image, and declares Background class as
+        ImageObserver.
+         */
         g.drawImage(image, 0, 0,getWidth(), getHeight(), this);
     }
 }

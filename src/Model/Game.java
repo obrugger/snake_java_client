@@ -17,6 +17,8 @@ public class Game {
     
     /** The winner. */
     private Gamer winner;
+
+    private int winnerId;
     
     /** The name. */
     private String name;
@@ -170,5 +172,13 @@ public class Game {
      */
     public void setMapSize(int mapSize) {
         this.mapSize = mapSize;
+    }
+
+    public int getWinnerId() {
+        return winnerId;
+    }
+
+    public void setWinnerId(int winnerId) {
+        this.winnerId = winnerId;
     }
 }

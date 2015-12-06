@@ -55,9 +55,7 @@ public class CreateUser extends JPanel {
     public CreateUser() {
 
         setLayout(null);
-        setSize(2000, 1500);
         setOpaque(false);
-        setBackground(Color.BLUE);
 
         Methods methods = new Methods();
 

@@ -450,10 +450,66 @@ public class Methods {
         //Ref. line 409
         catch (Exception e){
 
-            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
         }
         //Returns null, if any exception is caught.
         return null;
+    }
+
+    public boolean showGamesByID(Frame frame){
+
+        User user;
+
+
+        try {
+
+            user = new User();
+
+            String gameId = frame.getMainPanel().getGameInfo().getComboBox().getSelectedItem().toString();
+
+            Game game = jp.getGame(jp.getSc().get("game/" + gameId + "/"));
+
+            frame.getMainPanel().getGameInfo().getLblShowGame().setText(game.getName());
+
+            jp.parser(jp.getSc().get("users/" + game.getWinnerId() + "/"), user);
+
+            frame.getMainPanel().getGameInfo().getLblShowWinner().setText(user.getFirst_name());
+
+            return true;
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    /**
+     * Show games played by user.
+     *
+     * @param frame
+     * @return
+     */
+    public boolean showGamesByUser(Frame frame, User currentUser){
+
+        try {
+
+            Game[] games = jp.openGamesParser(jp.getSc().get("games/finished/"
+                    + currentUser.getId() + "/"));
+
+            for (Game gm : games){
+
+                frame.getMainPanel().getGameInfo().getComboBox().addItem(gm.getGameId());
+            }
+
+            return true;
+        }
+        catch (Exception e){
+
+
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -582,6 +638,8 @@ public class Methods {
         }
         return false;
     }
+
+
 
 
     /**

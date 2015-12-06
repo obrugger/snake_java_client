@@ -39,7 +39,6 @@ public class DeleteGame extends JPanel {
 
         setLayout(null);
         setOpaque(false);
-        setBackground(Color.BLUE);
 
         lblDeleteGame = new JLabel("DELETE GAME");
         lblDeleteGame.setBounds(775, 200, 466, 81);

@@ -1,11 +1,25 @@
 package GUI;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Composite;
+import java.awt.AlphaComposite;
 import java.awt.event.ActionListener;
 
-// TODO: Auto-generated Javadoc
+
 /**
+ * The CreateGame class.
+ * Contains the CreateGame JPanel.
+ *
+ * @author Oscar
+ * @since 26-10-2015
+ *
  * Created by Oscar on 26-10-2015.
  */
 public class CreateGame extends JPanel {
@@ -42,15 +56,22 @@ public class CreateGame extends JPanel {
 
 
     /**
-     * Instantiates a new creates the game.
+     * Creates the CreateGame constructor.
      */
     public CreateGame(){
 
+        /*
+        Sets opaque to false.
+        It means that the JPanel is transparent.
+         */
         setOpaque(false);
-        setBackground(Color.BLUE);
+
+        //Sets the layour to be absolute.
         setLayout(null);
 
+        //Initialize Methods variable.
         methods = new Methods();
+
 
         lblCreateGame = new JLabel("CREATE GAME");
         lblCreateGame.setBounds(760, 200, 480, 81);

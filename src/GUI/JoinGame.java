@@ -45,7 +45,6 @@ public class JoinGame extends JPanel {
 
         setLayout(null);
         setOpaque(false);
-        setBackground(Color.BLUE);
 
         methods = new Methods();
 

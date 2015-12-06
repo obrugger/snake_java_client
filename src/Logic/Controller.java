@@ -3,7 +3,7 @@ import GUI.Frame;
 import Model.Game;
 import Model.Gamer;
 import Model.User;
-import com.sun.codemodel.JOp;
+import org.omg.PortableServer.THREAD_POLICY_ID;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -61,6 +61,7 @@ public class Controller {
         frame.getMainPanel().getPlaySnake().addActionListener(new PlaySnakeActionListener());
         frame.getMainPanel().getCreateUser().addActionListener(new CreateUserActionListener());
         frame.getMainPanel().getCreateGame().addActionListener(new CreateGameActionListener());
+        frame.getMainPanel().getGameInfo().addActionListener(new GameInfoActionListener());
 
         //Initializes the declared variables.
         currentUser = new User();
@@ -76,7 +77,7 @@ public class Controller {
 
         /*
         Static object of SwingUtilities class is used to call method
-        invokeLater. It takes an anonymous class as paramter, that derives from
+        invokeLater. It takes an anonymous class as parameter, that derives from
         the Runnable class.
         The invokeLater method, adds the object into the eventQueue.
         The thread in the eventQueue will execute the run-method when
@@ -286,7 +287,7 @@ public class Controller {
          * @see ActionEvent
          * @param e
          */
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(final ActionEvent e){
 
             //If the actionEvent equals the btnDeleteGame from the MENU, then:
             if (e.getSource() == frame.getMainPanel().getMenu().getBtnDeleteGame()){
@@ -355,6 +356,31 @@ public class Controller {
                 frame.getMainPanel().getC().show(
                         frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE()
                 );
+            }
+
+            else if (e.getSource() == frame.getMainPanel().getMenu().getBtnGameInfo()){
+
+                Thread thread = new Thread() {
+
+                    public void run() {
+
+                        loading();
+
+                        if (methods.showGamesByUser(frame, currentUser)) {
+
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getGAMEINFO()
+                            );
+                        }
+                        else {
+
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                            );
+                        }
+                    }
+                };
+                thread.start();
             }
         }
     }
@@ -715,5 +741,57 @@ public class Controller {
 
             }
         }
+    }
+
+    private class GameInfoActionListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+            if(e.getSource() == frame.getMainPanel().getGameInfo().getBtnBack()){
+
+                frame.getMainPanel().getC().show(
+                        frame.getMainPanel(), frame.getMainPanel().getMENU()
+                );
+                frame.getMainPanel().getGameInfo().clearGames();
+            }
+
+            else if (e.getSource() == frame.getMainPanel().getGameInfo().getComboBox()){
+
+                Thread thread = new Thread(){
+
+                    public void run(){
+
+                        if (methods.showGamesByID(frame)){
+
+
+
+                        }
+
+                        else {
+
+                            JOptionPane.showMessageDialog(
+                                    frame, "Backend error.", "Error", JOptionPane.ERROR_MESSAGE
+                            );
+
+                            //Show MENU panel.
+                            frame.getMainPanel().getC().show(
+                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                            );
+
+
+                        }
+
+
+                    }
+                };
+                thread.start();
+
+
+
+
+            }
+
+        }
+
     }
 }

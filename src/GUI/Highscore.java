@@ -60,7 +60,6 @@ public class Highscore extends JPanel {
 
         setLayout(null);
         setOpaque(false);
-        setBackground(Color.BLUE);
 
         lblHighscore = new JLabel("HIGHSCORES");
         lblHighscore.setBounds(775, 200, 450, 85);

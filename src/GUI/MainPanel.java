@@ -42,6 +42,8 @@ public class MainPanel extends JPanel {
 
     private static final String LOADING = "LOADING";
 
+    private static final String GAMEINFO = "GAMEINFO";
+
     /** The login. */
     private Login login;
     
@@ -70,6 +72,8 @@ public class MainPanel extends JPanel {
     private CreateGame createGame;
 
     private Loading loading;
+
+    private GameInfo gameInfo;
 
     /** The c. */
     private CardLayout c;
@@ -117,9 +121,10 @@ public class MainPanel extends JPanel {
         loading = new Loading();
         add(loading, LOADING);
 
-        c.show(this, LOGIN);
-       // c.show(this, WELCOME);
+        gameInfo = new GameInfo();
+        add(gameInfo, GAMEINFO);
 
+        c.show(this, LOGIN);
     }
 
     /**
@@ -299,5 +304,13 @@ public class MainPanel extends JPanel {
 
     public static String getLOADING() {
         return LOADING;
+    }
+
+    public GameInfo getGameInfo() {
+        return gameInfo;
+    }
+
+    public static String getGAMEINFO() {
+        return GAMEINFO;
     }
 }
