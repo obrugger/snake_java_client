@@ -308,24 +308,15 @@ public class JSONParsers {
      */
     public Game getGame(String str){
         try {
-
-            //Ref. line 191
-            Gson gson = new Gson();
-
-            //Ref. line 198
-
             //Returns the game object.
-            return gson.fromJson(str, Game.class);
-
+            return new Gson().fromJson(str, Game.class);
         }
 
         //Ref. line 92
         catch (Exception e){
             e.printStackTrace();
+            return null;
         }
-
-        //Ref. line 272
-        return null;
     }
 
 

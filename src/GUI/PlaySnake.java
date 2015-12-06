@@ -35,7 +35,7 @@ public class PlaySnake extends JPanel {
 
         /* The lbl play snake. */
         JLabel lblPlaySnake = new JLabel("PLAY SNAKE");
-        lblPlaySnake.setBounds(792, 200, 415, 80);
+        lblPlaySnake.setBounds(773, 200, 453, 81);
         methods.fontColor(lblPlaySnake);
         methods.setFontHeadline(lblPlaySnake);
         methods.setAlignment(lblPlaySnake);

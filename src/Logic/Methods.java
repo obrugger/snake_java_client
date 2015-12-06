@@ -599,19 +599,13 @@ class Methods {
                      */
                     Game game1 = jp.getGame(jp.getSc().put("games/start/", json));
 
-                    System.out.println(game1);
+                    game1 = jp.getGame(jp.getSc().get("game/" + game1.getGameId() + "/"));
 
-                    //TODO: Ændr server og gamer klaase, lav winner til int i stedet for boolean
                     //If the value of get-winner is true, then:
-                    if (game1.getWinner().getId() == currentUser.getId()){
+                    if (game1.getWinnerId() == currentUser.getId()){
 
                         //Return true
                         return true;
-                    }
-                    else {
-                        //If not, then show JOptionpane.
-                        JOptionPane.showMessageDialog(frame, "You lost!",
-                                "Failure", JOptionPane.ERROR_MESSAGE);
                     }
                 }
 
