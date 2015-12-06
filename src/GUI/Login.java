@@ -13,26 +13,17 @@ import javax.swing.*;
 public class Login extends JPanel {
 
 
-    /** The lbl login. */
-    private JLabel lblLogin;
-    
-    /** The lbl username. */
-    private JLabel lblUsername;
-    
     /** The txt username. */
-    private JTextField txtUsername;
-    
-    /** The lbl password. */
-    private JLabel lblPassword;
-    
+    private final JTextField txtUsername;
+
     /** The password field. */
-    private JPasswordField passwordField;
+    private final JPasswordField passwordField;
     
     /** The btn login. */
-    private JButton btnLogin;
+    private final JButton btnLogin;
     
     /** The btn create. */
-    private JButton btnCreate;
+    private final JButton btnCreate;
 
     /**
      * Create the panel.
@@ -44,14 +35,16 @@ public class Login extends JPanel {
         setLayout(null);
         setOpaque(false);
 
-        lblLogin = new JLabel("LOGIN");
+        /* The lbl login. */
+        JLabel lblLogin = new JLabel("LOGIN");
         lblLogin.setBounds(792, 200, 415, 80);
         methods.fontColor(lblLogin);
         methods.setFontHeadline(lblLogin);
         methods.setAlignment(lblLogin);
         add(lblLogin);
 
-        lblUsername = new JLabel("Username");
+        /* The lbl username. */
+        JLabel lblUsername = new JLabel("Username");
         lblUsername.setBounds(825, 430, 350, 35);
         methods.fontColor(lblUsername);
         methods.setAlignment(lblUsername);
@@ -64,7 +57,8 @@ public class Login extends JPanel {
         methods.setFontText(txtUsername);
         add(txtUsername);
 
-        lblPassword = new JLabel("Password");
+        /* The lbl password. */
+        JLabel lblPassword = new JLabel("Password");
         lblPassword.setBounds(825, 650, 350, 35);
         methods.setAlignment(lblPassword);
         methods.setFontLabel(lblPassword);
@@ -136,8 +130,7 @@ public class Login extends JPanel {
         Initializes String object with the Array of chars, that
         contain the password.
          */
-        String password = new String(charPass);
-        return password;
+        return new String(charPass);
     }
 
     /**

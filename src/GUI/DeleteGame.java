@@ -1,31 +1,22 @@
 package GUI;
 
-import Logic.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 26-10-2015.
  */
 public class DeleteGame extends JPanel {
-    
-    /** The lbl delete game. */
-    private JLabel lblDeleteGame;
-    
-    /** The lbl insert game id. */
-    private JLabel lblInsertGameId;
-    
+
     /** The txt insertgameid. */
-    private JTextField txtInsertgameid;
+    private final JTextField txtInsertgameid;
     
     /** The btn delete. */
-    private JButton btnDelete;
+    private final JButton btnDelete;
     
     /** The btn back. */
-    private JButton btnBack;
+    private final JButton btnBack;
 
     /**
      * Create the panel.
@@ -37,14 +28,16 @@ public class DeleteGame extends JPanel {
         setLayout(null);
         setOpaque(false);
 
-        lblDeleteGame = new JLabel("DELETE GAME");
+        /* The lbl delete game. */
+        JLabel lblDeleteGame = new JLabel("DELETE GAME");
         lblDeleteGame.setBounds(737, 200, 525, 85);
         methods.fontColor(lblDeleteGame);
         methods.setFontHeadline(lblDeleteGame);
         methods.setAlignment(lblDeleteGame);
         add(lblDeleteGame);
 
-        lblInsertGameId = new JLabel("Insert Game ID ");
+        /* The lbl insert game id. */
+        JLabel lblInsertGameId = new JLabel("Insert Game ID ");
         lblInsertGameId.setBounds(862, 450, 275, 38);
         methods.fontColor(lblInsertGameId);
         methods.setFontLabel(lblInsertGameId);

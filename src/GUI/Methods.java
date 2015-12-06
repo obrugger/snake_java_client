@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by Oscar on 27-10-2015.
  */
-public class Methods extends JPanel{
+class Methods extends JPanel{
     /**
      * Sets the alignment.
      *

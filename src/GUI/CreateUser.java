@@ -4,50 +4,32 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-// TODO: Auto-generated Javadoc
 /**
- * Created by Oscar on 24-11-2015.
+ * @author Oscar
+ * @since 24-11-2015
  */
 public class CreateUser extends JPanel {
 
-    /** The lbl create user. */
-    private JLabel lblCreateUser;
-    
-    /** The lbl enter username. */
-    private JLabel lblEnterUsername;
-    
     /** The txt username. */
-    private JTextField txtUsername;
-    
-    /** The lbl enter password. */
-    private JLabel lblEnterPassword;
-    
+    private final JTextField txtUsername;
+
     /** The pwd password. */
-    private JPasswordField pwdPassword;
-    
-    /** The lbl first name. */
-    private JLabel lblFirstName;
-    
+    private final JPasswordField pwdPassword;
+
     /** The txt firstname. */
-    private JTextField txtFirstname;
-    
-    /** The lbl last name. */
-    private JLabel lblLastName;
-    
+    private final JTextField txtFirstname;
+
     /** The txt lastname. */
-    private JTextField txtLastname;
-    
-    /** The lbl email. */
-    private JLabel lblEmail;
-    
+    private final JTextField txtLastname;
+
     /** The txt email. */
-    private JTextField txtEmail;
+    private final JTextField txtEmail;
     
     /** The btn create. */
-    private JButton btnCreate;
+    private final JButton btnCreate;
     
     /** The btn cancel. */
-    private JButton btnCancel;
+    private final JButton btnCancel;
 
     /**
      * Create the panel.
@@ -60,14 +42,16 @@ public class CreateUser extends JPanel {
         Methods methods = new Methods();
 
 
-        lblCreateUser = new JLabel("CREATE USER");
+        /* The lbl create user. */
+        JLabel lblCreateUser = new JLabel("CREATE USER");
         lblCreateUser.setBounds(737, 200, 525, 85);
         methods.fontColor(lblCreateUser);
         methods.setFontHeadline(lblCreateUser);
         methods.setAlignment(lblCreateUser);
         add(lblCreateUser);
 
-        lblEnterUsername = new JLabel("Enter username");
+        /* The lbl enter username. */
+        JLabel lblEnterUsername = new JLabel("Enter username");
         lblEnterUsername.setBounds(862, 350, 275, 38);
         methods.fontColor(lblEnterUsername);
         methods.setFontLabel(lblEnterUsername);
@@ -81,7 +65,8 @@ public class CreateUser extends JPanel {
         add(txtUsername);
         txtUsername.setColumns(10);
 
-        lblEnterPassword = new JLabel("Enter password");
+        /* The lbl enter password. */
+        JLabel lblEnterPassword = new JLabel("Enter password");
         lblEnterPassword.setBounds(862, 505, 275, 38);
         methods.fontColor(lblEnterPassword);
         methods.setFontLabel(lblEnterPassword);
@@ -94,7 +79,8 @@ public class CreateUser extends JPanel {
         pwdPassword.setHorizontalAlignment(SwingConstants.CENTER);
         add(pwdPassword);
 
-        lblFirstName = new JLabel("First name");
+        /* The lbl first name. */
+        JLabel lblFirstName = new JLabel("First name");
         lblFirstName.setBounds(875, 670, 250, 35);
         methods.fontColor(lblFirstName);
         methods.setFontLabel(lblFirstName);
@@ -108,7 +94,8 @@ public class CreateUser extends JPanel {
         add(txtFirstname);
         txtFirstname.setColumns(10);
 
-        lblLastName = new JLabel("Last name");
+        /* The lbl last name. */
+        JLabel lblLastName = new JLabel("Last name");
         lblLastName.setBounds(875, 825, 250, 35);
         methods.fontColor(lblLastName);
         methods.setFontLabel(lblLastName);
@@ -122,7 +109,8 @@ public class CreateUser extends JPanel {
         add(txtLastname);
         txtLastname.setColumns(10);
 
-        lblEmail = new JLabel("E-mail");
+        /* The lbl email. */
+        JLabel lblEmail = new JLabel("E-mail");
         lblEmail.setBounds(875, 980, 250, 35);
         methods.fontColor(lblEmail);
         methods.setFontLabel(lblEmail);
@@ -209,8 +197,7 @@ public class CreateUser extends JPanel {
      */
     public String getPassword(){
         char[] charPass = pwdPassword.getPassword();
-        String password = new String(charPass);
-        return password;
+        return new String(charPass);
     }
 
     /**

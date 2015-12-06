@@ -5,7 +5,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.Composite;
@@ -24,32 +23,20 @@ import java.awt.event.ActionListener;
  */
 public class CreateGame extends JPanel {
 
-    /** The lbl create game. */
-    private JLabel lblCreateGame;
-    
-    /** The lbl enter gamename. */
-    private JLabel lblEnterGamename;
-    
-    /** The lbl enter mapsize. */
-    private JLabel lblEnterMapsize;
-    
-    /** The lbl enter controls. */
-    private JLabel lblEnterControls;
-
     /** The txt gamename. */
-    private JTextField txtGamename;
+    private final JTextField txtGamename;
     
     /** The txt mapsize. */
-    private JTextField txtMapsize;
+    private final JTextField txtMapsize;
     
     /** The txt controls. */
-    private JTextField txtControls;
+    private final JTextField txtControls;
 
     /** The btn create. */
-    private JButton btnCreate;
+    private final JButton btnCreate;
     
     /** The btn cancel. */
-    private JButton btnCancel;
+    private final JButton btnCancel;
 
 
 
@@ -72,14 +59,16 @@ public class CreateGame extends JPanel {
         Methods methods = new Methods();
 
 
-        lblCreateGame = new JLabel("CREATE GAME");
+        /* The lbl create game. */
+        JLabel lblCreateGame = new JLabel("CREATE GAME");
         lblCreateGame.setBounds(737, 200, 525, 85);
         methods.fontColor(lblCreateGame);
         methods.setAlignment(lblCreateGame);
         methods.setFontHeadline(lblCreateGame);
         add(lblCreateGame);
 
-        lblEnterGamename = new JLabel("Enter game name");
+        /* The lbl enter gamename. */
+        JLabel lblEnterGamename = new JLabel("Enter game name");
         lblEnterGamename.setBounds(825, 395, 350, 35);
         methods.fontColor(lblEnterGamename);
         methods.setAlignment(lblEnterGamename);
@@ -93,7 +82,8 @@ public class CreateGame extends JPanel {
         add(txtGamename);
         txtGamename.setColumns(10);
 
-        lblEnterMapsize = new JLabel("Enter map size");
+        /* The lbl enter mapsize. */
+        JLabel lblEnterMapsize = new JLabel("Enter map size");
         lblEnterMapsize.setBounds(825, 630, 350, 35);
         methods.fontColor(lblEnterMapsize);
         methods.setAlignment(lblEnterMapsize);
@@ -106,7 +96,8 @@ public class CreateGame extends JPanel {
         methods.setFontText(txtMapsize);
         add(txtMapsize);
 
-        lblEnterControls = new JLabel("Enter controls");
+        /* The lbl enter controls. */
+        JLabel lblEnterControls = new JLabel("Enter controls");
         lblEnterControls.setBounds(825, 865, 350, 35);
         methods.fontColor(lblEnterControls);
         methods.setAlignment(lblEnterControls);

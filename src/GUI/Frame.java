@@ -1,12 +1,6 @@
 package GUI;
 
-import java.awt.*;
-import java.io.*;
-import sun.audio.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -17,32 +11,28 @@ import javax.swing.border.EmptyBorder;
 
 public class Frame extends JFrame {
 
-    /** The background. */
-    private Background background;
-    
     /** The main panel. */
-    private MainPanel mainPanel;
-    
-    /** The image icon. */
-    private ImageIcon imageIcon;
+    private final MainPanel mainPanel;
 
     /**
      * Create the frame.
      */
     public Frame() {
 
-        background = new Background();
+        /* The background. */
+        Background background = new Background();
         mainPanel = new MainPanel();
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(2000,1500);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setSize(2000, 1500);
         setContentPane(background);
         setTitle("Snake");
         setLocationRelativeTo(null);
 
 
         //Builds path to snake.png in GUI package
-        imageIcon = new ImageIcon(this.getClass().getResource("snake.png"));
+        /* The image icon. */
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("snake.png"));
 
         //Uses setIconImage method to set the icon image to snake.png
         setIconImage(imageIcon.getImage());

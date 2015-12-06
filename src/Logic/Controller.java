@@ -1,9 +1,9 @@
 package Logic;
 import GUI.Frame;
+import GUI.MainPanel;
 import Model.Game;
 import Model.Gamer;
 import Model.User;
-import org.omg.PortableServer.THREAD_POLICY_ID;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +24,7 @@ import java.io.IOException;
 public class Controller {
 
     /** The frame. */
-    private Frame frame;
+    private final Frame frame;
 
     /** The currentUser */
     private User currentUser;
@@ -97,7 +97,7 @@ public class Controller {
                     and the JPanel to be showed, is the constant LOADING.
                      */
                     frame.getMainPanel().getC().show(
-                            frame.getMainPanel(), frame.getMainPanel().getLOADING()
+                            frame.getMainPanel(), MainPanel.getLOADING()
                     );
                 }
                 /*
@@ -110,7 +110,7 @@ public class Controller {
                             frame, "Something went wrong", "Error", JOptionPane.ERROR_MESSAGE
                     );
                     frame.getMainPanel().getC().show(
-                            frame.getMainPanel(), frame.getMainPanel().getLOGIN()
+                            frame.getMainPanel(), MainPanel.getLOGIN()
                     );
                     currentUser = null;
                 }
@@ -162,7 +162,7 @@ public class Controller {
                         Sets currentUser to contain the return from userAuthentication method.
                         userAuthentication method takes frame and currentUser as parameters.
                          */
-                        currentUser = methods.userAuthentication(frame, currentUser);
+                        currentUser = methods.userAuthentication(frame);
 
                         /*
                         If the userAuthentication method returns null, then:
@@ -171,7 +171,7 @@ public class Controller {
 
                             //Shows the LOGIN panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getLOGIN()
+                                    frame.getMainPanel(), MainPanel.getLOGIN()
                             );
                         }
                         //If userAuthentication method does not return null, then:
@@ -179,7 +179,7 @@ public class Controller {
 
                             //Show the MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
                         }
                     }
@@ -194,7 +194,7 @@ public class Controller {
 
                 //Show the CREATEUSER panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getCREATEUSER()
+                        frame.getMainPanel(), MainPanel.getCREATEUSER()
                 );
             }
         }
@@ -233,8 +233,18 @@ public class Controller {
                         //Call loading method.
                         loading();
 
-                        //If createUser method returns true, then:
-                        if (methods.createUser(frame, currentUser)) {
+
+                        currentUser = methods.createUser(frame);
+
+                        //If currentUser is equal to null, then:
+                        if (currentUser == null) {
+
+                            frame.getMainPanel().getC().show(frame.getMainPanel(),
+                                    MainPanel.getLOGIN()
+                            );
+                        }
+                        //If currentUser is not null, then:
+                        else {
 
                             //Show confirmation JOptionPane.
                             JOptionPane.showMessageDialog(
@@ -243,13 +253,9 @@ public class Controller {
 
                             //Show the LOGIN panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getLOGIN()
+                                    frame.getMainPanel(), MainPanel.getLOGIN()
                             );
-                        }
-                        //If createUser returns false, then show the LOGIN panel.
-                        else {
-                            frame.getMainPanel().getC().show(frame.getMainPanel(),
-                                    frame.getMainPanel().getLOGIN());
+
                         }
                     }
                 };
@@ -263,7 +269,7 @@ public class Controller {
 
                 //Show the LOGIN panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getLOGIN()
+                        frame.getMainPanel(), MainPanel.getLOGIN()
                 );
                 //Call the clearText method, from CreateUser class.
                 frame.getMainPanel().getCreateUser().clearText();
@@ -295,7 +301,7 @@ public class Controller {
 
                 //Show the DELETEGAME panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getDELETEGAME()
+                        frame.getMainPanel(), MainPanel.getDELETEGAME()
                 );
 
             }
@@ -319,7 +325,7 @@ public class Controller {
 
                             //Show the HIGHSCORE panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getHIGHSCORE()
+                                    frame.getMainPanel(), MainPanel.getHIGHSCORE()
                             );
                         }
 
@@ -328,7 +334,7 @@ public class Controller {
 
                             //Show the MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
                         }
                     }
@@ -346,7 +352,7 @@ public class Controller {
 
                 //Shows the LOGIN panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getLOGIN()
+                        frame.getMainPanel(), MainPanel.getLOGIN()
                 );
             }
 
@@ -355,7 +361,7 @@ public class Controller {
 
                 //Show the PLAYSNAKE panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE()
+                        frame.getMainPanel(), MainPanel.getPLAYSNAKE()
                 );
             }
 
@@ -370,13 +376,13 @@ public class Controller {
                         if (methods.showGamesByUser(frame, currentUser)) {
 
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getGAMEINFO()
+                                    frame.getMainPanel(), MainPanel.getGAMEINFO()
                             );
                         }
                         else {
 
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
                         }
                     }
@@ -410,7 +416,7 @@ public class Controller {
 
                 //Show the MENU panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getMENU()
+                        frame.getMainPanel(), MainPanel.getMENU()
                 );
             }
         }
@@ -440,7 +446,7 @@ public class Controller {
 
                 //Show the PLAYSNAKE panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE()
+                        frame.getMainPanel(), MainPanel.getPLAYSNAKE()
                 );
 
                 //Call method clearGames
@@ -470,7 +476,7 @@ public class Controller {
 
                             //Shows the MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
                             //Call the clearGames method from JoinGame class.
                             frame.getMainPanel().getJoinGame().clearGames();
@@ -485,7 +491,7 @@ public class Controller {
 
                             //Show the MENU panel
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
 
                             //Call clearGames method from JoinGame class.
@@ -544,7 +550,7 @@ public class Controller {
 
                 //Show the MENU panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getMENU()
+                        frame.getMainPanel(), MainPanel.getMENU()
                 );
             }
 
@@ -567,7 +573,7 @@ public class Controller {
 
                             //Show the JOINGAME panel
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getJOINGAME()
+                                    frame.getMainPanel(), MainPanel.getJOINGAME()
                             );
 
                         }
@@ -582,7 +588,7 @@ public class Controller {
 
                             //Show the MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
                         }
                     }
@@ -596,7 +602,7 @@ public class Controller {
 
                 //Show the CREATEGAME panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getCREATEGAME()
+                        frame.getMainPanel(), MainPanel.getCREATEGAME()
                 );
             }
         }
@@ -626,7 +632,7 @@ public class Controller {
 
                 //Show the MENU panel.
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getMENU()
+                        frame.getMainPanel(), MainPanel.getMENU()
                 );
             }
 
@@ -645,7 +651,7 @@ public class Controller {
                         loading();
 
                         //If deleteGame returns true, then:
-                        if (methods.deleteGame(currentUser, frame)) {
+                        if (methods.deleteGame(frame)) {
 
                             //Show confirmation dialog.
                             JOptionPane.showMessageDialog(
@@ -654,7 +660,7 @@ public class Controller {
 
                             //Show MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
                         }
                         //If deleteGame returns false, tehn:
@@ -662,7 +668,7 @@ public class Controller {
 
                             //Show DELETEGAME panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getDELETEGAME()
+                                    frame.getMainPanel(), MainPanel.getDELETEGAME()
                             );
                         }
                     }
@@ -709,7 +715,7 @@ public class Controller {
 
                             //Show MENU panel
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
 
                             //Call clearTxt method from CreateGame class.
@@ -721,7 +727,7 @@ public class Controller {
 
                             //Show the MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
                         }
                     }
@@ -735,7 +741,7 @@ public class Controller {
             else if (e.getSource() == frame.getMainPanel().getCreateGame().getBtnCancel()){
 
                 //Show PLAYSNAKE panel.
-                frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getPLAYSNAKE());
+                frame.getMainPanel().getC().show(frame.getMainPanel(), MainPanel.getPLAYSNAKE());
 
                 //Call method clearTxt from CreateGame class.
                 frame.getMainPanel().getCreateGame().clearTxt();
@@ -751,7 +757,7 @@ public class Controller {
             if(e.getSource() == frame.getMainPanel().getGameInfo().getBtnBack()){
 
                 frame.getMainPanel().getC().show(
-                        frame.getMainPanel(), frame.getMainPanel().getMENU()
+                        frame.getMainPanel(), MainPanel.getMENU()
                 );
                 frame.getMainPanel().getGameInfo().clearGames();
             }
@@ -766,7 +772,7 @@ public class Controller {
 
                             //Show MENU panel.
                             frame.getMainPanel().getC().show(
-                                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                                    frame.getMainPanel(), MainPanel.getMENU()
                             );
                         }
                     }

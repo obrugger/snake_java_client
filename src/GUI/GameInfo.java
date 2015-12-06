@@ -9,14 +9,10 @@ import java.awt.event.ActionListener;
  */
 public class GameInfo extends JPanel {
 
-    private JLabel lblHeadline;
-    private JLabel lblChooseGame;
-    private JComboBox comboBox;
-    private JLabel lblGameName;
-    private JLabel lblShowGame;
-    private JLabel lblWinner;
-    private JLabel lblShowWinner;
-    private JButton btnBack;
+    private final JComboBox comboBox;
+    private final JLabel lblShowGame;
+    private final JLabel lblShowWinner;
+    private final JButton btnBack;
 
 
 
@@ -28,14 +24,14 @@ public class GameInfo extends JPanel {
 
         Methods methods = new Methods();
 
-        lblHeadline = new JLabel("GAME INFO");
+        JLabel lblHeadline = new JLabel("GAME INFO");
         lblHeadline.setBounds(760, 200, 480, 81);
         methods.fontColor(lblHeadline);
         methods.setAlignment(lblHeadline);
         methods.setFontHeadline(lblHeadline);
         add(lblHeadline);
 
-        lblChooseGame = new JLabel("Select game");
+        JLabel lblChooseGame = new JLabel("Select game");
         lblChooseGame.setBounds(851, 400, 298, 38);
         methods.fontColor(lblChooseGame);
         methods.setAlignment(lblChooseGame);
@@ -49,7 +45,7 @@ public class GameInfo extends JPanel {
         ((JLabel)comboBox.getRenderer()).setVerticalAlignment(JLabel.CENTER);
         add(comboBox);
 
-        lblGameName = new JLabel("Game name");
+        JLabel lblGameName = new JLabel("Game name");
         lblGameName.setBounds(851, 650, 298, 38);
         methods.fontColor(lblGameName);
         methods.setAlignment(lblGameName);
@@ -63,7 +59,7 @@ public class GameInfo extends JPanel {
         methods.setFontLabel(lblShowGame);
         add(lblShowGame);
 
-        lblWinner = new JLabel("The winner was");
+        JLabel lblWinner = new JLabel("The winner was");
         lblWinner.setBounds(851, 865, 298, 38);
         methods.fontColor(lblWinner);
         methods.setAlignment(lblWinner);

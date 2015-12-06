@@ -1,6 +1,7 @@
 package Logic;
 
 import GUI.Frame;
+import GUI.MainPanel;
 import Model.*;
 import SDK.JSONParsers;
 import com.google.gson.Gson;
@@ -19,10 +20,10 @@ import java.io.IOException;
  *
  * Created by Oscar on 23-11-2015.
  */
-public class Methods {
+class Methods {
 
     /** The JSONParsers variable. */
-    private JSONParsers jp;
+    private final JSONParsers jp;
 
 
     /**
@@ -30,7 +31,7 @@ public class Methods {
      *
      * @throws IOException Signals that an I/O exception has occurred.
      */
-    public Methods() throws IOException{
+    public Methods() {
 
         //Initializes the jp variable.
         jp = new JSONParsers();
@@ -41,10 +42,9 @@ public class Methods {
      * User authentication.
      *
      * @param frame
-     * @param currentUser
      * @return the currentUser.
      */
-    public User userAuthentication(Frame frame, User currentUser){
+    public User userAuthentication(Frame frame){
 
         try{
 
@@ -94,9 +94,6 @@ public class Methods {
                  */
                 if(msg.equals("Login successful")){
 
-                    //Sets the currentUser parameter, to be identical to the user-object.
-                    currentUser = user;
-
                     /*
                     Calls the jp-object, and uses its parser-method. It takes the ServerConnection
                     get-method as its parameter. The get method takes the path as a parameter.
@@ -104,7 +101,7 @@ public class Methods {
                     currentUser. The parser method, also takes the currentUser object, as a
                     parameter.
                      */
-                    jp.parser(jp.getSc().get("users/" + currentUser.getId() + "/"), currentUser);
+                    jp.parser(jp.getSc().get("users/" + user.getId() + "/"), user);
 
                     /*
                     Uses the frame-parameter, to set the text in the JLabel.
@@ -112,13 +109,13 @@ public class Methods {
                     It is a welcoming message, which gets the currentUser's firstName.
                      */
                     frame.getMainPanel().getMenu().getLblhelloUser().
-                            setText("Hello " + currentUser.getFirst_name() + "!");
+                            setText("Hello " + user.getFirst_name() + "!");
 
                     //Uses the clearLogin method from the Login-class.
                     frame.getMainPanel().getLogin().clearLogin();
 
                     //Returns the currentUser object.
-                    return currentUser;
+                    return user;
                 }
 
 
@@ -156,10 +153,9 @@ public class Methods {
      * Creates the user.
      *
      * @param frame
-     * @param currentUser
      * @return true, if successful
      */
-    public boolean createUser(Frame frame, User currentUser){
+    public User createUser(Frame frame){
 
         try {
 
@@ -200,14 +196,11 @@ public class Methods {
                 //Ref. line 93
                 if (msg.equals("User was created")){
 
-                    //Ref. line 97.
-                    currentUser = user;
-
                     //Use clearText method from CreateUser-class.
                     frame.getMainPanel().getCreateUser().clearText();
 
                     //Returns true.
-                    return true;
+                    return user;
                 }
 
                 //Ref. line 126
@@ -228,17 +221,16 @@ public class Methods {
         }
 
         //Return false, if it fails.
-        return false;
+        return null;
     }
 
     /**
      * Delete game.
      *
-     * @param currentUser
      * @param frame
      * @return true, if successful
      */
-    public boolean deleteGame(User currentUser, Frame frame){
+    public boolean deleteGame(Frame frame){
 
         try{
 
@@ -410,7 +402,7 @@ public class Methods {
         catch (Exception e){
             JOptionPane.showMessageDialog(frame, "Backend error.",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            frame.getMainPanel().getC().show(frame.getMainPanel(), frame.getMainPanel().getMENU());
+            frame.getMainPanel().getC().show(frame.getMainPanel(), MainPanel.getMENU());
         }
         //Returns false, if any exception is caught.
         return false;
@@ -450,11 +442,12 @@ public class Methods {
         //Ref. line 409
         catch (Exception e){
 
+            //Returns null, if any exception is caught.
+            return null;
         }
-        //Returns null, if any exception is caught.
-        return null;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean showGamesByID(Frame frame){
 
         User user;
@@ -478,17 +471,18 @@ public class Methods {
         }
 
         catch (Exception e){
-        }
 
-        return false;
+            return false;
+        }
     }
 
     /**
      * Show games played by user.
      *
      * @param frame
-     * @return
+     * @return true, if successful
      */
+    @SuppressWarnings("unchecked")
     public boolean showGamesByUser(Frame frame, User currentUser){
 
         try {
@@ -497,6 +491,7 @@ public class Methods {
                     + currentUser.getId() + "/"));
 
             for (Game gm : games){
+
 
                 frame.getMainPanel().getGameInfo().getComboBox().addItem(gm.getGameId());
             }
@@ -516,6 +511,7 @@ public class Methods {
      *
      * @param frame
      */
+    @SuppressWarnings("unchecked")
     public boolean showOpenGames(Frame frame){
 
         try {
@@ -546,9 +542,10 @@ public class Methods {
         //Catches any exception thrown by try-block.
         catch (Exception e) {
 
+            //If exception is caught, then return false.
+            return false;
         }
-        //If exception is caught, then return false.
-        return false;
+
     }
 
 
@@ -631,22 +628,10 @@ public class Methods {
         //Ref. line 490
         catch (Exception e) {
             frame.getMainPanel().getC().show(
-                    frame.getMainPanel(), frame.getMainPanel().getMENU()
+                    frame.getMainPanel(), MainPanel.getMENU()
             );
             e.printStackTrace();
         }
         return false;
-    }
-
-
-
-
-    /**
-     * Gets the jp.
-     *
-     * @return jp
-     */
-    public JSONParsers getJp() {
-        return jp;
     }
 }

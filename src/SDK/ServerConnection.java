@@ -7,7 +7,6 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 import javax.swing.*;
-import java.io.IOException;
 
 
 /**
@@ -31,10 +30,8 @@ public class ServerConnection {
     /**
      * The ServerConnection constructor.
      * Instantiates both variables declared.
-     *
-     * @throws IOException
      */
-    public ServerConnection() throws IOException{
+    public ServerConnection() {
 
         //Instantiates url to contain Config.getUrl method.
         url = Config.getUrl();
@@ -56,6 +53,7 @@ public class ServerConnection {
      * @param frame
      * @return output, if successful.
      */
+    @SuppressWarnings("AccessStaticViaInstance")
     public String post(String json, String path, Frame frame){
 
         try{
@@ -83,10 +81,9 @@ public class ServerConnection {
             Instantiates a String object to contain the clientResponse object' getEntity-method,
             with the parameter being the String-class.
              */
-            String output = clientResponse.getEntity(String.class);
 
             //Returns the String object; output.
-            return  output;
+            return clientResponse.getEntity(String.class);
 
         }
 
@@ -126,9 +123,8 @@ public class ServerConnection {
             ClientResponse clientResponse = webResource.type("application/json").get(ClientResponse.class);
 
             //Ref. line 76
-            String output = clientResponse.getEntity(String.class);
 
-            return output;
+            return clientResponse.getEntity(String.class);
         }
 
         //Ref. line 86-97
@@ -161,9 +157,8 @@ public class ServerConnection {
             ClientResponse clientResponse = webResource.type("application/json").delete(ClientResponse.class);
 
             //Ref. line 76
-            String output = clientResponse.getEntity(String.class);
 
-            return output;
+            return clientResponse.getEntity(String.class);
         }
 
         //Ref line 86-97
@@ -196,9 +191,8 @@ public class ServerConnection {
             ClientResponse clientResponse = webResource.type("application/json").put(ClientResponse.class, json);
 
             //Ref. line 76
-            String output = clientResponse.getEntity(String.class);
 
-            return output;
+            return clientResponse.getEntity(String.class);
 
         }
 

@@ -130,14 +130,6 @@ public class Game {
         this.status = status;
     }
 
-    /*public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }*/
-
     /**
      * Gets the winner.
      *

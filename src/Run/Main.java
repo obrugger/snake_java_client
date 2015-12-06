@@ -16,7 +16,7 @@ import java.awt.EventQueue;
  *
  * Created by Oscar on 26-10-2015.
  */
-public class Main {
+class Main {
 
     /**
      * The main method.
@@ -54,8 +54,8 @@ public class Main {
                      */
                     Config.configInit();
 
-                    //Initializes an object of the Controller class, called controller.
-                    Controller controller = new Controller();
+                    //Initialize Controller class.
+                    new Controller();
 
                 }
                 //Catches all exceptions thrown in the try-block.

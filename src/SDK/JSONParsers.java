@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 
@@ -26,16 +25,15 @@ import java.util.Arrays;
 public class JSONParsers {
 
     /** The sc. */
-    private ServerConnection sc;
+    private final ServerConnection sc;
 
 
 
     /**
      * Creates the Constructor.
      *
-     * @throws IOException Signals that an I/O exception has occurred.
      */
-    public JSONParsers() throws IOException{
+    public JSONParsers() {
 
         //Initializes the sc variable.
         sc = new ServerConnection();
@@ -55,7 +53,7 @@ public class JSONParsers {
         JSONParser parser = new JSONParser();
 
         //Initializes the String object as msg.
-        String msg = new String();
+        String msg;
 
         try{
             /*
@@ -148,7 +146,7 @@ public class JSONParsers {
         JSONParser parser = new JSONParser();
 
         //Initializes new message String.
-        String msg = new String();
+        String msg = "";
 
         try {
 
@@ -247,7 +245,7 @@ public class JSONParsers {
         JSONParser jsonParser = new JSONParser();
 
         //Ref. line 150
-        String gameName = new String();
+        String gameName;
 
         try {
 
@@ -286,10 +284,9 @@ public class JSONParsers {
             Gson gson = new Gson();
 
             //Ref. line 198
-            Game[] games = gson.fromJson(str, Game[].class);
 
             //Returns the array of Game objects.
-            return games;
+            return gson.fromJson(str, Game[].class);
         }
 
         //Ref. line 94
@@ -316,10 +313,9 @@ public class JSONParsers {
             Gson gson = new Gson();
 
             //Ref. line 198
-            Game game = gson.fromJson(str, Game.class);
 
             //Returns the game object.
-            return game;
+            return gson.fromJson(str, Game.class);
 
         }
 

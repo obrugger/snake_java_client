@@ -1,7 +1,6 @@
 package GUI;
 
 import javax.swing.*;
-import javax.xml.soap.Detail;
 import java.awt.*;
 
 // TODO: Auto-generated Javadoc
@@ -33,44 +32,39 @@ public class MainPanel extends JPanel {
     
     /** The Constant CREATEGAME. */
     private static final String CREATEGAME = "CREATEGAME";
-    
-    /** The Constant JOINGAME2. */
-    private static final String JOINGAME2 = "JOINGAME2";
 
     private static final String LOADING = "LOADING";
 
     private static final String GAMEINFO = "GAMEINFO";
 
     /** The login. */
-    private Login login;
+    private final Login login;
     
     /** The menu. */
-    private Menu menu;
+    private final Menu menu;
     
     /** The delete game. */
-    private DeleteGame deleteGame;
+    private final DeleteGame deleteGame;
     
     /** The play snake. */
-    private PlaySnake playSnake;
+    private final PlaySnake playSnake;
     
     /** The join game. */
-    private JoinGame joinGame;
+    private final JoinGame joinGame;
     
     /** The highscore. */
-    private Highscore highscore;
+    private final Highscore highscore;
 
     /** The create user. */
-    private CreateUser createUser;
+    private final CreateUser createUser;
     
     /** The create game. */
-    private CreateGame createGame;
+    private final CreateGame createGame;
 
-    private Loading loading;
-
-    private GameInfo gameInfo;
+    private final GameInfo gameInfo;
 
     /** The c. */
-    private CardLayout c;
+    private final CardLayout c;
 
     /**
      * Instantiates a new main panel.
@@ -107,7 +101,7 @@ public class MainPanel extends JPanel {
         createGame = new CreateGame();
         add(createGame, CREATEGAME);
 
-        loading = new Loading();
+        Loading loading = new Loading();
         add(loading, LOADING);
 
         gameInfo = new GameInfo();
@@ -267,19 +261,6 @@ public class MainPanel extends JPanel {
      */
     public static String getCREATEGAME() {
         return CREATEGAME;
-    }
-
-    /**
-     * Gets the JOINGAM e2.
-     *
-     * @return the JOINGAM e2
-     */
-    public static String getJOINGAME2() {
-        return JOINGAME2;
-    }
-
-    public Loading getLoading() {
-        return loading;
     }
 
     public static String getLOADING() {

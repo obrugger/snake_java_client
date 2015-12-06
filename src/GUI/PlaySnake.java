@@ -8,22 +8,15 @@ import java.awt.event.ActionListener;
  * Created by Oscar on 30-10-2015.
  */
 public class PlaySnake extends JPanel {
-    
-    /** The lbl play snake. */
-    private JLabel lblPlaySnake;
-    
+
     /** The btn create game. */
-    private JButton btnCreateGame;
+    private final JButton btnCreateGame;
     
     /** The btn join game. */
-    private JButton btnJoinGame;
+    private final JButton btnJoinGame;
     
     /** The btn back. */
-    private JButton btnBack;
-
-    private ImageIcon image;
-
-    private JLabel labelIamge;
+    private final JButton btnBack;
 
     /**
      * Create the panel.
@@ -35,12 +28,13 @@ public class PlaySnake extends JPanel {
         setLayout(null);
         setOpaque(false);
 
-        image = new ImageIcon(this.getClass().getResource("snake.png"));
-        labelIamge = new JLabel(image);
+        ImageIcon image = new ImageIcon(this.getClass().getResource("snake.png"));
+        JLabel labelIamge = new JLabel(image);
         labelIamge.setBounds(850, 600, 300, 300);
         add(labelIamge);
 
-        lblPlaySnake = new JLabel("PLAY SNAKE");
+        /* The lbl play snake. */
+        JLabel lblPlaySnake = new JLabel("PLAY SNAKE");
         lblPlaySnake.setBounds(792, 200, 415, 80);
         methods.fontColor(lblPlaySnake);
         methods.setFontHeadline(lblPlaySnake);

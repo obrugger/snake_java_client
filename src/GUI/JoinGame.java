@@ -1,7 +1,6 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -10,30 +9,21 @@ import java.awt.event.ActionListener;
  * Created by Oscar on 26-10-2015.
  */
 public class JoinGame extends JPanel {
-    
-    /** The lbl join game. */
-    private JLabel lblJoinGame;
-    
-    /** The lbl search for game. */
-    private JLabel lblSearchForGame;
-    
+
     /** The combo box. */
-    private JComboBox comboBox;
+    private final JComboBox comboBox;
     
     /** The btn join game. */
-    private JButton btnJoinGame;
+    private final JButton btnJoinGame;
     
     /** The btn back. */
-    private JButton btnBack;
+    private final JButton btnBack;
     
     /** The txt controls. */
-    private JTextField txtControls;
-    
-    /** The lbl controls. */
-    private JLabel lblControls;
-    
+    private final JTextField txtControls;
+
     /** The lbl game name. */
-    private JLabel lblGameName;
+    private final JLabel lblGameName;
 
     /**
      * Create the panel.
@@ -45,14 +35,16 @@ public class JoinGame extends JPanel {
         setLayout(null);
         setOpaque(false);
 
-        lblJoinGame = new JLabel("JOIN GAME");
+        /* The lbl join game. */
+        JLabel lblJoinGame = new JLabel("JOIN GAME");
         lblJoinGame.setBounds(760, 200, 480, 81);
         methods.fontColor(lblJoinGame);
         methods.setAlignment(lblJoinGame);
         methods.setFontHeadline(lblJoinGame);
         add(lblJoinGame);
 
-        lblSearchForGame = new JLabel("Select game to join");
+        /* The lbl search for game. */
+        JLabel lblSearchForGame = new JLabel("Select game to join");
         lblSearchForGame.setBounds(825, 400, 350, 38);
         methods.fontColor(lblSearchForGame);
         methods.setAlignment(lblSearchForGame);
@@ -73,7 +65,8 @@ public class JoinGame extends JPanel {
         methods.setFontLabel(lblGameName);
         add(lblGameName);
 
-        lblControls = new JLabel("Enter controls");
+        /* The lbl controls. */
+        JLabel lblControls = new JLabel("Enter controls");
         lblControls.setBounds(825, 725, 350, 38);
         methods.fontColor(lblControls);
         methods.setAlignment(lblControls);

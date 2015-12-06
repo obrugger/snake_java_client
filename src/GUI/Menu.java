@@ -12,35 +12,23 @@ import java.util.Date;
  * Created by Oscar on 26-10-2015.
  */
 public class Menu extends JPanel {
-    
-    /** The lbl menu. */
-    private JLabel lblMenu;
-    
+
     /** The btn play snake. */
-    private JButton btnPlaySnake;
+    private final JButton btnPlaySnake;
     
     /** The btn highscores. */
-    private JButton btnHighscores;
+    private final JButton btnHighscores;
     
     /** The btn delete game. */
-    private JButton btnDeleteGame;
+    private final JButton btnDeleteGame;
     
     /** The btn logout. */
-    private JButton btnLogout;
+    private final JButton btnLogout;
     
     /** The lblhello user. */
-    private JLabel lblhelloUser;
-    
-    /** The lbldate. */
-    private JLabel lbldate;
+    private final JLabel lblhelloUser;
 
-    /** The image. */
-    private ImageIcon image;
-    
-    /** The label iamge. */
-    private JLabel labelIamge;
-
-    private JButton btnGameInfo;
+    private final JButton btnGameInfo;
 
     /**
      * Create the panel.
@@ -52,7 +40,8 @@ public class Menu extends JPanel {
         setLayout(null);
         setOpaque(false);
 
-        lblMenu = new JLabel("MENU");
+        /* The lbl menu. */
+        JLabel lblMenu = new JLabel("MENU");
         lblMenu.setBounds(792, 200, 415, 80);
         methods.fontColor(lblMenu);
         methods.setFontHeadline(lblMenu);
@@ -94,7 +83,8 @@ public class Menu extends JPanel {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date dateobj = new Date();
 
-        lbldate = new JLabel(df.format(dateobj));
+        /* The lbldate. */
+        JLabel lbldate = new JLabel(df.format(dateobj));
         lbldate.setBounds(715, 95, 575, 35);
         methods.fontColor(lbldate);
         methods.setFontLabel(lbldate);
@@ -147,15 +137,6 @@ public class Menu extends JPanel {
      */
     public JButton getBtnLogout() {
         return btnLogout;
-    }
-
-    /**
-     * Gets the lbldate.
-     *
-     * @return the lbldate
-     */
-    public JLabel getLbldate() {
-        return lbldate;
     }
 
     /**

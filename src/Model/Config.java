@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
-import java.io.IOException;
 
 /**
  * The Config class.
@@ -29,10 +28,9 @@ public class Config {
      * Static configInit-method. Is called in Main method,
      * and only run once.
      *
-     * @throws IOException Signals that an I/O exception has occurred.
      */
 
-    public static void configInit() throws IOException{
+    public static void configInit() {
 
         //Instantiates jsonParser object of type JSONParser class.
         JSONParser jsonParser = new JSONParser();
@@ -47,7 +45,7 @@ public class Config {
             FileReader json = new FileReader("src/config.json");
 
             /*
-            Instantiates obj of type Object to ocntain the json,
+            Instantiates obj of type Object to contain the json,
             which is parsed from the config.json document.
              */
             Object obj = jsonParser.parse(json);
@@ -81,7 +79,7 @@ public class Config {
      *
      * @param serverPort the new server port
      */
-    public static void setServerPort(String serverPort) {
+    private static void setServerPort(String serverPort) {
         Config.serverPort = serverPort;
     }
 
@@ -90,7 +88,7 @@ public class Config {
      *
      * @param url the new url
      */
-    public static void setUrl(String url) {
+    private static void setUrl(String url) {
         Config.url = url;
     }
 

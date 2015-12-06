@@ -17,11 +17,11 @@ import java.net.URL;
  *
  * Created by Oscar on 16-11-2015.
  */
-public class Background extends JPanel {
+class Background extends JPanel {
 
 
     /** The image. */
-    BufferedImage image;
+    private BufferedImage image;
 
 
     /**
@@ -29,7 +29,7 @@ public class Background extends JPanel {
      */
     public Background() {
 
-        //Sets the layour to anonymous class, BorderLayour.
+        //Sets the layout to anonymous class, BorderLayout.
         setLayout(new BorderLayout());
 
         try{
@@ -37,7 +37,7 @@ public class Background extends JPanel {
             /*
             Instantiates the image variable by calling a static object of ImageIO,
             and call the read method. The parameter for read method is an anonymous
-            class of URL, which takes a parameter of getting the ressouce, which
+            class of URL, which takes a parameter of getting the resource, which
             is the background picture.
              */
             image = ImageIO.read(
