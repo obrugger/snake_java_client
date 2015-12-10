@@ -3,7 +3,6 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * Created by Oscar on 17-11-2015.
  */

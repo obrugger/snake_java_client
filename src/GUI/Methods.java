@@ -31,7 +31,7 @@ class Methods extends JPanel{
      * @return the font label
      */
     public Font getFontLabel(){
-        return new Font("Segoe UI Emoji", Font.BOLD, 35);
+        return new Font("Segoe UI Emoji", Font.BOLD, 18);
     }
 
     /**
@@ -41,7 +41,7 @@ class Methods extends JPanel{
      */
     public void setFontLabel(JLabel label){
 
-        label.setFont(new Font("Segoe UI Emoji", Font.BOLD, 35));
+        label.setFont(new Font("Segoe UI Emoji", Font.BOLD, 18));
     }
 
     /**
@@ -51,7 +51,7 @@ class Methods extends JPanel{
      */
     public void setFontHeadline(JLabel label){
 
-        label.setFont(new Font("Segoe UI Emoji", Font.BOLD, 75));
+        label.setFont(new Font("Segoe UI Emoji", Font.BOLD, 38));
 
     }
 
@@ -61,7 +61,7 @@ class Methods extends JPanel{
      * @param txtField the new font text
      */
     public void setFontText(JTextField txtField){
-        txtField.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        txtField.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
     }
 
 

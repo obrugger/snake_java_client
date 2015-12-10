@@ -61,7 +61,7 @@ public class CreateGame extends JPanel {
 
         /* The lbl create game. */
         JLabel lblCreateGame = new JLabel("CREATE GAME");
-        lblCreateGame.setBounds(737, 200, 525, 85);
+        lblCreateGame.setBounds(369, 100, 263, 43);
         methods.fontColor(lblCreateGame);
         methods.setAlignment(lblCreateGame);
         methods.setFontHeadline(lblCreateGame);
@@ -69,7 +69,7 @@ public class CreateGame extends JPanel {
 
         /* The lbl enter gamename. */
         JLabel lblEnterGamename = new JLabel("Enter game name");
-        lblEnterGamename.setBounds(825, 395, 350, 35);
+        lblEnterGamename.setBounds(413, 198, 175, 18);
         methods.fontColor(lblEnterGamename);
         methods.setAlignment(lblEnterGamename);
         methods.setFontLabel(lblEnterGamename);
@@ -77,7 +77,7 @@ public class CreateGame extends JPanel {
 
         /* The txtField gameName. */
         txtGamename = new JTextField();
-        txtGamename.setBounds(825, 455, 350, 60);
+        txtGamename.setBounds(413, 228, 175, 30);
         methods.setAlignmentText(txtGamename);
         methods.setFontText(txtGamename);
         add(txtGamename);
@@ -85,7 +85,7 @@ public class CreateGame extends JPanel {
 
         /* The lbl enter mapsize. */
         JLabel lblEnterMapsize = new JLabel("Enter map size");
-        lblEnterMapsize.setBounds(825, 630, 350, 35);
+        lblEnterMapsize.setBounds(413, 315, 175, 18);
         methods.fontColor(lblEnterMapsize);
         methods.setAlignment(lblEnterMapsize);
         methods.setFontLabel(lblEnterMapsize);
@@ -93,14 +93,14 @@ public class CreateGame extends JPanel {
 
         /* The txtField Mapsize. */
         txtMapsize = new JTextField();
-        txtMapsize.setBounds(825, 690, 350, 60);
+        txtMapsize.setBounds(413, 345, 175, 30);
         methods.setAlignmentText(txtMapsize);
         methods.setFontText(txtMapsize);
         add(txtMapsize);
 
         /* The lbl enter controls. */
         JLabel lblEnterControls = new JLabel("Enter controls");
-        lblEnterControls.setBounds(825, 865, 350, 35);
+        lblEnterControls.setBounds(413, 433, 175, 18);
         methods.fontColor(lblEnterControls);
         methods.setAlignment(lblEnterControls);
         methods.setFontLabel(lblEnterControls);
@@ -108,7 +108,7 @@ public class CreateGame extends JPanel {
 
         /* The txtField controls. */
         txtControls = new JTextField();
-        txtControls.setBounds(825, 925, 350, 60);
+        txtControls.setBounds(413, 463, 175, 30);
         methods.setAlignmentText(txtControls);
         methods.setFontText(txtControls);
         add(txtControls);
@@ -116,13 +116,13 @@ public class CreateGame extends JPanel {
 
         /* The btn create. */
         btnCreate = new JButton("Create");
-        btnCreate.setBounds(425, 1100, 400, 100);
+        btnCreate.setBounds(213, 550, 200, 50);
         btnCreate.setFont(methods.getFontLabel());
         add(btnCreate);
 
         /* The btn cancel.. */
         btnCancel = new JButton("Cancel");
-        btnCancel.setBounds(1175, 1100, 400, 100);
+        btnCancel.setBounds(588, 550, 200, 50);
         btnCancel.setFont(methods.getFontLabel());
         add(btnCancel);
 

@@ -42,39 +42,39 @@ public class Menu extends JPanel {
 
         /* The lbl menu. */
         JLabel lblMenu = new JLabel("MENU");
-        lblMenu.setBounds(792, 200, 415, 80);
+        lblMenu.setBounds(396, 100, 208, 40);
         methods.fontColor(lblMenu);
         methods.setFontHeadline(lblMenu);
         methods.setAlignment(lblMenu);
         add(lblMenu);
 
         btnPlaySnake = new JButton("Play Snake");
-        btnPlaySnake.setBounds(800, 425, 400, 100);
+        btnPlaySnake.setBounds(400, 213, 200, 50);
         btnPlaySnake.setFont(methods.getFontLabel());
         add(btnPlaySnake);
 
         btnHighscores = new JButton("Highscores");
-        btnHighscores.setBounds(800, 575, 400, 100);
+        btnHighscores.setBounds(400, 288, 200, 50);
         btnHighscores.setFont(methods.getFontLabel());
         add(btnHighscores);
 
         btnDeleteGame = new JButton("Delete game");
-        btnDeleteGame.setBounds(800, 725, 400, 100);
+        btnDeleteGame.setBounds(400, 363, 200, 50);
         btnDeleteGame.setFont(methods.getFontLabel());
         add(btnDeleteGame);
 
         btnGameInfo = new JButton("Show your games");
-        btnGameInfo.setBounds(800, 875, 400, 100);
+        btnGameInfo.setBounds(400, 438, 200, 50);
         btnGameInfo.setFont(methods.getFontLabel());
         add(btnGameInfo);
 
         btnLogout = new JButton("Logout");
-        btnLogout.setBounds(800, 1250, 400, 100);
+        btnLogout.setBounds(400, 625, 200, 50);
         btnLogout.setFont(methods.getFontLabel());
         add(btnLogout);
 
         lblhelloUser = new JLabel();
-        lblhelloUser.setBounds(715, 50, 575, 35);
+        lblhelloUser.setBounds(358, 25, 288, 18);
         methods.fontColor(lblhelloUser);
         methods.setFontLabel(lblhelloUser);
         methods.setAlignment(lblhelloUser);
@@ -85,7 +85,7 @@ public class Menu extends JPanel {
 
         /* The lbldate. */
         JLabel lbldate = new JLabel(df.format(dateobj));
-        lbldate.setBounds(715, 95, 575, 35);
+        lbldate.setBounds(358, 48, 288, 18);
         methods.fontColor(lbldate);
         methods.setFontLabel(lbldate);
         methods.setAlignment(lbldate);

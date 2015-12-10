@@ -24,7 +24,7 @@ public class Frame extends JFrame {
         mainPanel = new MainPanel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(2000, 1500);
+        setSize(1075, 800);
         setContentPane(background);
         setTitle("Snake");
         setLocationRelativeTo(null);

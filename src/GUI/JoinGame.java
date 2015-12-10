@@ -37,7 +37,7 @@ public class JoinGame extends JPanel {
 
         /* The lbl join game. */
         JLabel lblJoinGame = new JLabel("JOIN GAME");
-        lblJoinGame.setBounds(760, 200, 480, 81);
+        lblJoinGame.setBounds(380, 100, 240, 41);
         methods.fontColor(lblJoinGame);
         methods.setAlignment(lblJoinGame);
         methods.setFontHeadline(lblJoinGame);
@@ -45,21 +45,21 @@ public class JoinGame extends JPanel {
 
         /* The lbl search for game. */
         JLabel lblSearchForGame = new JLabel("Select game to join");
-        lblSearchForGame.setBounds(825, 400, 350, 38);
+        lblSearchForGame.setBounds(413, 200, 175, 19);
         methods.fontColor(lblSearchForGame);
         methods.setAlignment(lblSearchForGame);
         methods.setFontLabel(lblSearchForGame);
         add(lblSearchForGame);
 
         comboBox = new JComboBox();
-        comboBox.setBounds(800, 500, 400, 60);
-        comboBox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        comboBox.setBounds(400, 250, 200, 30);
+        comboBox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
         ((JLabel)comboBox.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
         ((JLabel)comboBox.getRenderer()).setVerticalAlignment(JLabel.CENTER);
         add(comboBox);
 
         lblGameName = new JLabel();
-        lblGameName.setBounds(750, 600, 500, 38);
+        lblGameName.setBounds(375, 300, 250, 19);
         methods.fontColor(lblGameName);
         methods.setAlignment(lblGameName);
         methods.setFontLabel(lblGameName);
@@ -67,25 +67,25 @@ public class JoinGame extends JPanel {
 
         /* The lbl controls. */
         JLabel lblControls = new JLabel("Enter controls");
-        lblControls.setBounds(825, 725, 350, 38);
+        lblControls.setBounds(413, 363, 175, 19);
         methods.fontColor(lblControls);
         methods.setAlignment(lblControls);
         methods.setFontLabel(lblControls);
         add(lblControls);
 
         txtControls = new JTextField();
-        txtControls.setBounds(800, 800, 400, 60);
+        txtControls.setBounds(400, 400, 200, 30);
         methods.setFontText(txtControls);
         methods.setAlignmentText(txtControls);
         add(txtControls);
 
         btnJoinGame = new JButton("Join game");
-        btnJoinGame.setBounds(425, 1150, 400, 100);
+        btnJoinGame.setBounds(213, 575, 200, 50);
         btnJoinGame.setFont(methods.getFontLabel());
         add(btnJoinGame);
 
         btnBack = new JButton("Back");
-        btnBack.setBounds(1175, 1150, 400, 100);
+        btnBack.setBounds(588, 575, 200, 50);
         btnBack.setFont(methods.getFontLabel());
         add(btnBack);
 

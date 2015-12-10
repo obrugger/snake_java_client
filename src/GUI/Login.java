@@ -37,7 +37,7 @@ public class Login extends JPanel {
 
         /* The lbl login. */
         JLabel lblLogin = new JLabel("LOGIN");
-        lblLogin.setBounds(792, 200, 415, 80);
+        lblLogin.setBounds(396, 100, 208, 40);
         methods.fontColor(lblLogin);
         methods.setFontHeadline(lblLogin);
         methods.setAlignment(lblLogin);
@@ -45,39 +45,39 @@ public class Login extends JPanel {
 
         /* The lbl username. */
         JLabel lblUsername = new JLabel("Username");
-        lblUsername.setBounds(825, 430, 350, 35);
+        lblUsername.setBounds(413, 215, 175, 18);
         methods.fontColor(lblUsername);
         methods.setAlignment(lblUsername);
         methods.setFontLabel(lblUsername);
         add(lblUsername);
 
         txtUsername = new JTextField();
-        txtUsername.setBounds(825, 490, 350, 60);
+        txtUsername.setBounds(413, 245, 175, 30);
         methods.setAlignmentText(txtUsername);
         methods.setFontText(txtUsername);
         add(txtUsername);
 
         /* The lbl password. */
         JLabel lblPassword = new JLabel("Password");
-        lblPassword.setBounds(825, 650, 350, 35);
+        lblPassword.setBounds(413, 325, 175, 18);
         methods.setAlignment(lblPassword);
         methods.setFontLabel(lblPassword);
         methods.fontColor(lblPassword);
         add(lblPassword);
 
         passwordField = new JPasswordField();
-        passwordField.setBounds(825, 710, 350, 60);
-        passwordField.setFont(new Font("Segoe UI Emoji", Font.BOLD, 30));
+        passwordField.setBounds(413, 355, 175, 30);
+        passwordField.setFont(new Font("Segoe UI Emoji", Font.BOLD, 15));
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         add(passwordField);
 
         btnLogin = new JButton("Login");
-        btnLogin.setBounds(800, 1000, 400, 100);
+        btnLogin.setBounds(400, 500, 200, 50);
         btnLogin.setFont(methods.getFontLabel());
         add(btnLogin);
 
         btnCreate = new JButton("Create User");
-        btnCreate.setBounds(150, 1250, 400, 100);
+        btnCreate.setBounds(75, 625, 200, 50);
         btnCreate.setFont(methods.getFontLabel());
         add(btnCreate);
 

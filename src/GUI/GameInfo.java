@@ -25,56 +25,56 @@ public class GameInfo extends JPanel {
         Methods methods = new Methods();
 
         JLabel lblHeadline = new JLabel("GAME INFO");
-        lblHeadline.setBounds(760, 200, 480, 81);
+        lblHeadline.setBounds(380, 100, 240, 41);
         methods.fontColor(lblHeadline);
         methods.setAlignment(lblHeadline);
         methods.setFontHeadline(lblHeadline);
         add(lblHeadline);
 
         JLabel lblChooseGame = new JLabel("Select game");
-        lblChooseGame.setBounds(851, 400, 298, 38);
+        lblChooseGame.setBounds(426, 200, 149, 19);
         methods.fontColor(lblChooseGame);
         methods.setAlignment(lblChooseGame);
         methods.setFontLabel(lblChooseGame);
         add(lblChooseGame);
 
         comboBox = new JComboBox();
-        comboBox.setBounds(800, 500, 400, 60);
-        comboBox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
+        comboBox.setBounds(400, 250, 200, 30);
+        comboBox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
         ((JLabel)comboBox.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
         ((JLabel)comboBox.getRenderer()).setVerticalAlignment(JLabel.CENTER);
         add(comboBox);
 
         JLabel lblGameName = new JLabel("Game name");
-        lblGameName.setBounds(851, 650, 298, 38);
+        lblGameName.setBounds(426, 325, 149, 19);
         methods.fontColor(lblGameName);
         methods.setAlignment(lblGameName);
         methods.setFontLabel(lblGameName);
         add(lblGameName);
 
         lblShowGame = new JLabel();
-        lblShowGame.setBounds(851, 715, 298, 38);
+        lblShowGame.setBounds(426, 358, 149, 19);
         methods.fontColor(lblShowGame);
         methods.setAlignment(lblShowGame);
         methods.setFontLabel(lblShowGame);
         add(lblShowGame);
 
         JLabel lblWinner = new JLabel("The winner was");
-        lblWinner.setBounds(851, 865, 298, 38);
+        lblWinner.setBounds(426, 433, 149, 19);
         methods.fontColor(lblWinner);
         methods.setAlignment(lblWinner);
         methods.setFontLabel(lblWinner);
         add(lblWinner);
 
         lblShowWinner = new JLabel();
-        lblShowWinner.setBounds(851,930,298,38);
+        lblShowWinner.setBounds(426, 465, 149, 19);
         methods.fontColor(lblShowWinner);
         methods.setAlignment(lblShowWinner);
         methods.setFontLabel(lblShowWinner);
         add(lblShowWinner);
 
         btnBack = new JButton("Back");
-        btnBack.setBounds(800, 1250, 400, 100);
+        btnBack.setBounds(400, 625, 200, 50);
         btnBack.setFont(methods.getFontLabel());
         add(btnBack);
 

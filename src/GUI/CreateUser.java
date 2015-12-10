@@ -44,7 +44,7 @@ public class CreateUser extends JPanel {
 
         /* The lbl create user. */
         JLabel lblCreateUser = new JLabel("CREATE USER");
-        lblCreateUser.setBounds(737, 200, 525, 85);
+        lblCreateUser.setBounds(369, 100, 263, 43);
         methods.fontColor(lblCreateUser);
         methods.setFontHeadline(lblCreateUser);
         methods.setAlignment(lblCreateUser);
@@ -52,14 +52,14 @@ public class CreateUser extends JPanel {
 
         /* The lbl enter username. */
         JLabel lblEnterUsername = new JLabel("Enter username");
-        lblEnterUsername.setBounds(862, 350, 275, 38);
+        lblEnterUsername.setBounds(431, 175, 138, 19);
         methods.fontColor(lblEnterUsername);
         methods.setFontLabel(lblEnterUsername);
         methods.setAlignment(lblEnterUsername);
         add(lblEnterUsername);
 
         txtUsername = new JTextField();
-        txtUsername.setBounds(825, 410, 350, 60);
+        txtUsername.setBounds(413, 205, 175, 30);
         methods.setFontText(txtUsername);
         methods.setAlignmentText(txtUsername);
         add(txtUsername);
@@ -67,28 +67,28 @@ public class CreateUser extends JPanel {
 
         /* The lbl enter password. */
         JLabel lblEnterPassword = new JLabel("Enter password");
-        lblEnterPassword.setBounds(862, 505, 275, 38);
+        lblEnterPassword.setBounds(431, 253, 138, 19);
         methods.fontColor(lblEnterPassword);
         methods.setFontLabel(lblEnterPassword);
         methods.setAlignment(lblEnterPassword);
         add(lblEnterPassword);
 
         pwdPassword = new JPasswordField();
-        pwdPassword.setBounds(825, 575, 350, 60);
+        pwdPassword.setBounds(413, 288, 175, 30);
         pwdPassword.setFont(methods.getFontLabel());
         pwdPassword.setHorizontalAlignment(SwingConstants.CENTER);
         add(pwdPassword);
 
         /* The lbl first name. */
         JLabel lblFirstName = new JLabel("First name");
-        lblFirstName.setBounds(875, 670, 250, 35);
+        lblFirstName.setBounds(438, 335, 125, 28);
         methods.fontColor(lblFirstName);
         methods.setFontLabel(lblFirstName);
         methods.setAlignment(lblFirstName);
         add(lblFirstName);
 
         txtFirstname = new JTextField();
-        txtFirstname.setBounds(825, 730, 350, 60);
+        txtFirstname.setBounds(413, 365, 175, 30);
         methods.setFontText(txtFirstname);
         methods.setAlignmentText(txtFirstname);
         add(txtFirstname);
@@ -96,14 +96,14 @@ public class CreateUser extends JPanel {
 
         /* The lbl last name. */
         JLabel lblLastName = new JLabel("Last name");
-        lblLastName.setBounds(875, 825, 250, 35);
+        lblLastName.setBounds(438, 413, 125, 18);
         methods.fontColor(lblLastName);
         methods.setFontLabel(lblLastName);
         methods.setAlignment(lblLastName);
         add(lblLastName);
 
         txtLastname = new JTextField();
-        txtLastname.setBounds(825, 885, 350, 60);
+        txtLastname.setBounds(413, 443, 175, 30);
         methods.setFontText(txtLastname);
         methods.setAlignmentText(txtLastname);
         add(txtLastname);
@@ -111,26 +111,25 @@ public class CreateUser extends JPanel {
 
         /* The lbl email. */
         JLabel lblEmail = new JLabel("E-mail");
-        lblEmail.setBounds(875, 980, 250, 35);
+        lblEmail.setBounds(438, 490, 175, 18);
         methods.fontColor(lblEmail);
         methods.setFontLabel(lblEmail);
         methods.setAlignment(lblEmail);
         add(lblEmail);
 
         txtEmail = new JTextField();
-        txtEmail.setBounds(825, 1040, 350, 60);
+        txtEmail.setBounds(413, 520, 175, 30);
         methods.setFontText(txtEmail);
         methods.setAlignmentText(txtEmail);
         add(txtEmail);
-        txtEmail.setColumns(10);
 
         btnCreate = new JButton("Create");
-        btnCreate.setBounds(425, 1280, 400, 100);
+        btnCreate.setBounds(213, 640, 200, 50);
         btnCreate.setFont(methods.getFontLabel());
         add(btnCreate);
 
         btnCancel = new JButton("Cancel");
-        btnCancel.setBounds(1175, 1280, 400, 100);
+        btnCancel.setBounds(588, 640, 200, 50);
         btnCancel.setFont(methods.getFontLabel());
         add(btnCancel);
 

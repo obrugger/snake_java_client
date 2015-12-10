@@ -30,7 +30,7 @@ public class DeleteGame extends JPanel {
 
         /* The lbl delete game. */
         JLabel lblDeleteGame = new JLabel("DELETE GAME");
-        lblDeleteGame.setBounds(737, 200, 525, 85);
+        lblDeleteGame.setBounds(369, 100, 263, 43);
         methods.fontColor(lblDeleteGame);
         methods.setFontHeadline(lblDeleteGame);
         methods.setAlignment(lblDeleteGame);
@@ -38,26 +38,26 @@ public class DeleteGame extends JPanel {
 
         /* The lbl insert game id. */
         JLabel lblInsertGameId = new JLabel("Insert Game ID ");
-        lblInsertGameId.setBounds(862, 450, 275, 38);
+        lblInsertGameId.setBounds(431, 275, 138, 19);
         methods.fontColor(lblInsertGameId);
         methods.setFontLabel(lblInsertGameId);
         methods.setAlignment(lblInsertGameId);
         add(lblInsertGameId);
 
         txtInsertgameid = new JTextField();
-        txtInsertgameid.setBounds(825, 590, 350, 60);
+        txtInsertgameid.setBounds(413, 295, 175, 30);
         methods.setFontText(txtInsertgameid);
         methods.setAlignmentText(txtInsertgameid);
         add(txtInsertgameid);
         txtInsertgameid.setColumns(10);
 
         btnDelete = new JButton("Delete");
-        btnDelete.setBounds(1175, 1000, 400, 100);
+        btnDelete.setBounds(588, 500, 200, 50);
         btnDelete.setFont(methods.getFontLabel());
         add(btnDelete);
 
         btnBack = new JButton("Back");
-        btnBack.setBounds(425, 1000, 400, 100);
+        btnBack.setBounds(213, 500, 200, 50);
         btnBack.setFont(methods.getFontLabel());
         add(btnBack);
 

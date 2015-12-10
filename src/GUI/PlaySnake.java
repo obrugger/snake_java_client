@@ -30,29 +30,29 @@ public class PlaySnake extends JPanel {
 
         ImageIcon image = new ImageIcon(this.getClass().getResource("snake.png"));
         JLabel labelIamge = new JLabel(image);
-        labelIamge.setBounds(850, 600, 300, 300);
+        labelIamge.setBounds(425, 300, 150, 150);
         add(labelIamge);
 
         /* The lbl play snake. */
         JLabel lblPlaySnake = new JLabel("PLAY SNAKE");
-        lblPlaySnake.setBounds(773, 200, 453, 81);
+        lblPlaySnake.setBounds(387, 100, 252, 41);
         methods.fontColor(lblPlaySnake);
         methods.setFontHeadline(lblPlaySnake);
         methods.setAlignment(lblPlaySnake);
         add(lblPlaySnake);
 
         btnCreateGame = new JButton("Create Game");
-        btnCreateGame.setBounds(1175, 500, 400, 100);
+        btnCreateGame.setBounds(588, 250, 200, 50);
         btnCreateGame.setFont(methods.getFontLabel());
         add(btnCreateGame);
 
         btnJoinGame = new JButton("Join game");
-        btnJoinGame.setBounds(425, 500, 400, 100);
+        btnJoinGame.setBounds(213, 250, 200, 50);
         btnJoinGame.setFont(methods.getFontLabel());
         add(btnJoinGame);
 
         btnBack = new JButton("Back");
-        btnBack.setBounds(800, 1000, 400, 100);
+        btnBack.setBounds(400, 500, 200, 50);
         btnBack.setFont(methods.getFontLabel());
         add(btnBack);
     }
