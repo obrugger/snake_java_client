@@ -594,15 +594,15 @@ class Methods {
 
 
                     /*
-                    Instantiates a game object, game1, to contain the Game returned by jp-method
+                    Instantiates a game object, joinedGame, to contain the Game returned by jp-method
                     getGame. The method takes the path and json object as parameters.
                      */
-                    Game game1 = jp.getGame(jp.getSc().put("games/start/", json));
+                    Game joinedGame = jp.getGame(jp.getSc().put("games/start/", json));
 
-                    game1 = jp.getGame(jp.getSc().get("game/" + game1.getGameId() + "/"));
+                    joinedGame = jp.getGame(jp.getSc().get("game/" + joinedGame.getGameId() + "/"));
 
                     //If the value of get-winner is true, then:
-                    if (game1.getWinnerId() == currentUser.getId()){
+                    if (joinedGame.getWinnerId() == currentUser.getId()){
 
                         //Return true
                         return true;

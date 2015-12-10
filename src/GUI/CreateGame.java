@@ -75,6 +75,7 @@ public class CreateGame extends JPanel {
         methods.setFontLabel(lblEnterGamename);
         add(lblEnterGamename);
 
+        /* The txtField gameName. */
         txtGamename = new JTextField();
         txtGamename.setBounds(825, 455, 350, 60);
         methods.setAlignmentText(txtGamename);
@@ -90,6 +91,7 @@ public class CreateGame extends JPanel {
         methods.setFontLabel(lblEnterMapsize);
         add(lblEnterMapsize);
 
+        /* The txtField Mapsize. */
         txtMapsize = new JTextField();
         txtMapsize.setBounds(825, 690, 350, 60);
         methods.setAlignmentText(txtMapsize);
@@ -104,6 +106,7 @@ public class CreateGame extends JPanel {
         methods.setFontLabel(lblEnterControls);
         add(lblEnterControls);
 
+        /* The txtField controls. */
         txtControls = new JTextField();
         txtControls.setBounds(825, 925, 350, 60);
         methods.setAlignmentText(txtControls);
@@ -111,11 +114,13 @@ public class CreateGame extends JPanel {
         add(txtControls);
         txtControls.setColumns(10);
 
+        /* The btn create. */
         btnCreate = new JButton("Create");
         btnCreate.setBounds(425, 1100, 400, 100);
         btnCreate.setFont(methods.getFontLabel());
         add(btnCreate);
 
+        /* The btn cancel.. */
         btnCancel = new JButton("Cancel");
         btnCancel.setBounds(1175, 1100, 400, 100);
         btnCancel.setFont(methods.getFontLabel());
