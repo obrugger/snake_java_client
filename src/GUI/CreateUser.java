@@ -36,9 +36,13 @@ public class CreateUser extends JPanel {
      */
     public CreateUser() {
 
+        //Sets layout to absolute
         setLayout(null);
+
+        //Sets transparency
         setOpaque(false);
 
+        //Initialize methods object.
         Methods methods = new Methods();
 
 
@@ -58,6 +62,7 @@ public class CreateUser extends JPanel {
         methods.setAlignment(lblEnterUsername);
         add(lblEnterUsername);
 
+        /* The txt username */
         txtUsername = new JTextField();
         txtUsername.setBounds(413, 205, 175, 30);
         methods.setFontText(txtUsername);
@@ -73,6 +78,7 @@ public class CreateUser extends JPanel {
         methods.setAlignment(lblEnterPassword);
         add(lblEnterPassword);
 
+        /* The passwordfield */
         pwdPassword = new JPasswordField();
         pwdPassword.setBounds(413, 288, 175, 30);
         pwdPassword.setFont(methods.getFontLabel());
@@ -87,6 +93,7 @@ public class CreateUser extends JPanel {
         methods.setAlignment(lblFirstName);
         add(lblFirstName);
 
+        /* The txt firstname */
         txtFirstname = new JTextField();
         txtFirstname.setBounds(413, 365, 175, 30);
         methods.setFontText(txtFirstname);
@@ -102,6 +109,7 @@ public class CreateUser extends JPanel {
         methods.setAlignment(lblLastName);
         add(lblLastName);
 
+        /* The txt lastname */
         txtLastname = new JTextField();
         txtLastname.setBounds(413, 443, 175, 30);
         methods.setFontText(txtLastname);
@@ -117,17 +125,20 @@ public class CreateUser extends JPanel {
         methods.setAlignment(lblEmail);
         add(lblEmail);
 
+        /* The txt email */
         txtEmail = new JTextField();
         txtEmail.setBounds(413, 520, 175, 30);
         methods.setFontText(txtEmail);
         methods.setAlignmentText(txtEmail);
         add(txtEmail);
 
+        /* The btn create*/
         btnCreate = new JButton("Create");
         btnCreate.setBounds(213, 640, 200, 50);
         btnCreate.setFont(methods.getFontLabel());
         add(btnCreate);
 
+        /* The btn cancel */
         btnCancel = new JButton("Cancel");
         btnCancel.setBounds(588, 640, 200, 50);
         btnCancel.setFont(methods.getFontLabel());
@@ -195,7 +206,11 @@ public class CreateUser extends JPanel {
      * @return the password
      */
     public String getPassword(){
+
+        //Reads the password input, from passwordfield into a char array
         char[] charPass = pwdPassword.getPassword();
+
+        //Returns the char array as a string
         return new String(charPass);
     }
 

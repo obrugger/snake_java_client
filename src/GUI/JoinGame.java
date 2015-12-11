@@ -30,9 +30,12 @@ public class JoinGame extends JPanel {
      */
     public JoinGame() {
 
+        //Initialize methods object.
         Methods methods = new Methods();
 
+        //Set layout absolute
         setLayout(null);
+        //Set transparency
         setOpaque(false);
 
         /* The lbl join game. */
@@ -51,6 +54,7 @@ public class JoinGame extends JPanel {
         methods.setFontLabel(lblSearchForGame);
         add(lblSearchForGame);
 
+        /* The combobox */
         comboBox = new JComboBox();
         comboBox.setBounds(400, 250, 200, 30);
         comboBox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
@@ -58,6 +62,7 @@ public class JoinGame extends JPanel {
         ((JLabel)comboBox.getRenderer()).setVerticalAlignment(JLabel.CENTER);
         add(comboBox);
 
+        /* The lbl game name */
         lblGameName = new JLabel();
         lblGameName.setBounds(375, 300, 250, 19);
         methods.fontColor(lblGameName);
@@ -73,17 +78,20 @@ public class JoinGame extends JPanel {
         methods.setFontLabel(lblControls);
         add(lblControls);
 
+        /* The txt controls */
         txtControls = new JTextField();
         txtControls.setBounds(400, 400, 200, 30);
         methods.setFontText(txtControls);
         methods.setAlignmentText(txtControls);
         add(txtControls);
 
+        /* The btn join game */
         btnJoinGame = new JButton("Join game");
         btnJoinGame.setBounds(213, 575, 200, 50);
         btnJoinGame.setFont(methods.getFontLabel());
         add(btnJoinGame);
 
+        /* The btn back */
         btnBack = new JButton("Back");
         btnBack.setBounds(588, 575, 200, 50);
         btnBack.setFont(methods.getFontLabel());

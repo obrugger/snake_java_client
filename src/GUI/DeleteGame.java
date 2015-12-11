@@ -23,9 +23,12 @@ public class DeleteGame extends JPanel {
      */
     public DeleteGame() {
 
+        //Initialize a new methods object.
         Methods methods = new Methods();
 
+        //Sets layout to absolute
         setLayout(null);
+        //Sets transparency
         setOpaque(false);
 
         /* The lbl delete game. */
@@ -44,6 +47,7 @@ public class DeleteGame extends JPanel {
         methods.setAlignment(lblInsertGameId);
         add(lblInsertGameId);
 
+        /* The txt insertgame id */
         txtInsertgameid = new JTextField();
         txtInsertgameid.setBounds(413, 295, 175, 30);
         methods.setFontText(txtInsertgameid);
@@ -51,11 +55,13 @@ public class DeleteGame extends JPanel {
         add(txtInsertgameid);
         txtInsertgameid.setColumns(10);
 
+        /* The btn delete */
         btnDelete = new JButton("Delete");
         btnDelete.setBounds(588, 500, 200, 50);
         btnDelete.setFont(methods.getFontLabel());
         add(btnDelete);
 
+        /* The btn back */
         btnBack = new JButton("Back");
         btnBack.setBounds(213, 500, 200, 50);
         btnBack.setFont(methods.getFontLabel());

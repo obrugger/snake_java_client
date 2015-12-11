@@ -80,6 +80,7 @@ public class Menu extends JPanel {
         methods.setAlignment(lblhelloUser);
         add(lblhelloUser);
 
+        //Initializes DateFormat object as a SimpleDateFormat, with the date format
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date dateobj = new Date();
 

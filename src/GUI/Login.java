@@ -30,9 +30,13 @@ public class Login extends JPanel {
      */
     public Login() {
 
+        //Initialize new methods object.
         Methods methods = new Methods();
 
+        //Set absolute layout
         setLayout(null);
+
+        //Sets transparency
         setOpaque(false);
 
         /* The lbl login. */
@@ -51,6 +55,7 @@ public class Login extends JPanel {
         methods.setFontLabel(lblUsername);
         add(lblUsername);
 
+        /* The txt username */
         txtUsername = new JTextField();
         txtUsername.setBounds(413, 245, 175, 30);
         methods.setAlignmentText(txtUsername);
@@ -65,17 +70,20 @@ public class Login extends JPanel {
         methods.fontColor(lblPassword);
         add(lblPassword);
 
+        /* The password field */
         passwordField = new JPasswordField();
         passwordField.setBounds(413, 355, 175, 30);
         passwordField.setFont(new Font("Segoe UI Emoji", Font.BOLD, 15));
         passwordField.setHorizontalAlignment(SwingConstants.CENTER);
         add(passwordField);
 
+        /* The btn login */
         btnLogin = new JButton("Login");
         btnLogin.setBounds(400, 500, 200, 50);
         btnLogin.setFont(methods.getFontLabel());
         add(btnLogin);
 
+        /* The btn create */
         btnCreate = new JButton("Create User");
         btnCreate.setBounds(75, 625, 200, 50);
         btnCreate.setFont(methods.getFontLabel());

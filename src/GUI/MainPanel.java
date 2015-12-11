@@ -66,23 +66,35 @@ public class MainPanel extends JPanel {
     private final CardLayout c;
 
     /**
-     * Instantiates a new main panel.
+     * Creates the MainPanel constructor.
      */
     public MainPanel(){
 
+        //Sets transparency
         setOpaque(false);
+
+        //Sets visibility to true.
         setVisible(true);
 
+        //Initialize c variable.
         c = new CardLayout();
+
+        //Sets layout to cardlayout.
         setLayout(c);
 
+        //Initializes login class
         login = new Login();
+        //Adds login class to cardlayout
         add(login, LOGIN);
 
+        //Initializes menu class
         menu = new Menu();
+        //Adds menu class to cardlayout
         add(menu, MENU);
 
+        //Initializes highscore class
         highscore = new Highscore();
+        //Adds the highscore class to cardlayout
         add(highscore, HIGHSCORE);
 
         joinGame = new JoinGame();
@@ -106,6 +118,7 @@ public class MainPanel extends JPanel {
         gameInfo = new GameInfo();
         add(gameInfo, GAMEINFO);
 
+        //Uses cardlayout show method, to show login screen.
         c.show(this, LOGIN);
     }
 
@@ -262,14 +275,29 @@ public class MainPanel extends JPanel {
         return CREATEGAME;
     }
 
+    /**
+     * Gets the loading.
+     *
+     * @return the loading
+     */
     public static String getLOADING() {
         return LOADING;
     }
 
+    /**
+     * Gets the game info.
+     *
+     * @return the game info
+     */
     public GameInfo getGameInfo() {
         return gameInfo;
     }
 
+    /**
+     * Gets the game info.
+     *
+     * @return the game info.
+     */
     public static String getGAMEINFO() {
         return GAMEINFO;
     }

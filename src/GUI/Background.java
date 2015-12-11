@@ -54,10 +54,8 @@ class Background extends JPanel {
         }
     }
 
-    /**
-     * The PaintComponent.
-     *
-     * @param g the graphic.
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
      */
     public void paintComponent(Graphics g){
 

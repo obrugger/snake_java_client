@@ -447,31 +447,46 @@ class Methods {
         }
     }
 
+    /**
+     * Show games by ID.
+     *
+     * @param frame the frame
+     * @return true, if successful
+     */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean showGamesByID(Frame frame){
 
+        //Declare user variable.
         User user;
 
 
         try {
 
+            //Initialize user object.
             user = new User();
 
+            //Instantiate GameId by retreiving selected item from combobox.
             String gameId = frame.getMainPanel().getGameInfo().getComboBox().getSelectedItem().toString();
 
+            //Instantiate Game object by calling parsing method with get-request as parameter
             Game game = jp.getGame(jp.getSc().get("game/" + gameId + "/"));
 
+            //Sets the text in lblShowGame to the gamename
             frame.getMainPanel().getGameInfo().getLblShowGame().setText(game.getName());
 
+            //parses the winnerid from the server.
             jp.parser(jp.getSc().get("users/" + game.getWinnerId() + "/"), user);
 
+            //Sets the text in Winner label to first name of winning user.
             frame.getMainPanel().getGameInfo().getLblShowWinner().setText(user.getFirst_name());
 
+            //returns true
             return true;
         }
 
         catch (Exception e){
 
+            //If exception is caught, return false.
             return false;
         }
     }
@@ -487,23 +502,22 @@ class Methods {
 
         try {
 
+            //Instantiate games array to contain games received by server.
             Game[] games = jp.openGamesParser(jp.getSc().get("games/finished/"
                     + currentUser.getId() + "/"));
 
+            //For every game in game array
             for (Game gm : games){
 
-
+                //Add game to the combobox
                 frame.getMainPanel().getGameInfo().getComboBox().addItem(gm.getGameId());
             }
 
             return true;
         }
         catch (Exception e){
-
-
-            e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     /**
